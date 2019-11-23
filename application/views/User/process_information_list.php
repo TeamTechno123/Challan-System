@@ -44,7 +44,7 @@ include('head.php');
             <div class="card-header">
               <h3 class="card-title"><i class="fa fa-list"></i>  Process Information List</h3>
               <div class="card-tools">
-                <a href="<?php echo base_url(); ?>Admin/process_information" class="btn btn-sm btn-block btn-primary">Add Process</a>
+                <a href="<?php echo base_url(); ?>User/process_information" class="btn btn-sm btn-block btn-primary">Add Process</a>
               </div>
 
             </div>

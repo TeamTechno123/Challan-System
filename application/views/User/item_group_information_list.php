@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <?php
-$page = "make_information_list";
+$page = "item_group_information_list";
 include('head.php');
 ?>
 <style>
@@ -44,7 +44,7 @@ include('head.php');
             <div class="card-header">
               <h3 class="card-title"><i class="fa fa-list"></i>  Item Group Information List</h3>
               <div class="card-tools">
-                <a href="<?php echo base_url(); ?>Admin/item_group_information" class="btn btn-sm btn-block btn-primary">Add Item Group</a>
+                <a href="<?php echo base_url(); ?>User/item_group_information" class="btn btn-sm btn-block btn-primary">Add Item Group</a>
               </div>
 
             </div>
@@ -59,14 +59,20 @@ include('head.php');
                 </tr>
                 </thead>
                 <tbody>
+                  <?php
+                $i=0;
+                foreach ($item_group_list as $item_group_list1) {
+                $i++;
+              ?>
                 <tr>
-                  <td>1</td>
-                  <td>Dell</td>
+                  <td><?php echo $i; ?></td>
+                  <td><?php echo $item_group_list1->item_group_name; ?></td>
                   <td>
-                    <a href=""> <i class="fa fa-edit"></i> </a>
-                    <a class="ml-4" href=""> <i class="fa fa-trash"></i> </a>
+                    <a href="<?php echo base_url(); ?>User/edit_item_group/<?php echo $item_group_list1->item_group_id; ?>"> <i class="fa fa-edit"></i> </a>
+                    <a class="ml-4" href="<?php echo base_url(); ?>User/delete_item_group/<?php echo $item_group_list1->item_group_id; ?>" onclick="return confirm('Delete Confirm');"> <i class="fa fa-trash"></i> </a>
                   </td>
                 </tr>
+                  <?php  }  ?>
               </table>
             </div>
             <!-- /.card-body -->

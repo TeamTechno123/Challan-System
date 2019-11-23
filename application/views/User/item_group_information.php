@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <?php
-  $page = "company_information";
+  $page = "item_group_information";
   include('head.php');
 ?>
 <body class="hold-transition sidebar-mini layout-fixed">
@@ -41,17 +41,29 @@
               </div>
               <!-- /.card-header -->
               <!-- form start -->
-              <form role="form">
+
+              <?php if(isset($update)){ ?>
+                <form action="<?php echo base_url(); ?>User/update_item_group" method="post" enctype="multipart/form-data" role="form">
+                  <input type="hidden" name="item_group_id" value="<?php echo $item_group_id; ?>">
+              <?php }else{ ?>
+                <form action="<?php echo base_url(); ?>User/save_item_group" method="post" enctype="multipart/form-data" role="form">
+              <?php } ?>
+
+
                 <div class="card-body row">
 
                   <div class="form-group col-md-12">
-                    <input type="text" class="form-control form-control-sm" name="" id="" placeholder="Enter Item Group Name">
+                    <input type="text" class="form-control form-control-sm" name="item_group_name" id="item_group_name" value="<?php if(isset($item_group_name)){ echo $item_group_name; } ?>" title="Enter Item Group Name" placeholder="Enter Item Group Name" required>
                   </div>
                 </div>
                 <!-- /.card-body -->
 
                 <div class="card-footer">
-                  <button type="submit" class="btn btn-success">Add </button>
+                  <?php if(isset($update)){ ?>
+                    <button type="submit" class="btn btn-primary">Update</button>
+                  <?php }else{ ?>
+                    <button type="submit" class="btn btn-success">Add</button>
+                  <?php } ?>
                   <button type="submit" class="btn btn-default ml-4">Cancel</button>
                 </div>
               </form>

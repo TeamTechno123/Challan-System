@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <?php
-  $page = "company_information";
+  $page = "vehicle_information";
   include('head.php');
 ?>
 <body class="hold-transition sidebar-mini layout-fixed">
@@ -41,19 +41,23 @@
               </div>
               <!-- /.card-header -->
               <!-- form start -->
-              <form role="form">
+              <?php if(isset($update)){ ?>
+                <form action="<?php echo base_url(); ?>User/update_vehicle" method="post" enctype="multipart/form-data" role="form">
+                  <input type="hidden" name="item_group_id" value="<?php echo $item_group_id; ?>">
+              <?php }else{ ?>
+                <form action="<?php echo base_url(); ?>User/save_vehicle" method="post" enctype="multipart/form-data" role="form">
+              <?php } ?>
                 <div class="card-body row">
 
                   <div class="form-group col-md-12">
-                    <input type="text" class="form-control form-control-sm" name="" id="" placeholder="Enter Vehicle No">
+                    <input type="text" class="form-control form-control-sm" name="vehicle_number" id="vehicle_number" title="Enter Vehicle No" placeholder="Enter Vehicle No" required>
                   </div>
                   <div class="form-group col-md-12">
-                    <input type="text" class="form-control form-control-sm" name="" id="" placeholder="Enter Vehicle Owner Name">
+                    <input type="text" class="form-control form-control-sm" name="vehicle_owner" id="vehicle_owner" title="Enter Vehicle Owner Name" placeholder="Enter Vehicle Owner Name" required>
                   </div>
                   <div class="form-group col-md-12">
-                    <input type="text" class="form-control form-control-sm" name="" id="" placeholder="Per Trip Charges">
+                    <input type="number" class="form-control form-control-sm" name="charges" id="charges" title="Per Trip Charges"  placeholder="Per Trip Charges" required>
                   </div>
-
                 </div>
 
                 <!-- /.card-body -->

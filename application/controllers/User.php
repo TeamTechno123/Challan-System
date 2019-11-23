@@ -177,6 +177,9 @@ defined('BASEPATH') OR exit('No direct script access allowed');
     }
   }
 
+
+
+
   public function company_information(){
     $this->load->view('User/company_information');
   }
@@ -189,13 +192,111 @@ defined('BASEPATH') OR exit('No direct script access allowed');
     $this->load->view('User/item_information');
   }
 
+  /************************** Item Group Information *******************/
+  // Add Item Group...
   public function item_group_information(){
-    $this->load->view('User/item_group_information');
+    $user_id = $this->session->userdata('ch_user_id');
+    $company_id = $this->session->userdata('ch_company_id');
+    $roll_id = $this->session->userdata('roll_id');
+    if($company_id){
+      $this->load->view('User/item_group_information');
+    } else{
+      header('location:'.base_url().'User');
+    }
   }
 
-  public function item_group_information_list(){
-    $this->load->view('User/item_group_information_list');
+  // Save Item Group...
+  public function save_item_group(){
+    $user_id = $this->session->userdata('ch_user_id');
+    $company_id = $this->session->userdata('ch_company_id');
+    $roll_id = $this->session->userdata('roll_id');
+    if($company_id){
+      $item_group_name = $this->input->post('item_group_name');
+      $data = array(
+        'company_id' => $company_id,
+        'item_group_name' => $this->input->post('item_group_name'),
+      );
+      $check = $this->User_Model->check_duplication($company_id,$item_group_name,'item_group_name','item_group');
+      if($check){
+        header('location:'.base_url().'User/item_group_information');
+      }
+      else{
+        $this->User_Model->save_data('item_group', $data);
+        header('location:'.base_url().'User/item_group_information_list');
+      }
+    } else{
+      header('location:'.base_url().'User');
+    }
   }
+
+
+
+ //  List  Item Group...
+  public function item_group_information_list(){
+    $user_id = $this->session->userdata('ch_user_id');
+    $company_id = $this->session->userdata('ch_company_id');
+    $roll_id = $this->session->userdata('roll_id');
+    if($company_id){
+      $data['item_group_list'] = $this->User_Model->get_list($company_id,'item_group_id','ASC','item_group');
+    $this->load->view('User/item_group_information_list',$data);
+  } else{
+    header('location:'.base_url().'User');
+  }
+  }
+
+  //edit Item Group ...
+  public function edit_item_group($id){
+    $user_id = $this->session->userdata('ch_user_id');
+    $company_id = $this->session->userdata('ch_company_id');
+    $roll_id = $this->session->userdata('roll_id');
+    if($company_id){
+      $item_group_info = $this->User_Model->get_info('item_group_id', $id, 'item_group');
+      if($item_group_info){
+        foreach($item_group_info as $info){
+          $data['update'] = 'update';
+          $data['item_group_id'] = $info->item_group_id;
+          $data['item_group_name'] = $info->item_group_name;
+          $data['item_group_status'] = $info->item_group_status;
+        }
+        $this->load->view('User/item_group_information',$data);
+      }
+    } else{
+      header('location:'.base_url().'Login');
+    }
+  }
+
+  // Update Item Group ... DB...
+public function update_item_group(){
+  $user_id = $this->session->userdata('ch_user_id');
+  $company_id = $this->session->userdata('ch_company_id');
+  $roll_id = $this->session->userdata('roll_id');
+  if($company_id){
+    $item_group_id = $this->input->post('item_group_id');
+    $data = array(
+      'item_group_name' => $this->input->post('item_group_name'),
+    );
+    $this->User_Model->update_info('item_group_id', $item_group_id, 'item_group', $data);
+    header('location:item_group_information_list');
+  } else{
+    header('location:'.base_url().'Login');
+  }
+}
+// Delete Item Group
+public function delete_item_group($id){
+  $user_id = $this->session->userdata('ch_user_id');
+  $company_id = $this->session->userdata('ch_company_id');
+  $roll_id = $this->session->userdata('roll_id');
+  if($company_id){
+    $this->User_Model->delete_info('item_group_id', $id, 'item_group');
+    header('location:../item_group_information_list');
+  } else{
+    header('location:'.base_url().'Login');
+  }
+}
+
+
+
+
 
   public function party_information(){
     $this->load->view('User/party_information');
@@ -205,13 +306,66 @@ defined('BASEPATH') OR exit('No direct script access allowed');
     $this->load->view('User/party_information_list');
   }
 
+
+  /************************** Vehicle Information *******************/
+  // Add vehicle...
   public function vehicle_information(){
-    $this->load->view('User/vehicle_information');
+    $user_id = $this->session->userdata('ch_user_id');
+    $company_id = $this->session->userdata('ch_company_id');
+    $roll_id = $this->session->userdata('roll_id');
+    if($company_id){
+      $this->load->view('User/vehicle_information');
+    } else{
+      header('location:'.base_url().'User');
+    }
   }
 
-  public function vehicle_information_list(){
-    $this->load->view('User/vehicle_information_list');
+
+
+
+  // Save vehicle...
+  public function save_vehicle(){
+    $user_id = $this->session->userdata('ch_user_id');
+    $company_id = $this->session->userdata('ch_company_id');
+    $roll_id = $this->session->userdata('roll_id');
+    if($company_id){
+      $vehicle_number = $this->input->post('vehicle_number');
+      $vehicle_owner = $this->input->post('vehicle_owner');
+      $charges = $this->input->post('charges');
+      $data = array(
+        'company_id' => $company_id,
+        'vehicle_number' => $this->input->post('vehicle_number'),
+        'vehicle_owner' => $this->input->post('vehicle_owner'),
+        'charges' => $this->input->post('charges'),
+      );
+      $check = $this->User_Model->check_duplication($company_id,$vehicle_number,'vehicle_number','vehicle');
+      if($check){
+        header('location:'.base_url().'User/item_group_information');
+      }
+      else{
+        $this->User_Model->save_data('vehicle', $data);
+        header('location:'.base_url().'User/item_group_information_list');
+      }
+    } else{
+      header('location:'.base_url().'User');
+    }
   }
+
+// Vehicle List
+
+  public function vehicle_information_list(){
+    $user_id = $this->session->userdata('ch_user_id');
+    $company_id = $this->session->userdata('ch_company_id');
+    $roll_id = $this->session->userdata('roll_id');
+    if($company_id){
+      $data['vehicle_list'] = $this->User_Model->get_list($company_id,'vehicle_id','ASC','vehicle');
+      $this->load->view('User/vehicle_information_list',$data);
+  } else{
+    header('location:'.base_url().'User');
+  }
+  }
+
+
 
   public function remark_information(){
     $this->load->view('User/remark_information');

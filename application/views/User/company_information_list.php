@@ -44,7 +44,7 @@ include('head.php');
             <div class="card-header">
               <h3 class="card-title"><i class="fa fa-list"></i> List Company Information</h3>
               <div class="card-tools">
-                <a href="<?php echo base_url(); ?>Admin/company_information" class="btn btn-sm btn-block btn-primary">Add Company</a>
+                <a href="<?php echo base_url(); ?>User/company_information" class="btn btn-sm btn-block btn-primary">Add Company</a>
               </div>
 
             </div>

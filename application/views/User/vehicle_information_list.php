@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <?php
-$page = "make_information_list";
+$page = "vehicle_information_list";
 include('head.php');
 ?>
 <style>
@@ -44,7 +44,7 @@ include('head.php');
             <div class="card-header">
               <h3 class="card-title"><i class="fa fa-list"></i>  Vehicle Information List</h3>
               <div class="card-tools">
-                <a href="<?php echo base_url(); ?>Admin/vehicle_information" class="btn btn-sm btn-block btn-primary">Add Vehicle</a>
+                <a href="<?php echo base_url(); ?>User/vehicle_information" class="btn btn-sm btn-block btn-primary">Add Vehicle</a>
               </div>
 
             </div>
@@ -52,6 +52,7 @@ include('head.php');
             <div class="card-body">
               <table id="example1" class="table table-bordered table-striped">
                 <thead>
+
                 <tr>
                   <th>Sr. No.</th>
                   <th>Vehicle No </th>
@@ -60,15 +61,22 @@ include('head.php');
                 </tr>
                 </thead>
                 <tbody>
+                  <?php
+                $i=0;
+                foreach ($vehicle_list as $vehicle_list1) {
+                $i++;
+              ?>
                 <tr>
-                  <td>1</td>
-                  <td>Dell</td>
-                  <td>1213456789</td>
+                  <td><?php echo $i; ?></td>
+                  <td><?php echo $vehicle_list1->vehicle_number; ?></td>
+                  <td><?php echo $vehicle_list1->charges; ?></td>
                   <td>
-                    <a href=""> <i class="fa fa-edit"></i> </a>
-                    <a class="ml-4" href=""> <i class="fa fa-trash"></i> </a>
+                    <a href="<?php echo base_url(); ?>User/edit_item_group/<?php echo $item_group_list1->item_group_id; ?>"> <i class="fa fa-edit"></i> </a>
+                    <a class="ml-4" href="<?php echo base_url(); ?>User/delete_item_group/<?php echo $item_group_list1->item_group_id; ?>" onclick="return confirm('Delete Confirm');"> <i class="fa fa-trash"></i> </a>
                   </td>
                 </tr>
+                    <?php  }  ?>
+                  </tbody>
               </table>
             </div>
             <!-- /.card-body -->

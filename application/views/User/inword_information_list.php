@@ -44,7 +44,7 @@ include('head.php');
             <div class="card-header">
               <h3 class="card-title"><i class="fa fa-list"></i>  Inword Information List</h3>
               <div class="card-tools">
-                <a href="<?php echo base_url(); ?>Admin/inword_information" class="btn btn-sm btn-block btn-primary">Add Inword</a>
+                <a href="<?php echo base_url(); ?>User/inword_information" class="btn btn-sm btn-block btn-primary">Add Inword</a>
               </div>
 
             </div>

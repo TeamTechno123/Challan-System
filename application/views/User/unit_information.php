@@ -43,7 +43,7 @@ include('head.php');
               <?php } ?>
                 <div class="card-body row">
                   <div class="form-group col-md-12">
-                    <input type="text" class="form-control" name="unit_name" id="unit_name" placeholder="Enter Unit Name" required>
+                    <input type="text" class="form-control" name="unit_name" id="unit_name" title="Enter Unit Name" placeholder="Enter Unit Name" required>
                   </div>
                 </div>
                 <!-- /.card-body -->

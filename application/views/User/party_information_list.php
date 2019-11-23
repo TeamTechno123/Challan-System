@@ -44,7 +44,7 @@ include('head.php');
             <div class="card-header">
               <h3 class="card-title"><i class="fa fa-list"></i>  Party Information List</h3>
               <div class="card-tools">
-                <a href="<?php echo base_url(); ?>Admin/party_information" class="btn btn-sm btn-block btn-primary">Add Party</a>
+                <a href="<?php echo base_url(); ?>User/party_information" class="btn btn-sm btn-block btn-primary">Add Party</a>
               </div>
 
             </div>
