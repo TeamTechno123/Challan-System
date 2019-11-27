@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 23, 2019 at 05:42 AM
+-- Generation Time: Nov 27, 2019 at 01:41 PM
 -- Server version: 10.4.8-MariaDB
--- PHP Version: 7.3.10
+-- PHP Version: 7.3.11
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -81,6 +81,147 @@ INSERT INTO `company` (`company_id`, `company_name`, `company_address`, `company
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `item_group`
+--
+
+CREATE TABLE `item_group` (
+  `item_group_id` bigint(20) NOT NULL,
+  `company_id` bigint(20) NOT NULL,
+  `item_group_name` varchar(250) NOT NULL,
+  `item_group_status` varchar(50) NOT NULL DEFAULT 'active',
+  `item_group_addedby` varchar(50) DEFAULT NULL,
+  `item_group_date` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `item_group`
+--
+
+INSERT INTO `item_group` (`item_group_id`, `company_id`, `item_group_name`, `item_group_status`, `item_group_addedby`, `item_group_date`) VALUES
+(8, 1, 'Phonix', 'active', NULL, '2019-11-23 06:53:15'),
+(9, 1, 'Contech', 'active', NULL, '2019-11-23 06:53:06');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `item_info`
+--
+
+CREATE TABLE `item_info` (
+  `item_info_id` bigint(20) NOT NULL,
+  `company_id` bigint(20) NOT NULL,
+  `item_info_name` varchar(250) NOT NULL,
+  `part_code` varchar(250) NOT NULL,
+  `hsn_code` varchar(250) NOT NULL,
+  `gst_slab` double NOT NULL,
+  `party_id` bigint(20) NOT NULL,
+  `item_group_id` bigint(20) NOT NULL,
+  `unit_id` bigint(20) NOT NULL,
+  `inword_rate` double NOT NULL,
+  `outword_rate` double NOT NULL,
+  `ci_boring_weight` varchar(250) NOT NULL,
+  `po_number` varchar(250) NOT NULL,
+  `po_date` varchar(250) NOT NULL,
+  `item_info_status` varchar(50) NOT NULL DEFAULT 'active',
+  `item_info_addedby` varchar(50) DEFAULT NULL,
+  `item_info_date` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `party`
+--
+
+CREATE TABLE `party` (
+  `party_id` bigint(20) NOT NULL,
+  `company_id` bigint(20) NOT NULL,
+  `party_type_id` bigint(20) NOT NULL,
+  `party_name` varchar(250) NOT NULL,
+  `address` varchar(250) NOT NULL,
+  `city` varchar(250) NOT NULL,
+  `pincode` varchar(250) NOT NULL,
+  `state_name` varchar(250) NOT NULL,
+  `state_code` varchar(250) NOT NULL,
+  `phone_no` varchar(250) NOT NULL,
+  `mobile_no` varchar(250) NOT NULL,
+  `gst_no` varchar(250) NOT NULL,
+  `pan_no` varchar(250) NOT NULL,
+  `vender_code` varchar(250) NOT NULL,
+  `party_status` varchar(50) NOT NULL DEFAULT 'active',
+  `party_addedby` varchar(50) DEFAULT NULL,
+  `party_date` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `party`
+--
+
+INSERT INTO `party` (`party_id`, `company_id`, `party_type_id`, `party_name`, `address`, `city`, `pincode`, `state_name`, `state_code`, `phone_no`, `mobile_no`, `gst_no`, `pan_no`, `vender_code`, `party_status`, `party_addedby`, `party_date`) VALUES
+(2, 1, 1, 'Satyam plywood ', 'kolhapur ', 'kolhapur', '416002', 'KARNATAKA', '29', '1234567890', '12345679890', 'ABCd123456', '1234ADFSR', '14', 'active', NULL, '2019-11-27 12:35:30'),
+(3, 1, 1, 'Hinge general Store', ' Kolhapur ', 'Kolhapur', '416001', 'MAHARASHTRA', '27', '9021182154', '9021182154', 'ABCd123456', '1234ADFSR', '15', 'active', NULL, '2019-11-27 12:40:16');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `party_type`
+--
+
+CREATE TABLE `party_type` (
+  `party_type_id` int(20) NOT NULL,
+  `company_id` int(50) NOT NULL,
+  `party_type_name` varchar(50) NOT NULL,
+  `party_type_status` varchar(50) NOT NULL DEFAULT 'active',
+  `party_type_addedby` varchar(50) NOT NULL,
+  `party_type_date` varchar(50) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `party_type`
+--
+
+INSERT INTO `party_type` (`party_type_id`, `company_id`, `party_type_name`, `party_type_status`, `party_type_addedby`, `party_type_date`) VALUES
+(1, 1, 'general', 'active', '', '');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `remark`
+--
+
+CREATE TABLE `remark` (
+  `remark_id` bigint(20) NOT NULL,
+  `company_id` bigint(20) NOT NULL,
+  `remark_name` varchar(250) NOT NULL,
+  `remark_status` varchar(50) NOT NULL DEFAULT 'active',
+  `remark_addedby` varchar(50) DEFAULT NULL,
+  `remark_date` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `state`
+--
+
+CREATE TABLE `state` (
+  `state_id` int(20) NOT NULL,
+  `state_name` varchar(50) NOT NULL,
+  `state_code` int(20) NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `state`
+--
+
+INSERT INTO `state` (`state_id`, `state_name`, `state_code`) VALUES
+(1, 'MAHARASHTRA', 27),
+(2, 'KARNATAKA', 29),
+(3, 'GOA', 30);
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `unit`
 --
 
@@ -98,7 +239,8 @@ CREATE TABLE `unit` (
 --
 
 INSERT INTO `unit` (`unit_id`, `company_id`, `unit_name`, `unit_status`, `unit_addedby`, `unit_date`) VALUES
-(1, 1, 'Demo Unit', 'active', NULL, '2019-11-22 06:08:59');
+(4, 1, 'pc', 'active', NULL, '2019-11-27 07:30:56'),
+(5, 1, 'Kg', 'active', NULL, '2019-11-27 06:51:46');
 
 -- --------------------------------------------------------
 
@@ -125,7 +267,54 @@ CREATE TABLE `user` (
 --
 
 INSERT INTO `user` (`user_id`, `company_id`, `roll_id`, `user_name`, `user_city`, `user_email`, `user_mobile`, `user_password`, `user_status`, `user_addedby`, `user_date`) VALUES
-(1, 1, 1, 'Admin', 'Kolhapur', 'demo@mail.com', '9876543210', '123456', 'active', 'Admin', '2019-11-22 05:18:39');
+(1, 1, 1, 'Admin', 'Kolhapur', 'demo@mail.com', '9876543210', '123456', 'active', 'Admin', '2019-11-22 05:18:39'),
+(2, 1, 2, 'vaibhav', '', '', '9876543210', '123456', 'active', '', '2019-11-27 10:23:52'),
+(3, 1, 2, 'datta', '', '', '9876543210', '123456', 'active', '', '2019-11-27 10:24:28');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `user_roll`
+--
+
+CREATE TABLE `user_roll` (
+  `roll_id` int(20) NOT NULL,
+  `company_id` int(50) NOT NULL,
+  `roll_name` varchar(100) NOT NULL,
+  `user_status` varchar(50) NOT NULL DEFAULT 'active'
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `user_roll`
+--
+
+INSERT INTO `user_roll` (`roll_id`, `company_id`, `roll_name`, `user_status`) VALUES
+(1, 1, 'admin', 'active'),
+(2, 1, 'enginner', 'active');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `vehicle`
+--
+
+CREATE TABLE `vehicle` (
+  `vehicle_id` bigint(20) NOT NULL,
+  `company_id` bigint(20) NOT NULL,
+  `vehicle_number` varchar(250) NOT NULL,
+  `vehicle_owner` varchar(250) NOT NULL,
+  `charges` varchar(250) NOT NULL,
+  `vehicle_status` varchar(50) NOT NULL DEFAULT 'active',
+  `vehicle_addedby` varchar(50) DEFAULT NULL,
+  `vehicle_date` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `vehicle`
+--
+
+INSERT INTO `vehicle` (`vehicle_id`, `company_id`, `vehicle_number`, `vehicle_owner`, `charges`, `vehicle_status`, `vehicle_addedby`, `vehicle_date`) VALUES
+(3, 1, 'MH-09 DC-5055', 'Datta Mane', '90000', 'active', NULL, '2019-11-27 06:33:23');
 
 --
 -- Indexes for dumped tables
@@ -144,6 +333,42 @@ ALTER TABLE `company`
   ADD PRIMARY KEY (`company_id`);
 
 --
+-- Indexes for table `item_group`
+--
+ALTER TABLE `item_group`
+  ADD PRIMARY KEY (`item_group_id`);
+
+--
+-- Indexes for table `item_info`
+--
+ALTER TABLE `item_info`
+  ADD PRIMARY KEY (`item_info_id`);
+
+--
+-- Indexes for table `party`
+--
+ALTER TABLE `party`
+  ADD PRIMARY KEY (`party_id`);
+
+--
+-- Indexes for table `party_type`
+--
+ALTER TABLE `party_type`
+  ADD PRIMARY KEY (`party_type_id`);
+
+--
+-- Indexes for table `remark`
+--
+ALTER TABLE `remark`
+  ADD PRIMARY KEY (`remark_id`);
+
+--
+-- Indexes for table `state`
+--
+ALTER TABLE `state`
+  ADD PRIMARY KEY (`state_id`);
+
+--
 -- Indexes for table `unit`
 --
 ALTER TABLE `unit`
@@ -154,6 +379,18 @@ ALTER TABLE `unit`
 --
 ALTER TABLE `user`
   ADD PRIMARY KEY (`user_id`);
+
+--
+-- Indexes for table `user_roll`
+--
+ALTER TABLE `user_roll`
+  ADD PRIMARY KEY (`roll_id`);
+
+--
+-- Indexes for table `vehicle`
+--
+ALTER TABLE `vehicle`
+  ADD PRIMARY KEY (`vehicle_id`);
 
 --
 -- AUTO_INCREMENT for dumped tables
@@ -172,16 +409,64 @@ ALTER TABLE `company`
   MODIFY `company_id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
+-- AUTO_INCREMENT for table `item_group`
+--
+ALTER TABLE `item_group`
+  MODIFY `item_group_id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+
+--
+-- AUTO_INCREMENT for table `item_info`
+--
+ALTER TABLE `item_info`
+  MODIFY `item_info_id` bigint(20) NOT NULL AUTO_INCREMENT;
+
+--
+-- AUTO_INCREMENT for table `party`
+--
+ALTER TABLE `party`
+  MODIFY `party_id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
+-- AUTO_INCREMENT for table `party_type`
+--
+ALTER TABLE `party_type`
+  MODIFY `party_type_id` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
+-- AUTO_INCREMENT for table `remark`
+--
+ALTER TABLE `remark`
+  MODIFY `remark_id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+
+--
+-- AUTO_INCREMENT for table `state`
+--
+ALTER TABLE `state`
+  MODIFY `state_id` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
 -- AUTO_INCREMENT for table `unit`
 --
 ALTER TABLE `unit`
-  MODIFY `unit_id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `unit_id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT for table `user`
 --
 ALTER TABLE `user`
-  MODIFY `user_id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+  MODIFY `user_id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+
+--
+-- AUTO_INCREMENT for table `user_roll`
+--
+ALTER TABLE `user_roll`
+  MODIFY `roll_id` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
+-- AUTO_INCREMENT for table `vehicle`
+--
+ALTER TABLE `vehicle`
+  MODIFY `vehicle_id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;
