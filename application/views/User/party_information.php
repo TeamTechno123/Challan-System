@@ -63,7 +63,7 @@
                   </div>
 
                   <div class="form-group  col-md-12">
-                    <textarea name="address" id="address" class="form-control" rows="3" cols="90" title="Address" placeholder="Address"  required> <?php if(isset($address)){ echo $address; } ?> </textarea>
+                    <textarea name="address" id="address" class="form-control" rows="3" cols="90" title="Address" placeholder="Address"  required><?php if(isset($address)){ echo $address; } ?> </textarea>
                   </div>
                   <div class="form-group col-md-3">
                     <input type="text"  class="form-control form-control-sm" name="city" id="city" title="City" placeholder="City"  value="<?php if(isset($city)){ echo $city; } ?>" required>

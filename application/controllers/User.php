@@ -356,6 +356,7 @@ public function delete_item_group($id){
     $roll_id = $this->session->userdata('roll_id');
       if($company_id == null){  header('location:'.base_url().'User');}
   $data['party_type'] = $this->User_Model->get_list($company_id,'party_type_id','ASC','party_type');
+  $data['party_list'] = $this->User_Model->get_party_list($company_id);
   $data['state_list'] = $this->User_Model->get_list1('state_id','ASC','state');
   $this->load->view('User/party_information',$data);
   }
@@ -367,7 +368,6 @@ public function delete_item_group($id){
       $roll_id = $this->session->userdata('roll_id');
       if($company_id){
         $data['party_list'] = $this->User_Model->get_list($company_id,'party_id','ASC','party');
-
       $this->load->view('User/party_information_list',$data);
     } else{
       header('location:'.base_url().'User');
@@ -419,6 +419,7 @@ public function delete_item_group($id){
       if($company_id){
         $party_info = $this->User_Model->get_party_info($company_id,$id);
         $data['party_list'] = $this->User_Model->get_party_list($company_id);
+        $data['state_list'] = $this->User_Model->get_list1('state_id','ASC','state');
         if($party_info){
           foreach($party_info as $info){
             $data['update'] = 'update';
@@ -455,9 +456,17 @@ public function delete_item_group($id){
       $party_id = $this->input->post('party_id');
       $data = array(
         'party_name' => $this->input->post('party_name'),
-        'party_mobile' => $this->input->post('party_mobile'),
-        'party_password' => $this->input->post('party_password'),
-        'roll_id' => $this->input->post('roll_id'),
+        'party_type_id' => $this->input->post('party_type_id'),
+        'address' => $this->input->post('address'),
+        'city' => $this->input->post('city'),
+        'pincode' => $this->input->post('pincode'),
+        'state_name' => $this->input->post('state_name'),
+        'state_code' => $this->input->post('state_code'),
+        'phone_no' => $this->input->post('phone_no'),
+        'mobile_no' => $this->input->post('mobile_no'),
+        'gst_no' => $this->input->post('gst_no'),
+        'pan_no' => $this->input->post('pan_no'),
+        'vender_code' => $this->input->post('vender_code'),
       );
       $this->User_Model->update_info('party_id', $party_id, 'party', $data);
       header('location:'.base_url().'User/party_information_list');
