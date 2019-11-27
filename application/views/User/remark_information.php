@@ -41,17 +41,26 @@
               </div>
               <!-- /.card-header -->
               <!-- form start -->
-              <form role="form">
+              <?php if(isset($update)){ ?>
+                <form action="<?php echo base_url(); ?>User/update_remark" method="post" enctype="multipart/form-data" role="form">
+                  <input type="hidden" name="remark_id" value="<?php echo $remark_id; ?>">
+              <?php }else{ ?>
+                <form action="<?php echo base_url(); ?>User/save_remark" method="post" enctype="multipart/form-data" role="form">
+              <?php } ?>
                 <div class="card-body row">
 
                   <div class="form-group col-md-12">
-                    <input type="text" class="form-control form-control-sm" name="" id="" placeholder="Enter Remark Name">
+                    <input type="text" class="form-control form-control-sm" name="remark_name" id="remark_name" title="Enter Remark Name" placeholder="Enter Remark Name" value="<?php if(isset($remark_name)){ echo $remark_name; } ?>" required >
                   </div>
                 </div>
                 <!-- /.card-body -->
 
                 <div class="card-footer">
-                  <button type="submit" class="btn btn-success">Add </button>
+                  <?php if(isset($update)){ ?>
+                    <button type="submit" class="btn btn-primary">Update</button>
+                  <?php }else{ ?>
+                    <button type="submit" class="btn btn-success">Add</button>
+                  <?php } ?>
                   <button type="submit" class="btn btn-default ml-4">Cancel</button>
                 </div>
               </form>

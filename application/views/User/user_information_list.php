@@ -61,16 +61,22 @@ include('head.php');
                 </tr>
                 </thead>
                 <tbody>
+                  <?php
+                $i=0;
+                foreach ($user_list as $user_list1) {
+                $i++;
+              ?>
                 <tr>
-                  <td>1</td>
-                  <td>Dell</td>
-                  <td>Dell</td>
-                  <td>123456</td>
+                  <td><?php echo $i; ?></td>
+                  <td><?php echo $user_list1->roll_name; ?></td>
+                  <td><?php echo $user_list1->user_name; ?></td>
+                  <td><?php echo $user_list1->user_mobile; ?></td>
                   <td>
-                    <a href=""> <i class="fa fa-edit"></i> </a>
-                    <a class="ml-4" href=""> <i class="fa fa-trash"></i> </a>
-                  </td>
+                    <a href="<?php echo base_url(); ?>User/edit_user/<?php echo $user_list1->user_id; ?>"> <i class="fa fa-edit"></i> </a>
+                    <a class="ml-4" href="<?php echo base_url(); ?>User/delete_user/<?php echo $user_list1->user_id; ?>" onclick="return confirm('Delete Confirm');"> <i class="fa fa-trash"></i> </a>
+                </td>
                 </tr>
+                    <?php  }  ?>
               </table>
             </div>
             <!-- /.card-body -->

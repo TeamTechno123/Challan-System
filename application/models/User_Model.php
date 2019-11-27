@@ -39,6 +39,15 @@ class User_Model extends CI_Model{
     return $result;
   }
 
+  public function get_list1($id,$order,$tbl_name){
+    $query = $this->db->select('*')
+            ->order_by($id, $order)
+            ->from($tbl_name)
+            ->get();
+    $result = $query->result();
+    return $result;
+  }
+
   public function get_info($id_type, $id, $tbl_name){
     $query = $this->db->select('*')
             ->where($id_type, $id)
@@ -67,5 +76,38 @@ class User_Model extends CI_Model{
     $result = $query->result();
     return $result;
   }
+
+
+
+  public function get_user_list($company_id){
+  $query = $this->db->select('user.*, roll.*')
+  ->from('user as user')
+  ->where('user.company_id', $company_id)
+   ->join('user_roll as roll', 'user.roll_id = roll.roll_id', 'LEFT')
+   ->get();
+   $result = $query->result();
+   return $result;
+}
+
+public function get_party_info($company_id,$id){
+$query = $this->db->select('party.*, party_type.*')
+->from('party as party')
+->where('party.company_id', $company_id)
+->where('party.party_id', $id)
+ ->join('party_type as party_type', 'party.party_type_id = party_type.party_type_id', 'LEFT')
+ ->get();
+ $result = $query->result();
+ return $result;
+}
+
+public function get_party_list($company_id){
+$query = $this->db->select('party.*, party_type.*')
+->from('party as party')
+->where('party.company_id', $company_id)
+ ->join('party_type as party_type', 'party.party_type_id = party_type.party_type_id', 'LEFT')
+ ->get();
+ $result = $query->result();
+ return $result;
+}
 }
 ?>

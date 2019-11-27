@@ -56,6 +56,7 @@ include('head.php');
                 <tr>
                   <th>Sr. No.</th>
                   <th>Vehicle No </th>
+                  <th>Vehicle Owner </th>
                   <th>Per Trip Charges</th>
                   <th>Action</th>
                 </tr>
@@ -69,10 +70,11 @@ include('head.php');
                 <tr>
                   <td><?php echo $i; ?></td>
                   <td><?php echo $vehicle_list1->vehicle_number; ?></td>
+                  <td><?php echo $vehicle_list1->vehicle_owner; ?></td>
                   <td><?php echo $vehicle_list1->charges; ?></td>
                   <td>
-                    <a href="<?php echo base_url(); ?>User/edit_item_group/<?php echo $item_group_list1->item_group_id; ?>"> <i class="fa fa-edit"></i> </a>
-                    <a class="ml-4" href="<?php echo base_url(); ?>User/delete_item_group/<?php echo $item_group_list1->item_group_id; ?>" onclick="return confirm('Delete Confirm');"> <i class="fa fa-trash"></i> </a>
+                    <a href="<?php echo base_url(); ?>User/edit_vehicle/<?php echo $vehicle_list1->vehicle_id; ?>"> <i class="fa fa-edit"></i> </a>
+                    <a class="ml-4" href="<?php echo base_url(); ?>User/delete_vehicle/<?php echo $vehicle_list1->vehicle_id; ?>" onclick="return confirm('Delete Confirm');"> <i class="fa fa-trash"></i> </a>
                   </td>
                 </tr>
                     <?php  }  ?>

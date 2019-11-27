@@ -52,6 +52,7 @@ include('head.php');
             <div class="card-body">
               <table id="example1" class="table table-bordered table-striped">
                 <thead>
+
                 <tr>
                   <th>Sr. No.</th>
                   <th>Party Group</th>
@@ -62,17 +63,23 @@ include('head.php');
                 </tr>
                 </thead>
                 <tbody>
+                  <?php
+                $i=0;
+                foreach ($party_list as $party_list1) {
+                $i++;
+              ?>
                 <tr>
-                  <td>1</td>
-                  <td>Dell</td>
-                  <td>Dell</td>
-                  <td>1213456789</td>
-                  <td>1213456789</td>
+                  <td><?php echo $i; ?></td>
+                  <td><?php echo $party_list1->party_name; ?></td>
+                  <td><?php echo $party_list1->party_name; ?></td>
+                  <td><?php echo $party_list1->phone_no; ?></td>
+                  <td><?php echo $party_list1->mobile_no; ?></td>
                   <td>
-                    <a href=""> <i class="fa fa-edit"></i> </a>
-                    <a class="ml-4" href=""> <i class="fa fa-trash"></i> </a>
+                    <a href="<?php echo base_url(); ?>User/edit_party/<?php echo $party_list1->party_id; ?>"> <i class="fa fa-edit"></i> </a>
+                    <a class="ml-4" href="<?php echo base_url(); ?>User/delete_party/<?php echo $party_list1->party_id; ?>" onclick="return confirm('Delete Confirm');"> <i class="fa fa-trash"></i> </a>
                   </td>
                 </tr>
+                  <?php  }  ?>
               </table>
             </div>
             <!-- /.card-body -->

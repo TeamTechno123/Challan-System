@@ -52,15 +52,20 @@ include('head.php');
                 </tr>
                 </thead>
                 <tbody>
+                  <?php
+                $i=0;
+                foreach ($unit_list as $unit_list1) {
+                $i++;
+              ?>
                   <tr>
-                    <td>1</td>
-                    <td>1 TB</td>
+                    <td><?php echo $i; ?></td>
+                    <td><?php echo $unit_list1->unit_name; ?></td>
                     <td>
-                      <a href=""> <i class="fa fa-edit"></i> </a>
-                      <a class="ml-4" href=""> <i class="fa fa-trash"></i> </a>
-                    </td>
+                      <a href="<?php echo base_url(); ?>User/edit_unit/<?php echo $unit_list1->unit_id; ?>"> <i class="fa fa-edit"></i> </a>
+                      <a class="ml-4" href="<?php echo base_url(); ?>User/delete_unit/<?php echo $unit_list1->unit_id; ?>" onclick="return confirm('Delete Confirm');"> <i class="fa fa-trash"></i> </a>
+                      </td>
                   </tr>
-
+                    <?php  }  ?>
                 </tbody>
               </table>
             </div>

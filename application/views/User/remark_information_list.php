@@ -59,14 +59,20 @@ include('head.php');
                 </tr>
                 </thead>
                 <tbody>
+                  <?php
+                $i=0;
+                foreach ($remark_list as $remark_list1) {
+                $i++;
+              ?>
                 <tr>
-                  <td>1</td>
-                  <td>Dell</td>
+                  <td><?php echo $i; ?></td>
+                  <td><?php echo $remark_list1->remark_name; ?></td>
                   <td>
-                    <a href=""> <i class="fa fa-edit"></i> </a>
-                    <a class="ml-4" href=""> <i class="fa fa-trash"></i> </a>
-                  </td>
+                    <a href="<?php echo base_url(); ?>User/edit_remark/<?php echo $remark_list1->remark_id; ?>"> <i class="fa fa-edit"></i> </a>
+                    <a class="ml-4" href="<?php echo base_url(); ?>User/delete_remark/<?php echo $remark_list1->remark_id; ?>" onclick="return confirm('Delete Confirm');"> <i class="fa fa-trash"></i> </a>
+                    </td>
                 </tr>
+                  <?php  }  ?>
               </table>
             </div>
             <!-- /.card-body -->

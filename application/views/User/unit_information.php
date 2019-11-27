@@ -37,13 +37,13 @@ include('head.php');
               <!-- form start -->
               <?php if(isset($update)){ ?>
                 <form action="<?php echo base_url(); ?>User/update_unit" method="post" enctype="multipart/form-data" role="form">
-                  <input type="hidden" name="company_id" value="<?php echo $company_id; ?>">
+                  <input type="hidden" name="unit_id" value="<?php echo $unit_id; ?>">
               <?php }else{ ?>
                 <form action="<?php echo base_url(); ?>User/save_unit" method="post" enctype="multipart/form-data" role="form">
               <?php } ?>
                 <div class="card-body row">
                   <div class="form-group col-md-12">
-                    <input type="text" class="form-control" name="unit_name" id="unit_name" title="Enter Unit Name" placeholder="Enter Unit Name" required>
+                    <input type="text" class="form-control" name="unit_name" id="unit_name" title="Enter Unit Name"  value="<?php if(isset($unit_name)){ echo $unit_name; } ?>" placeholder="Enter Unit Name" required>
                   </div>
                 </div>
                 <!-- /.card-body -->

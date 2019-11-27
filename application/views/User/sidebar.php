@@ -178,6 +178,14 @@
                       </p>
                     </a>
                   </li>
+                  <li class="nav-item">
+                    <a href="<?php echo base_url(); ?>User/delivery_challan_receipt" class="nav-link">
+                      <i class="far fa-circle nav-icon"></i>
+                      <p>
+                        Delivery Challan
+                      </p>
+                    </a>
+                  </li>
                 </ul>
               </li>
 

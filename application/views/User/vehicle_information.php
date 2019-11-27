@@ -43,27 +43,31 @@
               <!-- form start -->
               <?php if(isset($update)){ ?>
                 <form action="<?php echo base_url(); ?>User/update_vehicle" method="post" enctype="multipart/form-data" role="form">
-                  <input type="hidden" name="item_group_id" value="<?php echo $item_group_id; ?>">
+                  <input type="hidden" name="vehicle_id" value="<?php echo $vehicle_id; ?>">
               <?php }else{ ?>
                 <form action="<?php echo base_url(); ?>User/save_vehicle" method="post" enctype="multipart/form-data" role="form">
               <?php } ?>
                 <div class="card-body row">
 
                   <div class="form-group col-md-12">
-                    <input type="text" class="form-control form-control-sm" name="vehicle_number" id="vehicle_number" title="Enter Vehicle No" placeholder="Enter Vehicle No" required>
+                    <input type="text" class="form-control form-control-sm" name="vehicle_number" id="vehicle_number" title="Enter Vehicle No" value="<?php if(isset($vehicle_number)){ echo $vehicle_number; } ?>"  placeholder="Enter Vehicle No" required>
                   </div>
                   <div class="form-group col-md-12">
-                    <input type="text" class="form-control form-control-sm" name="vehicle_owner" id="vehicle_owner" title="Enter Vehicle Owner Name" placeholder="Enter Vehicle Owner Name" required>
+                    <input type="text" class="form-control form-control-sm" name="vehicle_owner" id="vehicle_owner" title="Enter Vehicle Owner Name" value="<?php if(isset($vehicle_owner)){ echo $vehicle_owner; } ?>"  placeholder="Enter Vehicle Owner Name" required>
                   </div>
                   <div class="form-group col-md-12">
-                    <input type="number" class="form-control form-control-sm" name="charges" id="charges" title="Per Trip Charges"  placeholder="Per Trip Charges" required>
+                    <input type="number" class="form-control form-control-sm" name="charges" id="charges" title="Per Trip Charges" value="<?php if(isset($charges)){ echo $charges; } ?>"  placeholder="Per Trip Charges" required>
                   </div>
                 </div>
 
                 <!-- /.card-body -->
 
                 <div class="card-footer">
-                  <button type="submit" class="btn btn-success">Add </button>
+                  <?php if(isset($update)){ ?>
+                    <button type="submit" class="btn btn-primary">Update</button>
+                  <?php }else{ ?>
+                    <button type="submit" class="btn btn-success">Add</button>
+                  <?php } ?>
                   <button type="submit" class="btn btn-default ml-4">Cancel</button>
                 </div>
               </form>
