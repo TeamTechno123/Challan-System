@@ -43,7 +43,10 @@ defined('BASEPATH') OR exit('No direct script access allowed');
     $company_id = $this->session->userdata('ch_company_id');
     $roll_id = $this->session->userdata('roll_id');
     if($company_id){
+      $this->load->view('Include/head');
+      $this->load->view('Include/navbar');
       $this->load->view('User/dashboard');
+      $this->load->view('Include/footer');
     } else{
       header('location:'.base_url().'User');
     }
@@ -57,7 +60,10 @@ defined('BASEPATH') OR exit('No direct script access allowed');
     $roll_id = $this->session->userdata('roll_id');
     if($company_id){
       $data['company_list'] = $this->User_Model->get_list($company_id,'company_id','ASC','company');
+      $this->load->view('Include/head',$data);
+      $this->load->view('Include/navbar',$data);
       $this->load->view('User/company_information_list',$data);
+      $this->load->view('Include/footer',$data);
     } else{
       header('location:'.base_url().'User');
     }
@@ -90,7 +96,10 @@ defined('BASEPATH') OR exit('No direct script access allowed');
           $data['company_start_date'] = $info->company_start_date;
           $data['company_end_date'] = $info->company_end_date;
         }
+        $this->load->view('Include/head',$data);
+        $this->load->view('Include/navbar',$data);
         $this->load->view('User/company_information',$data);
+        $this->load->view('Include/footer',$data);
       }
     } else{
       header('location:'.base_url().'User');
@@ -135,7 +144,10 @@ defined('BASEPATH') OR exit('No direct script access allowed');
     $company_id = $this->session->userdata('ch_company_id');
     $roll_id = $this->session->userdata('roll_id');
     if($company_id){
+      $this->load->view('Include/head');
+      $this->load->view('Include/navbar');
       $this->load->view('User/unit_information');
+      $this->load->view('Include/footer');
     } else{
       header('location:'.base_url().'User');
     }
@@ -171,7 +183,10 @@ defined('BASEPATH') OR exit('No direct script access allowed');
     $roll_id = $this->session->userdata('roll_id');
     if($company_id){
       $data['unit_list'] = $this->User_Model->get_list($company_id,'unit_id','ASC','unit');
-      $this->load->view('User/unit_information_list',$data);
+        $this->load->view('Include/head',$data);
+        $this->load->view('Include/navbar',$data);
+        $this->load->view('User/unit_information_list',$data);
+        $this->load->view('Include/footer',$data);
     } else{
       header('location:'.base_url().'User');
     }
@@ -191,7 +206,10 @@ defined('BASEPATH') OR exit('No direct script access allowed');
           $data['unit_name'] = $info->unit_name;
           $data['unit_status'] = $info->unit_status;
         }
+        $this->load->view('Include/head',$data);
+        $this->load->view('Include/navbar',$data);
         $this->load->view('User/unit_information',$data);
+        $this->load->view('Include/footer',$data);
       }
     } else{
       header('location:'.base_url().'Login');
@@ -230,9 +248,10 @@ public function delete_unit($id){
 
 
 
-  public function company_information(){
-    $this->load->view('User/company_information');
-  }
+  // public function company_information(){
+  //
+  //   $this->load->view('User/company_information');
+  // }
 
 
 
@@ -247,7 +266,11 @@ public function delete_unit($id){
       $data['party_list'] = $this->User_Model->get_list($company_id,'party_id','ASC','party');
       $data['unit_list'] = $this->User_Model->get_list($company_id,'unit_id','ASC','unit');
       $data['item_group_list'] = $this->User_Model->get_list($company_id,'item_group_id','ASC','item_group');
+
+      $this->load->view('Include/head',$data);
+      $this->load->view('Include/navbar',$data);
       $this->load->view('User/item_information',$data);
+      $this->load->view('Include/footer',$data);
 
     } else{
       header('location:'.base_url().'User');
@@ -262,7 +285,10 @@ public function delete_unit($id){
     if($company_id){
       // this query for multiple join table
       $data['item_list'] = $this->User_Model->get_item_list($company_id);
-    $this->load->view('User/item_information_list', $data);
+      $this->load->view('Include/head',$data);
+      $this->load->view('Include/navbar',$data);
+      $this->load->view('User/item_information_list',$data);
+      $this->load->view('Include/footer',$data);
   } else{
     header('location:'.base_url().'User');
   }
@@ -338,7 +364,10 @@ public function delete_unit($id){
           $data['ci_boring_weight'] = $info->ci_boring_weight;
           $data['po_number'] = $info->po_number;
         }
+        $this->load->view('Include/head',$data);
+        $this->load->view('Include/navbar',$data);
         $this->load->view('User/item_information',$data);
+        $this->load->view('Include/footer',$data);
       }
     } else{
       header('location:'.base_url().'Login');
@@ -392,7 +421,10 @@ public function delete_item($id){
     $company_id = $this->session->userdata('ch_company_id');
     $roll_id = $this->session->userdata('roll_id');
     if($company_id){
+      $this->load->view('Include/head');
+      $this->load->view('Include/navbar');
       $this->load->view('User/item_group_information');
+      $this->load->view('Include/footer');
     } else{
       header('location:'.base_url().'User');
     }
@@ -431,7 +463,10 @@ public function delete_item($id){
     $roll_id = $this->session->userdata('roll_id');
     if($company_id){
       $data['item_group_list'] = $this->User_Model->get_list($company_id,'item_group_id','ASC','item_group');
-    $this->load->view('User/item_group_information_list',$data);
+      $this->load->view('Include/head',$data);
+      $this->load->view('Include/navbar',$data);
+      $this->load->view('User/item_group_information_list',$data);
+      $this->load->view('Include/footer',$data);
   } else{
     header('location:'.base_url().'User');
   }
@@ -451,7 +486,10 @@ public function delete_item($id){
           $data['item_group_name'] = $info->item_group_name;
           $data['item_group_status'] = $info->item_group_status;
         }
+        $this->load->view('Include/head',$data);
+        $this->load->view('Include/navbar',$data);
         $this->load->view('User/item_group_information',$data);
+        $this->load->view('Include/footer',$data);
       }
     } else{
       header('location:'.base_url().'Login');
@@ -497,11 +535,14 @@ public function delete_item_group($id){
     $user_id = $this->session->userdata('ch_user_id');
     $company_id = $this->session->userdata('ch_company_id');
     $roll_id = $this->session->userdata('roll_id');
-      if($company_id == null){  header('location:'.base_url().'User');}
-  $data['party_type'] = $this->User_Model->get_list($company_id,'party_type_id','ASC','party_type');
-  $data['party_list'] = $this->User_Model->get_party_list($company_id,'party_type_id','ASC','party_type');
-  $data['state_list'] = $this->User_Model->get_list1('state_id','ASC','state');
-  $this->load->view('User/party_information',$data);
+    if($company_id == null){  header('location:'.base_url().'User');}
+    $data['party_type'] = $this->User_Model->get_list($company_id,'party_type_id','ASC','party_type');
+    $data['party_list'] = $this->User_Model->get_party_list($company_id,'party_type_id','ASC','party_type');
+    $data['state_list'] = $this->User_Model->get_list1('state_id','ASC','state');
+    $this->load->view('Include/head',$data);
+    $this->load->view('Include/navbar',$data);
+    $this->load->view('User/party_information',$data);
+    $this->load->view('Include/footer',$data);
   }
 
   // List Remark
@@ -511,7 +552,10 @@ public function delete_item_group($id){
       $roll_id = $this->session->userdata('roll_id');
       if($company_id){
         $data['party_list'] = $this->User_Model->get_list($company_id,'party_id','ASC','party');
-      $this->load->view('User/party_information_list',$data);
+        $this->load->view('Include/head',$data);
+        $this->load->view('Include/navbar',$data);
+        $this->load->view('User/party_information_list',$data);
+        $this->load->view('Include/footer',$data);
     } else{
       header('location:'.base_url().'User');
     }
@@ -583,7 +627,10 @@ public function delete_item_group($id){
             $data['party_status'] = $info->party_status;
 
           }
+          $this->load->view('Include/head',$data);
+          $this->load->view('Include/navbar',$data);
           $this->load->view('User/party_information',$data);
+          $this->load->view('Include/footer',$data);
         }
       } else{
         header('location:'.base_url().'Login');
@@ -642,14 +689,14 @@ public function delete_item_group($id){
     $company_id = $this->session->userdata('ch_company_id');
     $roll_id = $this->session->userdata('roll_id');
     if($company_id){
+      $this->load->view('Include/head');
+      $this->load->view('Include/navbar');
       $this->load->view('User/vehicle_information');
+      $this->load->view('Include/footer');
     } else{
       header('location:'.base_url().'User');
     }
   }
-
-
-
 
   // Save vehicle...
   public function save_vehicle(){
@@ -687,7 +734,10 @@ public function delete_item_group($id){
     $roll_id = $this->session->userdata('roll_id');
     if($company_id){
       $data['vehicle_list'] = $this->User_Model->get_list($company_id,'vehicle_id','ASC','vehicle');
+      $this->load->view('Include/head',$data);
+      $this->load->view('Include/navbar',$data);
       $this->load->view('User/vehicle_information_list',$data);
+      $this->load->view('Include/footer',$data);
   } else{
     header('location:'.base_url().'User');
   }
@@ -709,7 +759,10 @@ public function delete_item_group($id){
           $data['charges'] = $info->charges;
           $data['vehicle_status'] = $info->vehicle_status;
         }
+        $this->load->view('Include/head',$data);
+        $this->load->view('Include/navbar',$data);
         $this->load->view('User/vehicle_information',$data);
+        $this->load->view('Include/footer',$data);
       }
     } else{
       header('location:'.base_url().'Login');
@@ -752,7 +805,10 @@ public function delete_item_group($id){
   public function remark_information(){
       $company_id = $this->session->userdata('ch_company_id');
         if($company_id == null){  header('location:'.base_url().'User');}
-    $this->load->view('User/remark_information');
+        $this->load->view('Include/head');
+        $this->load->view('Include/navbar');
+        $this->load->view('User/remark_information');
+        $this->load->view('Include/footer');
   }
 
   // List Remark
@@ -762,7 +818,10 @@ public function delete_item_group($id){
       $roll_id = $this->session->userdata('roll_id');
       if($company_id){
         $data['remark_list'] = $this->User_Model->get_list($company_id,'remark_id','ASC','remark');
+        $this->load->view('Include/head',$data);
+        $this->load->view('Include/navbar',$data);
         $this->load->view('User/remark_information_list',$data);
+        $this->load->view('Include/footer',$data);
       } else{
         header('location:'.base_url().'User');
       }
@@ -808,7 +867,10 @@ public function delete_item_group($id){
             $data['remark_name'] = $info->remark_name;
             $data['remark_status'] = $info->remark_status;
           }
+          $this->load->view('Include/head',$data);
+          $this->load->view('Include/navbar',$data);
           $this->load->view('User/remark_information',$data);
+          $this->load->view('Include/footer',$data);
         }
       } else{
         header('location:'.base_url().'Login');
@@ -879,11 +941,17 @@ public function delete_item_group($id){
     $this->load->view('User/outword_information_list');
   }
 
+
+
+
   public function user_information(){
     $company_id = $this->session->userdata('ch_company_id');
       if($company_id == null){  header('location:'.base_url().'User');}
- $data['roll_list'] = $this->User_Model->get_list($company_id,'roll_id','ASC','user_roll');
-  $this->load->view('User/user_information',$data);
+       $data['roll_list'] = $this->User_Model->get_list($company_id,'roll_id','ASC','user_roll');
+       $this->load->view('Include/head',$data);
+       $this->load->view('Include/navbar',$data);
+       $this->load->view('User/user_information',$data);
+       $this->load->view('Include/footer',$data);
   }
 
   // List Remark
@@ -893,7 +961,10 @@ public function delete_item_group($id){
       $roll_id = $this->session->userdata('roll_id');
       if($company_id){
         $data['user_list'] = $this->User_Model->get_user_list($company_id);
+        $this->load->view('Include/head',$data);
+        $this->load->view('Include/navbar',$data);
         $this->load->view('User/user_information_list',$data);
+        $this->load->view('Include/footer',$data);
       } else{
         header('location:'.base_url().'User');
       }
@@ -946,7 +1017,10 @@ public function delete_item_group($id){
             $data['roll_id'] = $info->roll_id;
             $data['user_status'] = $info->user_status;
           }
+          $this->load->view('Include/head',$data);
+          $this->load->view('Include/navbar',$data);
           $this->load->view('User/user_information',$data);
+          $this->load->view('Include/footer',$data);
         }
       } else{
         header('location:'.base_url().'Login');

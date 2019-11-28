@@ -2,7 +2,6 @@
 <html>
 <?php
 $page = "vehicle_information_list";
-include('head.php');
 ?>
 <style>
   td{
@@ -11,13 +10,6 @@ include('head.php');
 </style>
 <body class="hold-transition sidebar-mini layout-fixed">
 <div class="wrapper">
-
-  <!-- Navbar -->
-  <?php include('navbar.php'); ?>
-  <!-- /.navbar -->
-
-  <!-- Main Sidebar Container -->
-  <?php include('sidebar.php'); ?>
 
   <!-- Content Wrapper. Contains page content -->
   <div class="content-wrapper">
@@ -32,8 +24,6 @@ include('head.php');
       </div><!-- /.container-fluid -->
     </section>
 
-
-
     <section class="content">
       <div class="container-fluid">
         <div class="row">
@@ -46,13 +36,11 @@ include('head.php');
               <div class="card-tools">
                 <a href="<?php echo base_url(); ?>User/vehicle_information" class="btn btn-sm btn-block btn-primary">Add Vehicle</a>
               </div>
-
             </div>
             <!-- /.card-header -->
             <div class="card-body">
               <table id="example1" class="table table-bordered table-striped">
                 <thead>
-
                 <tr>
                   <th>Sr. No.</th>
                   <th>Vehicle No </th>
@@ -90,17 +78,6 @@ include('head.php');
       </div><!-- /.container-fluid -->
     </section>
   </div>
-  <!-- /.content-wrapper -->
-  <?php include('footer.php'); ?>
 
-  <!-- Control Sidebar -->
-  <aside class="control-sidebar control-sidebar-dark">
-    <!-- Control sidebar content goes here -->
-  </aside>
-  <!-- /.control-sidebar -->
-</div>
-<!-- ./wrapper -->
-
-<?php include('script.php') ?>
 </body>
 </html>

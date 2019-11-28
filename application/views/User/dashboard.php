@@ -1,15 +1,15 @@
 <!DOCTYPE html>
 <html>
-<?php include('head.php'); ?>
+<?php //include('head.php'); ?>
 <body class="hold-transition sidebar-mini layout-fixed">
 <div class="wrapper">
 
   <!-- Navbar -->
-  <?php include('navbar.php'); ?>
+  <?php //include('navbar.php'); ?>
   <!-- /.navbar -->
 
   <!-- Main Sidebar Container -->
-  <?php include('sidebar.php'); ?>
+  <?php //include('sidebar.php'); ?>
 
   <!-- Content Wrapper. Contains page content -->
   <div class="content-wrapper">
@@ -20,17 +20,9 @@
           <div class="col-sm-12 text-center mt-2">
             <h1>Dashboard</h1>
           </div>
-          <!-- <div class="col-sm-6">
-            <ol class="breadcrumb float-sm-right">
-              <li class="breadcrumb-item"><a href="#">Home</a></li>
-              <li class="breadcrumb-item active">General Form</li>
-            </ol>
-          </div> -->
         </div>
       </div><!-- /.container-fluid -->
     </section>
-
-
 
     <section class="content">
       <div class="container-fluid">
@@ -123,9 +115,7 @@
             <div class="card-header">
               <h3 class="card-title text-center"><i class="fa fa-list"></i> Stock Information</h3>
               <div class="card-tools">
-
               </div>
-
             </div>
             <!-- /.card-header -->
             <div class="card-body">
@@ -135,7 +125,6 @@
                   <th>Sr. No.</th>
                   <th>Item Name</th>
                   <th>Balance/ Qty</th>
-
                 </tr>
                 </thead>
                 <tbody>
@@ -143,8 +132,6 @@
                   <td>1</td>
                   <td>Dell</td>
                   <td>12000</td>
-
-
                 </tr>
               </table>
             </div>
@@ -153,24 +140,16 @@
           <!-- /.card -->
           </div>
         </div>
-
-
-
         <!-- /.row -->
       </div><!-- /.container-fluid -->
     </section>
   </div>
   <!-- /.content-wrapper -->
-  <?php include('footer.php'); ?>
-
+  <?php //include('footer.php'); ?>
   <!-- Control Sidebar -->
-  <aside class="control-sidebar control-sidebar-dark">
-    <!-- Control sidebar content goes here -->
-  </aside>
-  <!-- /.control-sidebar -->
-</div>
+  
 <!-- ./wrapper -->
 
-<?php include('script.php') ?>
+<?php //include('script.php') ?>
 </body>
 </html>
