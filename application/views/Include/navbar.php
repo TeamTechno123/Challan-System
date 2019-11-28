@@ -206,23 +206,7 @@
                 </a>
               </li>
 
-              <li class="nav-item">
-                <a href="<?php echo base_url(); ?>User/inword_information_list" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>
-                    Inword Information
-                  </p>
-                </a>
-              </li>
 
-              <li class="nav-item">
-                <a href="<?php echo base_url(); ?>User/outword_information_list" class="nav-link">
-                  <i class="far fa-circle nav-icon"></i>
-                  <p>
-                    Outword Information
-                  </p>
-                </a>
-              </li>
 
               <li class="nav-item">
                 <a href="<?php echo base_url(); ?>User/user_information_list" class="nav-link">
@@ -254,7 +238,23 @@
                 </p>
               </a>
               <ul class="nav nav-treeview" style="display: none;">
+                <li class="nav-item">
+                  <a href="<?php echo base_url(); ?>Transaction/inword_information_list" class="nav-link">
+                    <i class="far fa-circle nav-icon"></i>
+                    <p>
+                      Inword Information
+                    </p>
+                  </a>
+                </li>
 
+                <li class="nav-item">
+                  <a href="<?php echo base_url(); ?>Transaction/outword_information_list" class="nav-link">
+                    <i class="far fa-circle nav-icon"></i>
+                    <p>
+                      Outword Information
+                    </p>
+                  </a>
+                </li>
               </ul>
             </li>
 
@@ -268,7 +268,7 @@
                 </a>
                 <ul class="nav nav-treeview" style="display: none;">
                   <li class="nav-item">
-                    <a href="<?php echo base_url(); ?>User/item_wise_stock_report" class="nav-link">
+                    <a href="<?php echo base_url(); ?>Report/item_wise_stock_report" class="nav-link">
                       <i class="far fa-circle nav-icon"></i>
                       <p>
                         Item Wise Stock Reports
@@ -276,7 +276,7 @@
                     </a>
                   </li>
                   <li class="nav-item">
-                    <a href="<?php echo base_url(); ?>User/vehicle_report" class="nav-link">
+                    <a href="<?php echo base_url(); ?>Report/vehicle_report" class="nav-link">
                       <i class="far fa-circle nav-icon"></i>
                       <p>
                         Vehicle Reports
@@ -284,7 +284,7 @@
                     </a>
                   </li>
                   <li class="nav-item">
-                    <a href="<?php echo base_url(); ?>User/delivery_challan_receipt" class="nav-link">
+                    <a href="<?php echo base_url(); ?>Report/delivery_challan_receipt" class="nav-link">
                       <i class="far fa-circle nav-icon"></i>
                       <p>
                         Delivery Challan

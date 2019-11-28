@@ -925,21 +925,7 @@ public function delete_item_group($id){
     $this->load->view('User/process_information_list');
   }
 
-  public function inword_information(){
-    $this->load->view('User/inword_information');
-  }
-
-  public function inword_information_list(){
-    $this->load->view('User/inword_information_list');
-  }
-
-  public function outword_information(){
-    $this->load->view('User/outword_information');
-  }
-
-  public function outword_information_list(){
-    $this->load->view('User/outword_information_list');
-  }
+  
 
 
 
@@ -1064,20 +1050,7 @@ public function delete_item_group($id){
 
 
 
-  public function item_wise_stock_report(){
-    $this->load->view('User/item_wise_stock_report');
-  }
-  public function vehicle_report(){
-    $this->load->view('User/vehicle_report');
-  }
 
-  public function delivery_challan_receipt(){
-    $this->load->view('User/delivery_challan');
-  }
-
-  public function delivery_challan_print(){
-    $this->load->view('User/delivery_challan_print');
-  }
 
 
 

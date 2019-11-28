@@ -2,7 +2,6 @@
 <html>
 <?php
 $page = "delivery_challan";
-include('head.php');
 ?>
 
 <style  media="screen" >
@@ -26,11 +25,7 @@ include('head.php');
 </style>
 <body class="hold-transition sidebar-mini layout-fixed">
 <div class="wrapper">
-  <!-- Navbar -->
-  <?php include('navbar.php'); ?>
-  <!-- /.navbar -->
-  <!-- Main Sidebar Container -->
-  <?php include('sidebar.php'); ?>
+
   <!-- Content Wrapper. Contains page content -->
   <div class="content-wrapper">
     <!-- Content Header (Page header) -->
@@ -201,12 +196,7 @@ include('head.php');
                 <div class="col-12">
                   <a href="<?php echo base_url() ?>User/delivery_challan_print" target="_blank" class="btn btn-default"><i class="fas fa-print"></i> Print</a>
 
-                  <!-- <button type="button" class="btn btn-success float-right"><i class="far fa-credit-card"></i> Submit
-                    Payment
-                  </button>
-                  <button type="button" class="btn btn-primary float-right" style="margin-right: 5px;">
-                    <i class="fas fa-download"></i> Generate PDF
-                  </button> -->
+                
                 </div>
               </div>
             </div>
@@ -217,19 +207,6 @@ include('head.php');
     </section>
     <!-- /.content -->
   </div>
-  <!-- /.content-wrapper -->
-  <?php include('footer.php'); ?>
-
-  <!-- Control Sidebar -->
-  <aside class="control-sidebar control-sidebar-dark">
-    <!-- Control sidebar content goes here -->
-  </aside>
-  <!-- /.control-sidebar -->
-</div>
-<!-- ./wrapper -->
-
-<?php include('script.php') ?>
-
 
 
 </body>

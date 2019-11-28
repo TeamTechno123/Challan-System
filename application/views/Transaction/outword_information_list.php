@@ -2,7 +2,6 @@
 <html>
 <?php
 $page = "make_information_list";
-include('head.php');
 ?>
 <style>
   td{
@@ -12,12 +11,6 @@ include('head.php');
 <body class="hold-transition sidebar-mini layout-fixed">
 <div class="wrapper">
 
-  <!-- Navbar -->
-  <?php include('navbar.php'); ?>
-  <!-- /.navbar -->
-
-  <!-- Main Sidebar Container -->
-  <?php include('sidebar.php'); ?>
 
   <!-- Content Wrapper. Contains page content -->
   <div class="content-wrapper">
@@ -26,7 +19,7 @@ include('head.php');
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-12 mt-1">
-            <h4>INWORD INFORMATION LIST</h4>
+            <h4>OUTWORD INFORMATION LIST</h4>
           </div>
         </div>
       </div><!-- /.container-fluid -->
@@ -42,9 +35,9 @@ include('head.php');
             <!-- general form elements -->
             <div class="card">
             <div class="card-header">
-              <h3 class="card-title"><i class="fa fa-list"></i>  Inword Information List</h3>
+              <h3 class="card-title"><i class="fa fa-list"></i>  Outword Information List</h3>
               <div class="card-tools">
-                <a href="<?php echo base_url(); ?>User/inword_information" class="btn btn-sm btn-block btn-primary">Add Inword</a>
+                <a href="<?php echo base_url(); ?>Transaction/outword_information" class="btn btn-sm btn-block btn-primary">Add Outword</a>
               </div>
 
             </div>
@@ -55,7 +48,7 @@ include('head.php');
                 <tr>
                   <th>Sr. No.</th>
                   <th>Date </th>
-                  <th>Inword No</th>
+                  <th>Outword No</th>
                   <th>Party Name</th>
                   <th>Net Amount</th>
                   <th>Action</th>
@@ -85,17 +78,6 @@ include('head.php');
       </div><!-- /.container-fluid -->
     </section>
   </div>
-  <!-- /.content-wrapper -->
-  <?php include('footer.php'); ?>
 
-  <!-- Control Sidebar -->
-  <aside class="control-sidebar control-sidebar-dark">
-    <!-- Control sidebar content goes here -->
-  </aside>
-  <!-- /.control-sidebar -->
-</div>
-<!-- ./wrapper -->
-
-<?php include('script.php') ?>
 </body>
 </html>
