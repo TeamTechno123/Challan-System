@@ -102,9 +102,30 @@ $query = $this->db->select('party.*, party_type.*')
 
 public function get_party_list($company_id){
 $query = $this->db->select('party.*, party_type.*')
-->from('party as party')
-->where('party.company_id', $company_id)
+->from('party_type as party')
+->where('party_type.company_id', $company_id)
  ->join('party_type as party_type', 'party.party_type_id = party_type.party_type_id', 'LEFT')
+ ->get();
+ $result = $query->result();
+ return $result;
+}
+
+public function get_item_list($company_id){
+$query = $this->db->select('item_info.*, party.*')
+->from('item_info as item_info')
+->where('item_info.company_id', $company_id)
+ ->join('party as party', 'item_info.party_id = party.party_id', 'LEFT')
+ ->get();
+ $result = $query->result();
+ return $result;
+}
+
+public function get_item_details($company_id, $id){
+$query = $this->db->select('item_info.*, party.*')
+->from('item_info as item_info')
+->where('item_info.company_id', $company_id)
+->where('item_info.item_info_id', $id)
+ ->join('party as party', 'item_info.party_id = party.party_id', 'LEFT')
  ->get();
  $result = $query->result();
  return $result;

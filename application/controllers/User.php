@@ -234,13 +234,156 @@ public function delete_unit($id){
     $this->load->view('User/company_information');
   }
 
-  public function item_information_list(){
-    $this->load->view('User/item_information_list');
-  }
+
+
+// *****************************************Item Information ******************************
 
   public function item_information(){
-    $this->load->view('User/item_information');
+    $user_id = $this->session->userdata('ch_user_id');
+    $company_id = $this->session->userdata('ch_company_id');
+    $roll_id = $this->session->userdata('roll_id');
+    if($company_id){
+      $data['gst_list'] = $this->User_Model->get_list1('gst_id','ASC','gst');
+      $data['party_list'] = $this->User_Model->get_list($company_id,'party_id','ASC','party');
+      $data['unit_list'] = $this->User_Model->get_list($company_id,'unit_id','ASC','unit');
+      $data['item_group_list'] = $this->User_Model->get_list($company_id,'item_group_id','ASC','item_group');
+      $this->load->view('User/item_information',$data);
+
+    } else{
+      header('location:'.base_url().'User');
+    }
   }
+
+  //  List  Item ...
+  public function item_information_list(){
+    $user_id = $this->session->userdata('ch_user_id');
+    $company_id = $this->session->userdata('ch_company_id');
+    $roll_id = $this->session->userdata('roll_id');
+    if($company_id){
+      // this query for multiple join table
+      $data['item_list'] = $this->User_Model->get_item_list($company_id);
+    $this->load->view('User/item_information_list', $data);
+  } else{
+    header('location:'.base_url().'User');
+  }
+  }
+
+  // Save Item Group...
+  public function save_item(){
+    $user_id = $this->session->userdata('ch_user_id');
+    $company_id = $this->session->userdata('ch_company_id');
+    $roll_id = $this->session->userdata('roll_id');
+    if($company_id){
+      $item_info_name = $this->input->post('item_info_name');
+      $data = array(
+        'company_id' => $company_id,
+        'item_info_name' => $this->input->post('item_info_name'),
+        'part_code' => $this->input->post('part_code'),
+        'hsn_code' => $this->input->post('hsn_code'),
+        'gst_slab' => $this->input->post('gst_slab'),
+        'party_id' => $this->input->post('party_id'),
+        'item_group_id' => $this->input->post('item_group_id'),
+        'unit_id' => $this->input->post('unit_id'),
+        'inword_rate' => $this->input->post('inword_rate'),
+        'outword_rate' => $this->input->post('outword_rate'),
+        'ci_boring_weight' => $this->input->post('ci_boring_weight'),
+        'po_number' => $this->input->post('po_number'),
+        'po_date' => $this->input->post('po_date'),
+      );
+      $check = $this->User_Model->check_duplication($company_id,$item_info_name,'item_info_name','item_info');
+      if($check){
+        header('location:'.base_url().'User/item_information');
+      }
+      else{
+        $this->User_Model->save_data('item_info', $data);
+        header('location:'.base_url().'User/item_information_list');
+      }
+    } else{
+      header('location:'.base_url().'User');
+    }
+  }
+
+
+
+
+
+  //edit Item Group ...
+  public function edit_item($id){
+    $user_id = $this->session->userdata('ch_user_id');
+    $company_id = $this->session->userdata('ch_company_id');
+    $roll_id = $this->session->userdata('roll_id');
+    if($company_id){
+      $get_item_details= $this->User_Model->get_item_details($company_id, $id);
+      $data['gst_list'] = $this->User_Model->get_list1('gst_id','ASC','gst');
+      $data['party_list'] = $this->User_Model->get_list($company_id,'party_id','ASC','party');
+      $data['unit_list'] = $this->User_Model->get_list($company_id,'unit_id','ASC','unit');
+      $data['item_group_list'] = $this->User_Model->get_list($company_id,'item_group_id','ASC','item_group');
+      if($get_item_details){
+        foreach($get_item_details as $info){
+          $data['update'] = 'update';
+          $data['item_info_id'] = $info->item_info_id;
+          $data['item_info_name'] = $info->item_info_name;
+          $data['part_code'] = $info->part_code;
+          $data['hsn_code'] = $info->hsn_code;
+          $data['gst_slab'] = $info->gst_slab;
+          // $data['gst_id'] = $info->gst_id;
+          $data['party_id'] = $info->party_id;
+          $data['item_group_id'] = $info->item_group_id;
+          $data['unit_id'] = $info->unit_id;
+          $data['inword_rate'] = $info->inword_rate;
+          $data['outword_rate'] = $info->outword_rate;
+          $data['ci_boring_weight'] = $info->ci_boring_weight;
+          $data['po_number'] = $info->po_number;
+          $data['po_date'] = $info->po_date;
+          $data['ci_boring_weight'] = $info->ci_boring_weight;
+          $data['po_number'] = $info->po_number;
+        }
+        $this->load->view('User/item_information',$data);
+      }
+    } else{
+      header('location:'.base_url().'Login');
+    }
+  }
+
+  // Update Item Group ... DB...
+public function update_item(){
+  $user_id = $this->session->userdata('ch_user_id');
+  $company_id = $this->session->userdata('ch_company_id');
+  $roll_id = $this->session->userdata('roll_id');
+  if($company_id){
+    $item_info_id = $this->input->post('item_info_id');
+    $data = array(
+      'item_info_name' => $this->input->post('item_info_name'),
+      'part_code' => $this->input->post('part_code'),
+      'hsn_code' => $this->input->post('hsn_code'),
+      'gst_slab' => $this->input->post('gst_slab'),
+      'party_id' => $this->input->post('party_id'),
+      'item_group_id' => $this->input->post('item_group_id'),
+      'unit_id' => $this->input->post('unit_id'),
+      'inword_rate' => $this->input->post('inword_rate'),
+      'outword_rate' => $this->input->post('outword_rate'),
+      'ci_boring_weight' => $this->input->post('ci_boring_weight'),
+      'po_number' => $this->input->post('po_number'),
+      'po_date' => $this->input->post('po_date'),
+    );
+    $this->User_Model->update_info('item_info_id', $item_info_id, 'item_info', $data);
+    header('location:item_information_list');
+  } else{
+    header('location:'.base_url().'Login');
+  }
+}
+// Delete Item Group
+public function delete_item($id){
+  $user_id = $this->session->userdata('ch_user_id');
+  $company_id = $this->session->userdata('ch_company_id');
+  $roll_id = $this->session->userdata('roll_id');
+  if($company_id){
+    $this->User_Model->delete_info('item_info_id', $id, 'item_info');
+    header('location:../item_information_list');
+  } else{
+    header('location:'.base_url().'Login');
+  }
+}
 
   /************************** Item Group Information *******************/
   // Add Item Group...
@@ -356,7 +499,7 @@ public function delete_item_group($id){
     $roll_id = $this->session->userdata('roll_id');
       if($company_id == null){  header('location:'.base_url().'User');}
   $data['party_type'] = $this->User_Model->get_list($company_id,'party_type_id','ASC','party_type');
-  $data['party_list'] = $this->User_Model->get_party_list($company_id);
+  $data['party_list'] = $this->User_Model->get_party_list($company_id,'party_type_id','ASC','party_type');
   $data['state_list'] = $this->User_Model->get_list1('state_id','ASC','state');
   $this->load->view('User/party_information',$data);
   }

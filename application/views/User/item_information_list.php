@@ -62,17 +62,23 @@ include('head.php');
                 </tr>
                 </thead>
                 <tbody>
+                  <?php
+                $i=0;
+                foreach ($item_list as $item_list1) {
+                $i++;
+              ?>
                 <tr>
-                  <td>1</td>
-                  <td>Dell</td>
-                  <td>Dell</td>
-                  <td>Dell</td>
-                  <td>Dell</td>
+                  <td><?php echo $i; ?></td>
+                  <td><?php echo $item_list1->party_name; ?></td>
+                  <td><?php echo $item_list1->item_info_name; ?></td>
+                  <td><?php echo $item_list1->hsn_code; ?></td>
+                  <td><?php echo $item_list1->outword_rate; ?></td>
                   <td>
-                    <a href=""> <i class="fa fa-edit"></i> </a>
-                    <a class="ml-4" href=""> <i class="fa fa-trash"></i> </a>
-                  </td>
+                    <a href="<?php echo base_url(); ?>User/edit_item/<?php echo $item_list1->item_info_id; ?>"> <i class="fa fa-edit"></i> </a>
+                    <a class="ml-4" href="<?php echo base_url(); ?>User/delete_item/<?php echo $item_list1->item_info_id; ?>" onclick="return confirm('Delete Confirm');"> <i class="fa fa-trash"></i> </a>
+                    </td>
                 </tr>
+                  <?php  }  ?>
               </table>
             </div>
             <!-- /.card-body -->
