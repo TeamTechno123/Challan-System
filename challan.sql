@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 27, 2019 at 01:41 PM
+-- Generation Time: Nov 28, 2019 at 07:15 AM
 -- Server version: 10.4.8-MariaDB
 -- PHP Version: 7.3.11
 
@@ -81,6 +81,27 @@ INSERT INTO `company` (`company_id`, `company_name`, `company_address`, `company
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `gst`
+--
+
+CREATE TABLE `gst` (
+  `gst_id` int(20) NOT NULL,
+  `gst_per` double NOT NULL
+) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `gst`
+--
+
+INSERT INTO `gst` (`gst_id`, `gst_per`) VALUES
+(1, 5),
+(2, 12),
+(3, 18),
+(4, 28);
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `item_group`
 --
 
@@ -127,6 +148,13 @@ CREATE TABLE `item_info` (
   `item_info_date` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
+--
+-- Dumping data for table `item_info`
+--
+
+INSERT INTO `item_info` (`item_info_id`, `company_id`, `item_info_name`, `part_code`, `hsn_code`, `gst_slab`, `party_id`, `item_group_id`, `unit_id`, `inword_rate`, `outword_rate`, `ci_boring_weight`, `po_number`, `po_date`, `item_info_status`, `item_info_addedby`, `item_info_date`) VALUES
+(3, 1, 'sound bar', '20', '21', 2, 4, 8, 4, 120, 2100, '10', '10', '14-11-2019', 'active', NULL, '2019-11-28 06:12:53');
+
 -- --------------------------------------------------------
 
 --
@@ -159,7 +187,8 @@ CREATE TABLE `party` (
 
 INSERT INTO `party` (`party_id`, `company_id`, `party_type_id`, `party_name`, `address`, `city`, `pincode`, `state_name`, `state_code`, `phone_no`, `mobile_no`, `gst_no`, `pan_no`, `vender_code`, `party_status`, `party_addedby`, `party_date`) VALUES
 (2, 1, 1, 'Satyam plywood ', 'kolhapur ', 'kolhapur', '416002', 'KARNATAKA', '29', '1234567890', '12345679890', 'ABCd123456', '1234ADFSR', '14', 'active', NULL, '2019-11-27 12:35:30'),
-(3, 1, 1, 'Hinge general Store', ' Kolhapur ', 'Kolhapur', '416001', 'MAHARASHTRA', '27', '9021182154', '9021182154', 'ABCd123456', '1234ADFSR', '15', 'active', NULL, '2019-11-27 12:40:16');
+(3, 1, 1, 'Hinge general Store', ' Kolhapur ', 'Kolhapur', '416001', 'MAHARASHTRA', '27', '9021182154', '9021182154', 'ABCd123456', '1234ADFSR', '15', 'active', NULL, '2019-11-27 12:40:16'),
+(4, 1, 1, 'swaroop mobile shopy', 'kagal ', 'kolhapur', '416216', 'MAHARASHTRA', '27', '1234567890', '12345679890', 'ABCd123456', '1234ADFSR', '10', 'active', NULL, '2019-11-28 04:01:10');
 
 -- --------------------------------------------------------
 
@@ -333,6 +362,12 @@ ALTER TABLE `company`
   ADD PRIMARY KEY (`company_id`);
 
 --
+-- Indexes for table `gst`
+--
+ALTER TABLE `gst`
+  ADD PRIMARY KEY (`gst_id`);
+
+--
 -- Indexes for table `item_group`
 --
 ALTER TABLE `item_group`
@@ -409,6 +444,12 @@ ALTER TABLE `company`
   MODIFY `company_id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
 
 --
+-- AUTO_INCREMENT for table `gst`
+--
+ALTER TABLE `gst`
+  MODIFY `gst_id` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+
+--
 -- AUTO_INCREMENT for table `item_group`
 --
 ALTER TABLE `item_group`
@@ -418,13 +459,13 @@ ALTER TABLE `item_group`
 -- AUTO_INCREMENT for table `item_info`
 --
 ALTER TABLE `item_info`
-  MODIFY `item_info_id` bigint(20) NOT NULL AUTO_INCREMENT;
+  MODIFY `item_info_id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `party`
 --
 ALTER TABLE `party`
-  MODIFY `party_id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `party_id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `party_type`
