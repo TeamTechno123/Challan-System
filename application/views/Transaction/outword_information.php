@@ -55,15 +55,23 @@
 
                   <div class="form-group col-md-4 offset-md-2">
                     <select class="form-control select2 form-control-sm" name="vehicle_id" id="vehicle_id" required>
-                      <option selected="selected">Select Vehicle No</option>
+                      <option selected="selected" value="">Select Vehicle No</option>
                       <?php foreach ($vehicle_list as $vehicle_list1) { ?>
                         <option value="<?php echo $vehicle_list1->vehicle_id; ?>" <?php if(isset($vehicle_id)){ if($vehicle_list1->vehicle_id == $vehicle_id){ echo "selected"; } }  ?>><?php echo $vehicle_list1->vehicle_number; ?></option>
                       <?php } ?>
                     </select>
                   </div>
                   <div class="form-group col-md-4 ">
+                    <input type="number" min="0" class="form-control form-control-sm" name="outword_trip" id="outword_trip" placeholder="Number of Trip">
+                  </div>
+                  <div class="form-group col-md-4 offset-md-2">
                     <input type="text" class="form-control form-control-sm" name="outword_trans" id="outword_trans" placeholder="Transport Name">
                   </div>
+                  <div class="form-group col-md-4 ">
+                    <input type="text" class="form-control form-control-sm" name="outword_user" id="outword_user" value="<?php echo $user_name.' '.$user_mobile; ?>" placeholder="User Name" readonly>
+                    <input type="hidden" class="form-control form-control-sm" name="user_id" id="user_id" value="<?php echo $user_id; ?>" readonly>
+                  </div>
+
                   <div class="form-group col-md-12">
                     <hr>
                   </div>
@@ -96,7 +104,7 @@
                         <tr>
                           <td>
                             <select class="form-control form-control-sm item_list" name="input[0][item_info_id]" required>
-                              <option selected="selected">Select Item Name</option>
+                              <option selected="selected" value="">Select Item Name</option>
                               <?php foreach ($item_list as $item_list1) { ?>
                                 <option value="<?php echo $item_list1->item_info_id; ?>" <?php //if(isset($item_info_id)){ if($item_list1->item_info_id == $item_info_id){ echo "selected"; } }  ?>><?php echo $item_list1->item_info_name; ?></option>
                               <?php } ?>
@@ -105,18 +113,18 @@
                           </td>
                           <td>
                             <select class="form-control form-control-sm" name="input[0][remark_id]" required>
-                              <option selected="selected">Select Remark</option>
+                              <option selected="selected" value="">Select Remark</option>
                               <?php foreach ($remark_list as $remark_list1) { ?>
                                 <option value="<?php echo $remark_list1->remark_id; ?>" <?php //if(isset($remark_id)){ if($remark_list1->remark_id == $remark_id){ echo "selected"; } }  ?>><?php echo $remark_list1->remark_name; ?></option>
                               <?php } ?>
                             </select>
                           </td>
                           <td class="td_w">
-                            <input type="number" min="0" class="form-control form-control-sm gst gst" name="input[0][gst]" placeholder="Gst" readonly>
+                            <input type="number" min="0" class="form-control form-control-sm gst" name="input[0][gst]" placeholder="Gst" readonly>
                           </td>
                           <td class="td_w">
                             <input type="number" min="1" class="form-control form-control-sm qty" name="input[0][qty]" placeholder="Qty" required>
-                            <input type="hidden" class="form-control form-control-sm gst gst_amount" name="input[0][gst_amount]" >
+                            <input type="hidden" class="form-control form-control-sm gst_amount" name="input[0][gst_amount]" >
                             <p style="display:none;" class="text-danger m-0 p-0 out_stock">Out Of Stock</p>
                           <td class="td_w">
                             <input type="number" min="1" class="form-control form-control-sm rate" name="input[0][rate]" placeholder="Rate" required>
@@ -170,7 +178,7 @@
       var row = '<tr>'+
             '<td>'+
               '<select class="form-control form-control-sm item_list" name="input[0][item_info_id]" required>'+
-                '<option selected="selected">Select Item Name</option>'+
+                '<option selected="selected" value="">Select Item Name</option>'+
                 <?php foreach ($item_list as $item_list1) { ?>
                   '<option value="<?php echo $item_list1->item_info_id; ?>" <?php //if(isset($item_info_id)){ if($item_list1->item_info_id == $item_info_id){ echo "selected"; } }  ?>><?php echo $item_list1->item_info_name; ?></option>'+
                 <?php } ?>
@@ -179,18 +187,18 @@
             '</td>'+
             '<td>'+
               '<select class="form-control form-control-sm" name="input[0][remark_id]" required>'+
-                '<option selected="selected">Select Remark</option>'+
+                '<option selected="selected" value="">Select Remark</option>'+
                 <?php foreach ($remark_list as $remark_list1) { ?>
                   '<option value="<?php echo $remark_list1->remark_id; ?>" <?php //if(isset($remark_id)){ if($remark_list1->remark_id == $remark_id){ echo "selected"; } }  ?>><?php echo $remark_list1->remark_name; ?></option>'+
                 <?php } ?>
               '</select>'+
             '</td>'+
             '<td class="td_w">'+
-              '<input type="number" min="0" class="form-control form-control-sm gst gst" name="input[0][gst]" placeholder="Gst" readonly>'+
+              '<input type="number" min="0" class="form-control form-control-sm gst" name="input[0][gst]" placeholder="Gst" readonly>'+
             '</td>'+
             '<td class="td_w">'+
               '<input type="text" class="form-control form-control-sm qty" name="input[0][qty]" placeholder="Qty" required>'+
-              '<input type="hidden" class="form-control form-control-sm gst gst_amount" name="input[0][gst_amount]" >'+
+              '<input type="hidden" class="form-control form-control-sm gst_amount" name="input[0][gst_amount]" >'+
             '</td>'+
             '<td class="td_w">'+
               '<input type="text" class="form-control form-control-sm rate" name="input[0][rate]" placeholder="Rate" required>'+
@@ -246,7 +254,6 @@
       var qty = parseInt(qty);
       var rate = parseInt(rate);
       if(qty > stock_val){
-        alert('Out of stock');
         $(this).closest('tr').find('.qty').val('');
         $(this).closest('tr').find('.out_stock').show().delay(5000).fadeOut();
 
