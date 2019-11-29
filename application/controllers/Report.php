@@ -38,5 +38,17 @@ defined('BASEPATH') OR exit('No direct script access allowed');
     $this->load->view('Report/delivery_challan_print');
   }
 
+  public function vehicle_report_print(){
+    $this->load->view('Report/vehicle_report_print');
+  }
+
+  public function ci_report_print(){
+    $this->load->view('Report/ci_report_print');
+  }
+
+  public function stock_report_print(){
+    $this->load->view('Report/stock_report_print');
+  }
+
 
 }

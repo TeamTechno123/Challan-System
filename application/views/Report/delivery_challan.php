@@ -184,19 +184,11 @@ $page = "delivery_challan";
       </div>
       <!-- /.col -->
     </div>
-
-
-
 <br><br>
-
-
-
               <!-- this row will not appear when printing -->
               <div class="row no-print">
                 <div class="col-12">
-                  <a href="<?php echo base_url() ?>User/delivery_challan_print" target="_blank" class="btn btn-default"><i class="fas fa-print"></i> Print</a>
-
-                
+                  <a href="<?php echo base_url() ?>Report/delivery_challan_print" target="_blank" class="btn btn-default"><i class="fas fa-print"></i> Print</a>
                 </div>
               </div>
             </div>

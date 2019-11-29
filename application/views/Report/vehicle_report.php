@@ -55,147 +55,87 @@ $page = "party_list";
             <div class="card-body" >
               <form role="form">
                 <div class="card-body row">
+
                   <div class="form-group col-md-4 offset-md-2">
-                    <input type="text" class="form-control form-control-sm" name="" id="" placeholder="Dellivery Challan No.">
+                    <input type="text" class="form-control form-control-sm" name="" id="" title="From Date" placeholder="From Date">
                   </div>
                   <div class="form-group col-md-4">
-                    <input type="text" class="form-control form-control-sm" name=""  placeholder="Dellivery Challan Date">
+                    <input type="text" class="form-control form-control-sm" name="" title="To Date"  placeholder="To Date">
                   </div>
-                  <div class="form-group col-md-8 offset-md-2">
-                    <select class="form-control select2 form-control-sm" style="width: 100%;">
-                      <option selected="selected">Alabama</option>
+                  <div class="form-group col-md-4 offset-md-2">
+                    <select class="form-control select2 form-control-sm" title="Select Party" style="width: 100%;">
+                      <option selected="selected">Select Party</option>
                     </select>
                   </div>
-                  <div class="form-group col-md-2">
-                    <a href="accessories_information" class="btn btn-sm btn-block btn-primary">Add New Party</a>
+                  <div class="form-group col-md-4 ">
+                    <select class="form-control select2 form-control-sm" title="Select Party" style="width: 100%;">
+                      <option selected="selected">Select Party</option>
+                    </select>
                   </div>
-
-                  <div class="form-group col-md-4 offset-md-2">
-                    <input type="text" class="form-control form-control-sm" name="" id="" placeholder="Name of Transporter">
+                  <div class="form-group col-md-2 offset-md-2">
+                    <button class="btn btn-sm btn-block btn-primary">View </button>
                   </div>
-                  <div class="form-group col-md-4">
-                    <input type="text" class="form-control form-control-sm" name="" id="" placeholder="LR/Docket No.">
+                  <div class="form-group col-md-2 offset-md-2">
+                    <button href="accessories_information" class="btn btn-sm btn-block btn-primary">Cancel</button>
                   </div>
-                </div>
-              </form>
-              <div class=" w-100 text-right">
-                <button id="add_row" class="btn btn-sm btn-primary mb-3 mr-1" width="150px">Add Row</button>
-              </div>
 
               <div class="" style="overflow-x:auto;">
-
                 <table id="myTable" class="table table-bordered table-striped " style="">
                   <thead>
+                    <tr>
+                      <th colspan="5"><p style="text-align:center;">Inword Section</p> </th>
+                      <th colspan="5"><p style="text-align:center;">Outword Section</p> </th>
+                    </tr>
                   <tr>
-                    <th class="sr_no">Sr. No.</th>
-                    <th>Make</th>
-                    <th>Model No.</th>
-                    <th>Machine Serial no.</th>
-                    <th>Capacity</th>
-                    <th>Accuracy</th>
-                    <th>Class</th>
-                    <th>Platter Size</th>
-                    <th class="td_w">GST</th>
-                    <th class="td_w">Qty</th>
-                    <th class="td_w">Rate</th>
-                    <th class="td_w">Amount</th>
-                    <th class="td_btn"></th>
+                    <th>Inword No.</th>
+                    <th>Date</th>
+                    <th>Item Name</th>
+                    <th>QTY</th>
+                    <th>Remark</th>
+                    <th>Outword No.</th>
+                    <th>Date</th>
+                    <th>Item Name</th>
+                    <th>QTY</th>
+                    <th>Remark</th>
                   </tr>
                   </thead>
                   <tbody>
-                  <tr>
-                    <td class="sr_no">1</td>
-                    <td>
-                      <select class="form-control select2 form-control-sm" style="width: 100%;">
-                        <option selected="selected">Alabama</option>
-                      </select>
-                    </td>
-                    <td>
-                      <select class="form-control select2 form-control-sm" style="width: 100%;">
-                        <option selected="selected">Alabama</option>
-                      </select>
-                    </td>
-                    <td class="td_w">
-                      <input type="text" class="form-control form-control-sm" name="" id="" placeholder="">
-                    </td>
-                    <!-- <td>
-                      <select class="form-control select2 form-control-sm" style="width: 100%;">
-                        <option selected="selected">Alabama</option>
-                      </select>
-                    </td> -->
-                    <td>
-                      <select class="form-control select2 form-control-sm" style="width: 100%;">
-                        <option selected="selected">Alabama</option>
-                      </select>
-                    </td>
-                    <td>
-                      <select class="form-control select2 form-control-sm" style="width: 100%;">
-                        <option selected="selected">Alabama</option>
-                      </select>
-                    </td>
-                    <td>
-                      <select class="form-control select2 form-control-sm" style="width: 100%;">
-                        <option selected="selected">Alabama</option>
-                      </select>
-                    </td>
-                    <td>
-                      <select class="form-control select2 form-control-sm" style="width: 100%;">
-                        <option selected="selected">Alabama</option>
-                      </select>
-                    </td>
-                    <td class="td_w">
-                      <input type="text" class="form-control form-control-sm" name="" id="" placeholder="">
-                    </td>
-                    <td class="td_w">
-                      <input type="text" class="form-control form-control-sm" name="" id="" placeholder="">
-                    </td>
-                    <td class="td_w">
-                      <input type="text" class="form-control form-control-sm" name="" id="" placeholder="">
-                    </td>
-                    <td class="td_w">
-                      <input type="text" class="form-control form-control-sm" name="" id="" placeholder="">
-                    </td>
-                    <td class="td_btn"></td>
-                  </tr>
+                    <td>1</td>
+                    <td>2</td>
+                    <td>3</td>
+                    <td>4</td>
+                    <td>5</td>
+                    <td>6</td>
+                    <td>7</td>
+                    <td>8</td>
+                    <td>9</td>
+                    <td>10</td>
+                  </tbody>
                 </table>
               </div>
-              <div class="row">
-                <div class="col-md-6">
-                  <h5 class="mt-4">Terms And Conditions</h5>
-                  <div class="w-100 text-right">
-                      <button id="add_terms" class="btn btn-sm btn-primary mb-2 " width="100px">Add</button>
-                  </div>
-                  <div class="form-group " >
-                    <div class="select2-purple">
-                        <select class="select2" multiple="multiple" data-placeholder="Select a Terms And Conditions" data-dropdown-css-class="select2-purple" style="width: 100%;">
-                          <option>Alabama</option>
-                          <option>Alaska</option>
-                          <option>California</option>
-                          <option>Delaware</option>
-                          <option>Tennessee</option>
-                          <option>Texas</option>
-                          <option>Washington</option>
-                        </select>
-                      </div>
 
-                  </div>
-                  <div class="form-group" >
-                    <textarea id="txt_terms" class="form-control form-control-sm" name="name" rows="8" cols="80"></textarea>
-                  </div>
-                  <div class="float-right">
-                    <button type="submit" class="btn btn-primary  mr-3">Save</button>
-                    <button type="submit" class="btn btn-default ">Cancel</button>
-                  </div>
+              <div class="row w-100">
+                <div class="col-md-6">
+                    <br>
+                  <p> <b> Total Inword Trip : </b></p>
 
                 </div>
-                <div class="col-md-6 ">
-                  <div class="form-group row pt-4 float-right">
-                    <label for="inputEmail3" class=" col-form-label mr-3">Total Amount</label>
-                    <div class="">
-                      <input type="text" class="form-control" id="inputEmail3">
-                    </div>
-                  </div>
-                  </div>
+                <div class="col-md-6">
+                  <br>
+                  <p> <b> Total  Outword Trip : </b></p>
+
+                </div>
+                <div class="col-md-12 text-right">
+                  <p> <b>Total Trip : </b> 120  </p>
+                </div>
+
+                <br><br>
+                              <!-- this row will not appear when printing -->
+                              <div class="row no-print">
+                                <div class="col-12">
+                                  <a href="<?php echo base_url() ?>User/delivery_challan_print" target="_blank" class="btn btn-default"><i class="fas fa-print"></i> Print</a>
+                                </div>
+                              </div>
               </div>
 
             </div>
