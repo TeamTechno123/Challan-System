@@ -62,7 +62,7 @@ $page = "make_information_list";
                   <td><?php echo $list->party_name; ?></td>
                   <td><?php echo $list->inword_net_amount; ?></td>
                   <td>
-                    <a href=""> <i class="fa fa-edit"></i> </a>
+                    <a href="<?php echo base_url(); ?>Transaction/edit_inword/<?php echo $list->inword_id; ?>"> <i class="fa fa-edit"></i> </a>
                     <a class="ml-4" href=""> <i class="fa fa-trash"></i> </a>
                   </td>
                 </tr>

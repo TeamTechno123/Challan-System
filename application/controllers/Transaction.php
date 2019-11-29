@@ -11,11 +11,16 @@ class Transaction extends CI_Controller{
 
   public function inword_information(){
     $company_id = $this->session->userdata('ch_company_id');
+    $user_id = $this->session->userdata('ch_user_id');
     if($company_id == null){ header('location:'.base_url().'User'); }
     $data['party_list'] = $this->User_Model->get_list($company_id,'party_id','ASC','party');
     $data['vehicle_list'] = $this->User_Model->get_list($company_id,'vehicle_id','ASC','vehicle');
     $data['remark_list'] = $this->User_Model->get_list($company_id,'remark_id','ASC','remark');
     $data['item_list'] = $this->User_Model->get_list($company_id,'item_info_id','ASC','item_info');
+    $user_info = $this->User_Model->user_info($user_id);
+    $data['user_name'] = $user_info[0]['user_name'];
+    $data['user_mobile'] = $user_info[0]['user_mobile'];
+    $data['user_id'] = $user_info[0]['user_id'];
     $this->load->view('Include/head',$data);
     $this->load->view('Include/navbar',$data);
     $this->load->view('Transaction/inword_information',$data);
@@ -67,6 +72,8 @@ class Transaction extends CI_Controller{
       'inword_net_amount' => $this->input->post('inword_net_amount'),
       'vehicle_id' => $this->input->post('vehicle_id'),
       'inword_trip' => $this->input->post('inword_trip'),
+      'inword_trans' => $this->input->post('inword_trans'),
+      'inword_addedby' => $this->input->post('user_id'),
     );
     $inword_id = $this->User_Model->save_data('inword', $save_data);
     if($inword_id){
@@ -92,17 +99,97 @@ class Transaction extends CI_Controller{
     $this->load->view('Include/footer',$data);
   }
 
+  public function edit_inword($inword_id){
+    $company_id = $this->session->userdata('ch_company_id');
+    $user_id = $this->session->userdata('ch_user_id');
+    if($company_id == null){ header('location:'.base_url().'User'); }
+    $data['party_list'] = $this->User_Model->get_list($company_id,'party_id','ASC','party');
+    $data['vehicle_list'] = $this->User_Model->get_list($company_id,'vehicle_id','ASC','vehicle');
+    $data['remark_list'] = $this->User_Model->get_list($company_id,'remark_id','ASC','remark');
+    $data['item_list'] = $this->User_Model->get_list($company_id,'item_info_id','ASC','item_info');
+    $user_info = $this->User_Model->user_info($user_id);
+    $data['user_name'] = $user_info[0]['user_name'];
+    $data['user_mobile'] = $user_info[0]['user_mobile'];
+    $data['user_id'] = $user_info[0]['user_id'];
+
+    $inword_data = $this->User_Model->get_info('inword_id', $inword_id, 'inword');
+    if($inword_data){
+      foreach($inword_data as $details){
+        $data['update'] = 'yes';
+        $data['inword_id'] = $inword_id;
+        $data['inword_dc_num'] = $details->inword_dc_num;
+        $data['inword_date'] = $details->inword_date;
+        $data['party_id'] = $details->party_id;
+        $data['inword_basic_amt'] = $details->inword_basic_amt;
+        $data['inword_gst'] = $details->inword_gst;
+        $data['inword_net_amount'] = $details->inword_net_amount;
+        $data['vehicle_id'] = $details->vehicle_id;
+        $data['inword_trip'] = $details->inword_trip;
+        $data['inword_trans'] = $details->inword_trans;
+        $data['inword_addedby'] = $details->inword_addedby;
+      }
+      $data['inword_details_list'] = $this->Transaction_Model->details_list('inword_id',$inword_id,'inword_details');
+      $this->load->view('Include/head',$data);
+      $this->load->view('Include/navbar',$data);
+      $this->load->view('Transaction/inword_information',$data);
+      $this->load->view('Include/footer',$data);
+    }
+    else{
+      header('location:'.base_url().'Transaction/inword_information_list');
+    }
+  }
+
+  public function update_inword(){
+    $company_id = $this->session->userdata('ch_company_id');
+    $user_id = $this->session->userdata('ch_user_id');
+    $inword_id = $this->input->post('inword_id');
+    $inword_data = array(
+      'inword_dc_num' => $this->input->post('inword_dc_num'),
+      'inword_date' => $this->input->post('inword_date'),
+      'party_id' => $this->input->post('party_id'),
+      'inword_basic_amt' => $this->input->post('inword_basic_amt'),
+      'inword_gst' => $this->input->post('inword_gst'),
+      'inword_net_amount' => $this->input->post('inword_net_amount'),
+      'vehicle_id' => $this->input->post('vehicle_id'),
+      'inword_trip' => $this->input->post('inword_trip'),
+      'inword_trans' => $this->input->post('inword_trans'),
+      'inword_addedby' => $this->input->post('user_id'),
+    );
+    $this->User_Model->update_info('inword_id', $inword_id, 'inword', $inword_data);
+    foreach($_POST['input'] as $user){
+      if(isset($user['inword_details_id'])){
+        $inword_details_id = $user['inword_details_id'];
+        if(!isset($user['item_info_id'])){
+          $this->User_Model->delete_info('inword_details_id', $inword_details_id, 'inword_details');
+        }else{
+            $this->User_Model->update_info('inword_details_id', $inword_details_id, 'inword_details', $user);
+        }
+      }
+      else{
+        $qty = $user['qty'];
+        $user['bal_qty'] = $qty;
+        $user['inword_id'] = $inword_id;
+        $this->db->insert('inword_details', $user);
+      }
+    }
+    header('location:'.base_url().'Transaction/inword_information_list');
+  }
+
   /****************************** Outword Information ******************************/
   // Add Outword...
   public function outword_information(){
     $company_id = $this->session->userdata('ch_company_id');
+    $user_id = $this->session->userdata('ch_user_id');
     if($company_id == null){ header('location:'.base_url().'User'); }
     $data['outword_dc_num'] = $this->Transaction_Model->get_count_no($company_id, 'outword_dc_num','outword');
     $data['party_list'] = $this->User_Model->get_list($company_id,'party_id','ASC','party');
     $data['vehicle_list'] = $this->User_Model->get_list($company_id,'vehicle_id','ASC','vehicle');
     $data['remark_list'] = $this->User_Model->get_list($company_id,'remark_id','ASC','remark');
     $data['item_list'] = $this->User_Model->get_list($company_id,'item_info_id','ASC','item_info');
-
+    $user_info = $this->User_Model->user_info($user_id);
+    $data['user_name'] = $user_info[0]['user_name'];
+    $data['user_mobile'] = $user_info[0]['user_mobile'];
+    $data['user_id'] = $user_info[0]['user_id'];
     $this->load->view('Include/head',$data);
     $this->load->view('Include/navbar',$data);
     $this->load->view('Transaction/outword_information',$data);
@@ -122,6 +209,8 @@ class Transaction extends CI_Controller{
       'outword_E_date' => $this->input->post('outword_E_date'),
       'vehicle_id' => $this->input->post('vehicle_id'),
       'outword_trans' => $this->input->post('outword_trans'),
+      'outword_trip' => $this->input->post('outword_trip'),
+      'outword_addedby' => $this->input->post('user_id'),
       'outword_basic_amt' => $this->input->post('outword_basic_amt'),
       'outword_gst' => $this->input->post('outword_gst'),
       'outword_net_amount' => $this->input->post('outword_net_amount'),
@@ -131,6 +220,7 @@ class Transaction extends CI_Controller{
       foreach($_POST['input'] as $data){
         $item_info_id = $data['item_info_id'];
         $qty = $data['qty'];
+        $data['outword_id'] = $outword_id;
         $outword_details_id = $this->User_Model->save_data('outword_details', $data);
 
          while($qty > 0){

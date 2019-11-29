@@ -131,5 +131,14 @@ $query = $this->db->select('item_info.*, party.*')
     $result = $query->result();
     return $result;
   }
+
+  public function user_info($user_id){
+    $this->db->select('user_name,user_mobile,user_id');
+    $this->db->where('user_id',$user_id);
+    $this->db->from('user');
+    $query = $this->db->get();
+    $result = $query->result_array();
+    return $result;
+  }
 }
 ?>

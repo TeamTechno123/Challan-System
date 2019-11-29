@@ -83,5 +83,14 @@ class Transaction_Model extends CI_Model{
     $result = $query->result();
     return $result;
   }
+
+  public function details_list($field,$id,$table){
+    $query = $this->db->select('*')
+            ->where($field,$id)
+            ->from($table)
+            ->get();
+    $result = $query->result();
+    return $result;
+  }
 }
 ?>
