@@ -75,6 +75,8 @@
                     <button id="add_row" type="button" class="btn btn-sm btn-primary"> Add More</button>
                   </div> -->
 
+
+
                   <!-- Add Row -->
                   <div class="col-md-12" id="myRow">
                     <div class="" style="overflow-x:auto;">
@@ -99,8 +101,7 @@
                                 <option value="<?php echo $item_list1->item_info_id; ?>" <?php //if(isset($item_info_id)){ if($item_list1->item_info_id == $item_info_id){ echo "selected"; } }  ?>><?php echo $item_list1->item_info_name; ?></option>
                               <?php } ?>
                             </select>
-                            <p class="text-danger stock"><span ></span></p>
-
+                            <p class="text-danger mb-0 stock"></p>
                           </td>
                           <td>
                             <select class="form-control form-control-sm" name="input[0][remark_id]" required>
@@ -116,6 +117,7 @@
                           <td class="td_w">
                             <input type="number" min="1" class="form-control form-control-sm qty" name="input[0][qty]" placeholder="Qty" required>
                             <input type="hidden" class="form-control form-control-sm gst gst_amount" name="input[0][gst_amount]" >
+                            <p style="display:none;" class="text-danger m-0 p-0 out_stock">Out Of Stock</p>
                           <td class="td_w">
                             <input type="number" min="1" class="form-control form-control-sm rate" name="input[0][rate]" placeholder="Rate" required>
                           </td>
@@ -218,16 +220,19 @@
           $(this).closest('tr').find('.gst').val(data['gst_per']);
           $(this).closest('tr').find('.qty').val('');
           // alert(data['stock']);
-          $(this).closest('tr').find('.stock').html('Available Stock : '+data['stock']);
+          $(this).closest('tr').find('.stock').html('Available Stock : <span class="stock-val">'+data['stock']+'</span>');
         }
     	});
     });
 
     $('#myTable').on('change', 'input.qty, input.rate', function () {
       //alert();
+      var stock_val = $(this).closest('tr').find('.stock-val').text();
       var gst =   $(this).closest('tr').find('.gst').val();
       var qty =   $(this).closest('tr').find('.qty').val();
       var rate =   $(this).closest('tr').find('.rate').val();
+
+
       if(gst == ''){
         gst = 0;
       }
@@ -240,37 +245,46 @@
       var gst = parseInt(gst);
       var qty = parseInt(qty);
       var rate = parseInt(rate);
+      if(qty > stock_val){
+        alert('Out of stock');
+        $(this).closest('tr').find('.qty').val('');
+        $(this).closest('tr').find('.out_stock').show().delay(5000).fadeOut();
+
+      }
+      else{
+        var amount_without_gst = qty * rate;
+        var gst_amount = (gst/100) * amount_without_gst;
+        var amount_with_gst = amount_without_gst + gst_amount;
+
+        $(this).closest('tr').find('.amount').val(amount_without_gst.toFixed(2));
+        $(this).closest('tr').find('.gst_amount').val(gst_amount.toFixed(2));
+
+        var basic_amount = 0;
+        $(".amount").each(function() {
+            var amount = $(this).val();
+            if(!isNaN(amount) && amount.length != 0) {
+                basic_amount += parseFloat(amount);
+            }
+        });
+        // alert(basic_amount);
+        $('#outword_basic_amt').val(basic_amount.toFixed(2));
+        //
+        var gst_val = 0;
+        $(".gst_amount").each(function() {
+            var gst_amount = $(this).val();
+            if(!isNaN(gst_amount) && gst_amount.length != 0) {
+                gst_val += parseFloat(gst_amount);
+            }
+        });
+        $('#outword_gst').val(gst_val.toFixed(2));
+
+        var total_amount = basic_amount + gst_val;
+        total_amount = Math.ceil(total_amount);
+        $('#outword_net_amount').val(total_amount);
+      }
 
 
-      var amount_without_gst = qty * rate;
-      var gst_amount = (gst/100) * amount_without_gst;
-      var amount_with_gst = amount_without_gst + gst_amount;
 
-      $(this).closest('tr').find('.amount').val(amount_without_gst.toFixed(2));
-      $(this).closest('tr').find('.gst_amount').val(gst_amount.toFixed(2));
-
-      var basic_amount = 0;
-      $(".amount").each(function() {
-          var amount = $(this).val();
-          if(!isNaN(amount) && amount.length != 0) {
-              basic_amount += parseFloat(amount);
-          }
-      });
-      // alert(basic_amount);
-      $('#outword_basic_amt').val(basic_amount.toFixed(2));
-      //
-      var gst_val = 0;
-      $(".gst_amount").each(function() {
-          var gst_amount = $(this).val();
-          if(!isNaN(gst_amount) && gst_amount.length != 0) {
-              gst_val += parseFloat(gst_amount);
-          }
-      });
-      $('#outword_gst').val(gst_val.toFixed(2));
-
-      var total_amount = basic_amount + gst_val;
-      total_amount = Math.ceil(total_amount);
-      $('#outword_net_amount').val(total_amount);
     });
 
     $('#myTable').on('keyup', 'input.qty', function () {

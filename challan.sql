@@ -3,9 +3,9 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: Nov 28, 2019 at 07:15 AM
+-- Generation Time: Nov 29, 2019 at 10:46 AM
 -- Server version: 10.4.8-MariaDB
--- PHP Version: 7.3.11
+-- PHP Version: 7.3.10
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
 SET AUTOCOMMIT = 0;
@@ -102,6 +102,70 @@ INSERT INTO `gst` (`gst_id`, `gst_per`) VALUES
 -- --------------------------------------------------------
 
 --
+-- Table structure for table `inword`
+--
+
+CREATE TABLE `inword` (
+  `inword_id` bigint(20) NOT NULL,
+  `company_id` bigint(20) NOT NULL,
+  `inword_dc_num` varchar(50) NOT NULL,
+  `inword_date` varchar(20) NOT NULL,
+  `party_id` int(11) NOT NULL,
+  `inword_basic_amt` double DEFAULT NULL,
+  `inword_gst` double DEFAULT NULL,
+  `inword_net_amount` double DEFAULT NULL,
+  `vehicle_id` bigint(20) DEFAULT NULL,
+  `inword_trip` varchar(20) DEFAULT NULL,
+  `inword_status` varchar(20) NOT NULL DEFAULT 'active',
+  `inword_addedby` varchar(50) DEFAULT NULL,
+  `inword_is_delete` int(11) NOT NULL DEFAULT 0,
+  `date` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `inword`
+--
+
+INSERT INTO `inword` (`inword_id`, `company_id`, `inword_dc_num`, `inword_date`, `party_id`, `inword_basic_amt`, `inword_gst`, `inword_net_amount`, `vehicle_id`, `inword_trip`, `inword_status`, `inword_addedby`, `inword_is_delete`, `date`) VALUES
+(1, 1, '1', '01-11-2019', 2, 30000, 3600, 33600, 3, '2', 'active', NULL, 0, '2019-11-29 07:40:55'),
+(2, 1, '2', '07-11-2019', 3, 60000, 7200, 67200, 3, '3', 'active', NULL, 0, '2019-11-29 07:41:13'),
+(3, 1, '4', '18-10-2019', 3, 24000, 2880, 26880, 3, '4', 'active', NULL, 0, '2019-11-29 07:41:40');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `inword_details`
+--
+
+CREATE TABLE `inword_details` (
+  `inword_details_id` bigint(20) NOT NULL,
+  `inword_id` bigint(20) NOT NULL,
+  `item_info_id` bigint(20) NOT NULL,
+  `remark_id` bigint(20) NOT NULL,
+  `qty` double NOT NULL,
+  `bal_qty` double NOT NULL,
+  `rate` double NOT NULL,
+  `gst` double DEFAULT NULL,
+  `gst_amount` double DEFAULT NULL,
+  `amount` double NOT NULL,
+  `inword_details_status` varchar(20) NOT NULL DEFAULT 'active',
+  `inword_details_addedby` varchar(100) DEFAULT NULL,
+  `inword_details_is_delete` int(11) NOT NULL DEFAULT 0,
+  `date` int(11) NOT NULL DEFAULT current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `inword_details`
+--
+
+INSERT INTO `inword_details` (`inword_details_id`, `inword_id`, `item_info_id`, `remark_id`, `qty`, `bal_qty`, `rate`, `gst`, `gst_amount`, `amount`, `inword_details_status`, `inword_details_addedby`, `inword_details_is_delete`, `date`) VALUES
+(1, 1, 4, 3, 50, 40, 650, 12, 3900, 32500, 'active', NULL, 0, 2147483647),
+(2, 2, 4, 3, 100, 100, 650, 12, 3900, 32500, 'active', NULL, 0, 2147483647),
+(3, 3, 4, 3, 40, 0, 650, 12, 3900, 32500, 'active', NULL, 0, 2147483647);
+
+-- --------------------------------------------------------
+
+--
 -- Table structure for table `item_group`
 --
 
@@ -153,7 +217,96 @@ CREATE TABLE `item_info` (
 --
 
 INSERT INTO `item_info` (`item_info_id`, `company_id`, `item_info_name`, `part_code`, `hsn_code`, `gst_slab`, `party_id`, `item_group_id`, `unit_id`, `inword_rate`, `outword_rate`, `ci_boring_weight`, `po_number`, `po_date`, `item_info_status`, `item_info_addedby`, `item_info_date`) VALUES
-(3, 1, 'sound bar', '20', '21', 2, 4, 8, 4, 120, 2100, '10', '10', '14-11-2019', 'active', NULL, '2019-11-28 06:12:53');
+(3, 1, 'sound bar', '20', '21', 2, 4, 8, 4, 120, 2100, '10', '10', '14-11-2019', 'active', NULL, '2019-11-28 06:12:53'),
+(4, 1, 'Ram', '11', '123', 2, 2, 8, 4, 600, 650, '200', '22', '29-11-2019', 'active', NULL, '2019-11-29 04:47:58'),
+(5, 1, 'Mother Board', '55', '456', 3, 3, 9, 4, 2500, 3000, '300', '33', '23-11-2019', 'active', NULL, '2019-11-29 04:48:55');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `outword`
+--
+
+CREATE TABLE `outword` (
+  `outword_id` bigint(20) NOT NULL,
+  `company_id` bigint(20) NOT NULL,
+  `outword_dc_num` varchar(50) NOT NULL,
+  `outword_date` varchar(20) NOT NULL,
+  `outword_E_no` varchar(250) DEFAULT NULL,
+  `outword_E_date` varchar(20) DEFAULT NULL,
+  `party_id` bigint(20) NOT NULL,
+  `vehicle_id` bigint(20) DEFAULT NULL,
+  `outword_trans` varchar(250) NOT NULL,
+  `outword_basic_amt` double DEFAULT NULL,
+  `outword_gst` double DEFAULT NULL,
+  `outword_net_amount` double DEFAULT NULL,
+  `outword_status` varchar(20) NOT NULL DEFAULT 'active',
+  `outword_addedby` varchar(50) DEFAULT NULL,
+  `outword_is_delete` int(11) NOT NULL DEFAULT 0,
+  `date` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `outword`
+--
+
+INSERT INTO `outword` (`outword_id`, `company_id`, `outword_dc_num`, `outword_date`, `outword_E_no`, `outword_E_date`, `party_id`, `vehicle_id`, `outword_trans`, `outword_basic_amt`, `outword_gst`, `outword_net_amount`, `outword_status`, `outword_addedby`, `outword_is_delete`, `date`) VALUES
+(1, 1, '1', '01-11-2019', '1', '15-11-2019', 3, 3, 'dfgdfg', 32500, 3900, 36400, 'active', NULL, 0, '2019-11-29 08:06:54');
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `outword_details`
+--
+
+CREATE TABLE `outword_details` (
+  `outword_details_id` bigint(20) NOT NULL,
+  `outword_id` bigint(20) NOT NULL,
+  `item_info_id` bigint(20) NOT NULL,
+  `remark_id` bigint(20) NOT NULL,
+  `qty` double NOT NULL,
+  `rate` double NOT NULL,
+  `gst` double DEFAULT NULL,
+  `gst_amount` double DEFAULT NULL,
+  `amount` double NOT NULL,
+  `outword_details_status` varchar(20) NOT NULL DEFAULT 'active',
+  `outword_details_addedby` varchar(100) DEFAULT NULL,
+  `outword_details_is_delete` int(11) NOT NULL DEFAULT 0,
+  `date` int(11) NOT NULL DEFAULT current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `outword_details`
+--
+
+INSERT INTO `outword_details` (`outword_details_id`, `outword_id`, `item_info_id`, `remark_id`, `qty`, `rate`, `gst`, `gst_amount`, `amount`, `outword_details_status`, `outword_details_addedby`, `outword_details_is_delete`, `date`) VALUES
+(1, 0, 4, 3, 50, 650, 12, 3900, 32500, 'active', NULL, 0, 2147483647);
+
+-- --------------------------------------------------------
+
+--
+-- Table structure for table `outword_ref`
+--
+
+CREATE TABLE `outword_ref` (
+  `ref_id` bigint(20) NOT NULL,
+  `outword_id` bigint(20) NOT NULL,
+  `outword_details_id` bigint(20) NOT NULL,
+  `inword_id` bigint(20) NOT NULL,
+  `inword_details_id` bigint(20) NOT NULL,
+  `qty_used` double NOT NULL,
+  `date` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
+) ENGINE=InnoDB DEFAULT CHARSET=utf8;
+
+--
+-- Dumping data for table `outword_ref`
+--
+
+INSERT INTO `outword_ref` (`ref_id`, `outword_id`, `outword_details_id`, `inword_id`, `inword_details_id`, `qty_used`, `date`) VALUES
+(1, 1, 1, 3, 3, 40, '2019-11-29 07:56:48'),
+(2, 1, 1, 1, 1, 10, '2019-11-29 07:56:48'),
+(3, 1, 1, 3, 3, 40, '2019-11-29 08:06:54'),
+(4, 1, 1, 1, 1, 10, '2019-11-29 08:06:54');
 
 -- --------------------------------------------------------
 
@@ -226,6 +379,13 @@ CREATE TABLE `remark` (
   `remark_addedby` varchar(50) DEFAULT NULL,
   `remark_date` timestamp NOT NULL DEFAULT current_timestamp() ON UPDATE current_timestamp()
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
+
+--
+-- Dumping data for table `remark`
+--
+
+INSERT INTO `remark` (`remark_id`, `company_id`, `remark_name`, `remark_status`, `remark_addedby`, `remark_date`) VALUES
+(3, 1, 'sdfsdf', 'active', NULL, '2019-11-28 08:09:44');
 
 -- --------------------------------------------------------
 
@@ -368,6 +528,18 @@ ALTER TABLE `gst`
   ADD PRIMARY KEY (`gst_id`);
 
 --
+-- Indexes for table `inword`
+--
+ALTER TABLE `inword`
+  ADD PRIMARY KEY (`inword_id`);
+
+--
+-- Indexes for table `inword_details`
+--
+ALTER TABLE `inword_details`
+  ADD PRIMARY KEY (`inword_details_id`);
+
+--
 -- Indexes for table `item_group`
 --
 ALTER TABLE `item_group`
@@ -378,6 +550,24 @@ ALTER TABLE `item_group`
 --
 ALTER TABLE `item_info`
   ADD PRIMARY KEY (`item_info_id`);
+
+--
+-- Indexes for table `outword`
+--
+ALTER TABLE `outword`
+  ADD PRIMARY KEY (`outword_id`);
+
+--
+-- Indexes for table `outword_details`
+--
+ALTER TABLE `outword_details`
+  ADD PRIMARY KEY (`outword_details_id`);
+
+--
+-- Indexes for table `outword_ref`
+--
+ALTER TABLE `outword_ref`
+  ADD PRIMARY KEY (`ref_id`);
 
 --
 -- Indexes for table `party`
@@ -450,6 +640,18 @@ ALTER TABLE `gst`
   MODIFY `gst_id` int(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
+-- AUTO_INCREMENT for table `inword`
+--
+ALTER TABLE `inword`
+  MODIFY `inword_id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
+-- AUTO_INCREMENT for table `inword_details`
+--
+ALTER TABLE `inword_details`
+  MODIFY `inword_details_id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+
+--
 -- AUTO_INCREMENT for table `item_group`
 --
 ALTER TABLE `item_group`
@@ -459,7 +661,25 @@ ALTER TABLE `item_group`
 -- AUTO_INCREMENT for table `item_info`
 --
 ALTER TABLE `item_info`
-  MODIFY `item_info_id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
+  MODIFY `item_info_id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=6;
+
+--
+-- AUTO_INCREMENT for table `outword`
+--
+ALTER TABLE `outword`
+  MODIFY `outword_id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
+-- AUTO_INCREMENT for table `outword_details`
+--
+ALTER TABLE `outword_details`
+  MODIFY `outword_details_id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=2;
+
+--
+-- AUTO_INCREMENT for table `outword_ref`
+--
+ALTER TABLE `outword_ref`
+  MODIFY `ref_id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
 
 --
 -- AUTO_INCREMENT for table `party`
@@ -477,7 +697,7 @@ ALTER TABLE `party_type`
 -- AUTO_INCREMENT for table `remark`
 --
 ALTER TABLE `remark`
-  MODIFY `remark_id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=3;
+  MODIFY `remark_id` bigint(20) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=4;
 
 --
 -- AUTO_INCREMENT for table `state`
