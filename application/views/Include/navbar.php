@@ -284,6 +284,14 @@
                     </a>
                   </li>
                   <li class="nav-item">
+                    <a href="<?php echo base_url(); ?>Report/ci_report" class="nav-link">
+                      <i class="far fa-circle nav-icon"></i>
+                      <p>
+                      CI Boaring Reports
+                      </p>
+                    </a>
+                  </li>
+                  <li class="nav-item">
                     <a href="<?php echo base_url(); ?>Report/delivery_challan_receipt" class="nav-link">
                       <i class="far fa-circle nav-icon"></i>
                       <p>

@@ -20,6 +20,13 @@ defined('BASEPATH') OR exit('No direct script access allowed');
     $this->load->view('Include/footer');
   }
 
+  public function ci_report(){
+    $this->load->view('Include/head');
+    $this->load->view('Include/navbar');
+    $this->load->view('Report/ci_report');
+    $this->load->view('Include/footer');
+  }
+
   public function delivery_challan_receipt(){
     $this->load->view('Include/head');
     $this->load->view('Include/navbar');
