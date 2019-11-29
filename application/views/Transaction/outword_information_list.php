@@ -10,8 +10,6 @@ $page = "make_information_list";
 </style>
 <body class="hold-transition sidebar-mini layout-fixed">
 <div class="wrapper">
-
-
   <!-- Content Wrapper. Contains page content -->
   <div class="content-wrapper">
     <!-- Content Header (Page header) -->
@@ -25,8 +23,6 @@ $page = "make_information_list";
       </div><!-- /.container-fluid -->
     </section>
 
-
-
     <section class="content">
       <div class="container-fluid">
         <div class="row">
@@ -35,11 +31,10 @@ $page = "make_information_list";
             <!-- general form elements -->
             <div class="card">
             <div class="card-header">
-              <h3 class="card-title"><i class="fa fa-list"></i>  Outword Information List</h3>
+              <h3 class="card-title"><i class="fa fa-list"></i> Outword Information List</h3>
               <div class="card-tools">
                 <a href="<?php echo base_url(); ?>Transaction/outword_information" class="btn btn-sm btn-block btn-primary">Add Outword</a>
               </div>
-
             </div>
             <!-- /.card-header -->
             <div class="card-body">
@@ -55,18 +50,24 @@ $page = "make_information_list";
                 </tr>
                 </thead>
                 <tbody>
+                <?php
+                  $i = 0;
+                  foreach($outword_list as $list){
+                    $i++;
+                ?>
                 <tr>
-                  <td>1</td>
-                  <td>Dell</td>
-                  <td>Dell</td>
-                  <td>Dell</td>
-                  <td>10000</td>
-
+                  <td><?php echo $i; ?></td>
+                  <td><?php echo $list->outword_date; ?></td>
+                  <td><?php echo $list->outword_dc_num; ?></td>
+                  <td><?php echo $list->party_name; ?></td>
+                  <td><?php echo $list->outword_net_amount; ?></td>
                   <td>
-                    <a href=""> <i class="fa fa-edit"></i> </a>
-                    <a class="ml-4" href=""> <i class="fa fa-trash"></i> </a>
+                    <a href="<?php echo base_url(); ?>Transaction/edit_outword/<?php echo $list->outword_id; ?>"> <i class="fa fa-edit"></i> </a>
+                    <a href="<?php echo base_url(); ?>Transaction/delete_outword/<?php echo $list->outword_id; ?>" class="ml-2" onclick=" return confirm('Do you want to delete.')"> <i class="fa fa-trash"></i> </a>
                   </td>
                 </tr>
+              <?php } ?>
+              </tbody>
               </table>
             </div>
             <!-- /.card-body -->

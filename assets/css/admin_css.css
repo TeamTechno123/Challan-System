@@ -16,3 +16,25 @@
     line-height: 20px !important;
     font-size: .875rem;
 }
+
+.drop-sm .select2-container .select2-selection--single {
+    box-sizing: border-box;
+    cursor: pointer;
+    display: block;
+    height: calc(1.8125rem + 2px);
+    user-select: none;
+    -webkit-user-select: none;
+}
+
+.drop-sm .select2-container--default .select2-selection--single .select2-selection__rendered {
+    color: #495057 !important;
+    line-height: 23px !important;
+    font-size: .875rem;
+}
+
+.td_w{
+  width:100px !important;
+}
+.td_btn{
+  width: 40px !important;
+}

@@ -57,10 +57,10 @@
                     <input type="text" class="form-control form-control-sm" name="inword_trip" id="inword_trip" placeholder="Enter No Of Trip">
                   </div>
                   <div class="col-md-12">
-                    <hr>
+                  <hr>
                   </div>
                   <div class="form-group col-md-9">
-                    <label for="">  <h3 class="card-title">Item Details</h3> </label>
+                    <label for=""> <h3 class="card-title">Item Details</h3> </label>
                   </div>
                   <div class="form-group col-md-3 ">
                     <button id="add_row" type="button" class="btn btn-success btn-sm"> Add More</button>
@@ -98,14 +98,14 @@
                             </select>
                           </td>
                           <td class="td_w">
-                            <input type="number" min="1" class="form-control form-control-sm qty" name="input[0][qty]" placeholder="Qty" >
+                            <input type="number" min="1" class="form-control form-control-sm qty" name="input[0][qty]" placeholder="Qty" required>
                             <input type="hidden" class="form-control form-control-sm gst gst_amount" name="input[0][gst_amount]" >
                           <td class="td_w">
-                            <input type="number" min="1" class="form-control form-control-sm rate" name="input[0][rate]" placeholder="Rate" >
+                            <input type="number" min="1" class="form-control form-control-sm rate" name="input[0][rate]" placeholder="Rate" required>
                             <input type="hidden" class="form-control form-control-sm gst gst" name="input[0][gst]" >
                           </td>
                           <td class="td_w">
-                            <input type="text" readonly class="form-control form-control-sm amount" name="input[0][amount]" placeholder="Amount">
+                            <input type="text" readonly class="form-control form-control-sm amount" name="input[0][amount]" placeholder="Amount" required>
                           </td>
                           <td></td>
                         </tr>
@@ -114,13 +114,13 @@
                   </div>
                   <!-- // Add row -->
                   <div class="form-group col-md-3 offset-md-9">
-                    <input type="text" class="form-control form-control-sm" name="inword_basic_amt" id="inword_basic_amt" placeholder="Basic Amount">
+                    <input type="text" class="form-control form-control-sm" name="inword_basic_amt" id="inword_basic_amt" placeholder="Basic Amount" readonly>
                   </div>
                   <div class="form-group col-md-3 offset-md-9">
-                    <input type="text" class="form-control form-control-sm" name="inword_gst" id="inword_gst" placeholder="GST Amount">
+                    <input type="text" class="form-control form-control-sm" name="inword_gst" id="inword_gst" placeholder="GST Amount" readonly>
                   </div>
                   <div class="form-group col-md-3 offset-md-9">
-                    <input type="text" class="form-control form-control-sm" name="inword_net_amount" id="inword_net_amount" placeholder="Net Amount">
+                    <input type="text" class="form-control form-control-sm" name="inword_net_amount" id="inword_net_amount" placeholder="Net Amount" readonly>
                   </div>
 
                 </div>
@@ -170,15 +170,15 @@ var i = 0;
             '</select>'+
           '</td>'+
           '<td class="td_w">'+
-            '<input type="text" class="form-control form-control-sm qty" name="input[0][qty]" placeholder="Qty" >'+
+            '<input type="text" class="form-control form-control-sm qty" name="input[0][qty]" placeholder="Qty" required>'+
             '<input type="hidden" class="form-control form-control-sm gst gst_amount" name="input[0][gst_amount]" >'+
           '</td>'+
           '<td class="td_w">'+
-            '<input type="text" class="form-control form-control-sm rate" name="input[0][rate]" placeholder="Rate" >'+
+            '<input type="text" class="form-control form-control-sm rate" name="input[0][rate]" placeholder="Rate" required>'+
             '<input type="hidden" class="form-control form-control-sm gst" name="input[0][gst]" >'+
           '</td>'+
           '<td class="td_w">'+
-            '<input type="text" readonly class="form-control form-control-sm amount" name="input[0][amount]" placeholder="Amount">'+
+            '<input type="text" readonly class="form-control form-control-sm amount" name="input[0][amount]" placeholder="Amount" required>'+
           '</td>'+
           '<td><a><i class="fa fa-trash text-danger"></i></a></td>'+
         '</tr>';
@@ -199,7 +199,8 @@ var i = 0;
       success: function (result) {
         var data = JSON.parse(result);
         $(this).closest('tr').find('.rate').val(data['inword_rate']);
-        $(this).closest('tr').find('.gst').val(data['gst_slab']);
+        $(this).closest('tr').find('.gst').val(data['gst_per']);
+        $(this).closest('tr').find('.qty').val('');
       }
   	});
   });
@@ -226,8 +227,9 @@ var i = 0;
     var amount_without_gst = qty * rate;
     var gst_amount = (gst/100) * amount_without_gst;
     var amount_with_gst = amount_without_gst + gst_amount;
-    $(this).closest('tr').find('.amount').val(amount_without_gst);
-    $(this).closest('tr').find('.gst_amount').val(gst_amount);
+
+    $(this).closest('tr').find('.amount').val(amount_without_gst.toFixed(2));
+    $(this).closest('tr').find('.gst_amount').val(gst_amount.toFixed(2));
 
 
 
@@ -239,7 +241,7 @@ var i = 0;
         }
     });
     // alert(basic_amount);
-    $('#inword_basic_amt').val(basic_amount);
+    $('#inword_basic_amt').val(basic_amount.toFixed(2));
     //
     var gst_val = 0;
     $(".gst_amount").each(function() {
@@ -248,43 +250,12 @@ var i = 0;
             gst_val += parseFloat(gst_amount);
         }
     });
-    $('#inword_gst').val(gst_val);
-    //
+    $('#inword_gst').val(gst_val.toFixed(2));
+
     var total_amount = basic_amount + gst_val;
+    total_amount = Math.ceil(total_amount);
     $('#inword_net_amount').val(total_amount);
   });
-
-  // $(".row").on("change","select.item_info_id",function(){
-  //   var item_info_id = $(this).val();
-  //   //alert(party_id);
-  //   $.ajax({
-  //     url: '<?php echo base_url(); ?>Transaction/GetItemInfo',
-  //     type: "POST",
-  //     data: {"item_info_id":item_info_id},
-  //     context: this,
-  //     success: function (result) {
-  //       alert();
-  //       // var data = JSON.parse(result);
-  //       // var a = $(this).closest('.row').find('.rate').val(data['inword_rate']);
-  //       // $('.item_list').html(result);
-  //     }
-  // 	});
-  // });
-
-  // $("#party_id").on("change",function(){
-  //   var party_id = $(this).val();
-  //   //alert(party_id);
-  //   $.ajax({
-  //     url: '<?php echo base_url(); ?>Transaction/GetItemByParty',
-  //     type: "POST",
-  //     data: {"party_id":party_id},
-  //     context: this,
-  //     success: function (result) {
-  //       $('.item_list').html(result);
-  //     }
-  // 	});
-  // });
-
 
 </script>
 </body>
