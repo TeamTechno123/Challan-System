@@ -7,16 +7,27 @@ $page = "party_list";
 
   td{
     padding:2px 10px !important;
+      border: 1px solid #000!important;
+      text-align: center;
+  }
+  th, tr{
+      text-align: center;
+    border: 1px solid #000!important;
   }
   table{
     /* overflow: hidden; */
+    width: 100%;
+      border: 1px solid #000!important;
   }
-  th, td { min-width:200px; }
+  /* th, td { min-width:200px; } */
   .sr_no, .td_btn{
     min-width:50px !important;
   }
   .td_w{
     min-width:100px !important;
+  }
+  p{
+    margin-bottom: 5px;
   }
   html, body, .row{
     overflow-x: hidden;
@@ -79,20 +90,20 @@ $page = "party_list";
                     <button href="accessories_information" class="btn btn-sm btn-block btn-primary">Cancel</button>
                   </div>
 
-              <div class="" style="overflow-x:auto;">
-                <table id="myTable" class="table table-bordered table-striped " style="">
+              <div class="w-100" >
+                <table id="myTable" class="table table-bordered table-striped " style="" Width="100%">
                   <thead>
                     <tr>
                       <th colspan="5"><p style="text-align:center;">Inword Section</p> </th>
                       <th colspan="5"><p style="text-align:center;">Outword Section</p> </th>
                     </tr>
                   <tr>
-                    <th>Inword No.</th>
+                    <th>In No.</th>
                     <th>Date</th>
                     <th>Item Name</th>
                     <th>QTY</th>
                     <th>Remark</th>
-                    <th>Outword No.</th>
+                    <th>Out No.</th>
                     <th>Date</th>
                     <th>Item Name</th>
                     <th>QTY</th>

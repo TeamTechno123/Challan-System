@@ -5,13 +5,19 @@ $page = "ci_boaring_report";
 ?>
 <style>
 
-  td{
-    padding:2px 10px !important;
-  }
+td{
+  padding:2px 10px !important;
+    border: 1px solid #000!important;
+    text-align: center;
+}
+th, tr{
+    text-align: center;
+  border: 1px solid #000!important;
+}
   table{
     /* overflow: hidden; */
   }
-  th, td { min-width:200px; }
+  /* th, td { min-width:200px; } */
   .sr_no, .td_btn{
     min-width:50px !important;
   }
@@ -81,7 +87,7 @@ $page = "ci_boaring_report";
               </form>
 
 
-              <div class="" style="overflow-x:auto;">
+              <div class="w-100">
                 <table id="myTable" class="table table-bordered table-striped " style="">
                   <thead>
                   <tr>
@@ -104,7 +110,7 @@ $page = "ci_boaring_report";
                     </tr>
                 </table>
                 <div class="row " >
-                  <p class="text-right w-100">Closing Balance : </p>
+                  <p class="text-right w-100" style="padding-right:50px;">Closing Balance : </p>
                 </div>
               </div>
               <br><br>

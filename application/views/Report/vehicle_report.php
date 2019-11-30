@@ -11,7 +11,19 @@ $page = "Vehicle_report";
   table{
     /* overflow: hidden; */
   }
-  th, td { min-width:200px; }
+  /* th, td { min-width:200px; } */
+  td{
+    padding:2px 10px !important;
+      border: 1px solid #000!important;
+      text-align: center;
+  }
+  th, tr{
+      text-align: center;
+    border: 1px solid #000!important;
+  }
+  p{
+    margin-bottom: 5px;
+  }
   .sr_no, .td_btn{
     min-width:50px !important;
   }
@@ -79,7 +91,7 @@ $page = "Vehicle_report";
                     <button href="accessories_information" class="btn btn-sm btn-block btn-primary">Cancel</button>
                   </div>
 
-              <div class="" style="overflow-x:auto;">
+              <div class="w-100" >
                 <table id="myTable" class="table table-bordered table-striped " style="">
                   <thead>
                     <tr>
@@ -126,7 +138,7 @@ $page = "Vehicle_report";
 
                 </div>
                 <div class="col-md-12 text-right">
-                  <p> <b>Total Trip : </b> 120  </p>
+                  <p style="padding-right:50px;"> <b>Total Trip : </b> 120  </p>
                 </div>
 
                 <br><br>

@@ -12,7 +12,7 @@ $page = "delivery_challan";
   table{
     /* overflow: hidden; */
   }
-  th, td { min-width:200px; }
+  /* th, td { min-width:200px; } */
   .sr_no, .td_btn{
     min-width:50px !important;
   }
