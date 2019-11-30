@@ -130,6 +130,7 @@ border-collapse: collapse!important;
 border: 1px solid #000;
 margin-left: auto;
 margin-right: auto;
+padding: 5px;
 }
 </style>
 <style media="screen">
@@ -142,20 +143,21 @@ border-collapse: collapse!important;
 border: 1px solid #000;
 margin-left: auto;
 margin-right: auto;
+padding: 5px;
 }
 </style>
 <thead>
-  <tr>
-    <th colspan="5">Inword Section</th>
-    <th colspan="5">Outword Section</th>
+  <tr style="border-top:0px;">
+    <th colspan="5" style="border-top:0px;" >Inword Section</th>
+    <th colspan="5" style="border-top:0px;" >Outword Section</th>
   </tr>
   <tr>
-    <th>Inword No.</th>
+    <th>In No.</th>
     <th>Date</th>
     <th>Item Name</th>
     <th>QTY</th>
     <th>Remark</th>
-    <th>Outword No.</th>
+    <th>Out No.</th>
     <th>Date</th>
     <th>Item Name</th>
     <th>QTY</th>
@@ -166,7 +168,7 @@ margin-right: auto;
 
   <tr>
     <td style="  text-align: center;">1</td>
-    <td style="  text-align: center;">ABCD</td>
+    <td style="  text-align: center;">11/09/2019</td>
     <td style="  text-align: center;">Remark</td>
     <td style="  text-align: center;">1</td>
     <td style="  text-align: center;">ABCD</td>
@@ -178,7 +180,7 @@ margin-right: auto;
   </tr>
   <tr>
     <td style="  text-align: center;">1</td>
-    <td style="  text-align: center;">ABCD</td>
+    <td style="  text-align: center;">11/09/2019</td>
     <td style="  text-align: center;">Remark</td>
     <td style="  text-align: center;">1</td>
     <td style="  text-align: center;">ABCD</td>
@@ -190,7 +192,7 @@ margin-right: auto;
   </tr>
   <tr>
     <td style="  text-align: center;">1</td>
-    <td style="  text-align: center;">ABCD</td>
+    <td style="  text-align: center;">11/09/2019</td>
     <td style="  text-align: center;">Remark</td>
     <td style="  text-align: center;">1</td>
     <td style="  text-align: center;">ABCD</td>
@@ -202,7 +204,7 @@ margin-right: auto;
   </tr>
   <tr>
     <td style="  text-align: center;">1</td>
-    <td style="  text-align: center;">ABCD</td>
+    <td style="  text-align: center;">11/09/2019</td>
     <td style="  text-align: center;">Remark</td>
     <td style="  text-align: center;">1</td>
     <td style="  text-align: center;">ABCD</td>

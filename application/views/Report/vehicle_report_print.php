@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <title>CI BOARING REPORTS</title>
+  <title>Vehicle Report</title>
   <!-- Tell the browser to be responsive to screen width -->
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <!-- Bootstrap 4 -->
@@ -25,7 +25,7 @@
     <!-- title row -->
 
     <div class="row">
-  <p style="text-align:center; margin-bottom: 10px; font-size:16px; text-transform:uppercase;"> <b>CI BOARING REPORT</b>  </p>
+  <p style="text-align:center; margin-bottom: 10px; font-size:16px; text-transform:uppercase;"> <b>Vehicle Report</b>  </p>
 </div>
     <table class="table table-bordered mb-0 invoice-table"  width="100%">
 <style media="print">
@@ -104,13 +104,11 @@ td{
   </td>
 </tr>
 <tr>
-  <td colspan="6"> <p style="text-align:center;"> <b>CI BOARING REPORTS</b>   : From 1-04-2019 To 15-04-2019</p> </td>
+  <td colspan="6"> <p style="text-align:center;"> <b>Vehicle Report</b>   : From 1-04-2019 To 15-04-2019</p> </td>
 </tr>
 <tr>
-  <td colspan="6"> <p> <b>Opening Balance</b>   : </p> </td>
+  <td colspan="6"> <p> <b>Vehicle Number </b>   : MH-09 CD-1234</p> </td>
 </tr>
-
-
 </table>
 
 
@@ -145,61 +143,85 @@ padding: 5px;
 }
 </style>
 <thead>
-  <tr style="border-top:0px;" >
-    <th  style="border-top:0px;">Sr. No.</th>
-    <th style="border-top:0px;">Outword No.</th>
-    <th style="border-top:0px;">Date</th>
-    <th style="border-top:0px;">Item Name</th>
-    <th style="border-top:0px;">QTY</th>
-    <th style="border-top:0px;">CI Bo. Weight</th>
-
+  <tr style="border-top:0px;">
+    <th colspan="5"  style="border-top:0px;">Inword Section</th>
+    <th colspan="5"  style="border-top:0px;">Outword Section</th>
+  </tr>
+  <tr>
+    <th>In No.</th>
+    <th>Date</th>
+    <th>Item Name</th>
+    <th>QTY</th>
+    <th>No Of Trip</th>
+    <th>Out No.</th>
+    <th>Date</th>
+    <th>Item Name</th>
+    <th>QTY</th>
+    <th>No Of Trip</th>
   </tr>
   </thead>
   <tbody>
 
   <tr>
     <td style="  text-align: center;">1</td>
-    <td style="  text-align: center;">ABCD</td>
+    <td style="  text-align: center;">11/09/2019</td>
     <td style="  text-align: center;">Remark</td>
     <td style="  text-align: center;">1</td>
-    <td style="  text-align: center;">120.00</td>
-    <td style="  text-align: center;">5000</td>
-  </tr>
-  <tr>
-    <td style="  text-align: center;">1</td>
     <td style="  text-align: center;">ABCD</td>
-    <td style="  text-align: center;">Remark</td>
-    <td style="  text-align: center;">1</td>
-    <td style="  text-align: center;">120.00</td>
-    <td style="  text-align: center;">5000</td>
-  </tr>
-  <tr>
     <td style="  text-align: center;">1</td>
     <td style="  text-align: center;">ABCD</td>
     <td style="  text-align: center;">Remark</td>
     <td style="  text-align: center;">1</td>
-    <td style="  text-align: center;">120.00</td>
-    <td style="  text-align: center;">5000</td>
+    <td style="  text-align: center;">ABCD</td>
   </tr>
   <tr>
+    <td style="  text-align: center;">1</td>
+    <td style="  text-align: center;">11/09/2019</td>
+    <td style="  text-align: center;">Remark</td>
+    <td style="  text-align: center;">1</td>
+    <td style="  text-align: center;">ABCD</td>
     <td style="  text-align: center;">1</td>
     <td style="  text-align: center;">ABCD</td>
     <td style="  text-align: center;">Remark</td>
     <td style="  text-align: center;">1</td>
-    <td style="  text-align: center;">120.00</td>
-    <td style="  text-align: center;">5000</td>
+    <td style="  text-align: center;">ABCD</td>
   </tr>
-
-
-
-
-
-
-
   <tr>
-    <td colspan="3"  style="border-right:0px;"> <br> </td>
-    <td colspan="1" style="border-right:0px; border-left: 0px;"> </td>
-    <td colspan="3" style=" border-left: 0px; "> <br> Closing Balance</td>
+    <td style="  text-align: center;">1</td>
+    <td style="  text-align: center;">11/09/2019</td>
+    <td style="  text-align: center;">Remark</td>
+    <td style="  text-align: center;">1</td>
+    <td style="  text-align: center;">ABCD</td>
+    <td style="  text-align: center;">1</td>
+    <td style="  text-align: center;">ABCD</td>
+    <td style="  text-align: center;">Remark</td>
+    <td style="  text-align: center;">1</td>
+    <td style="  text-align: center;">ABCD</td>
+  </tr>
+  <tr>
+    <td style="  text-align: center;">1</td>
+    <td style="  text-align: center;">11/09/2019</td>
+    <td style="  text-align: center;">Remark</td>
+    <td style="  text-align: center;">1</td>
+    <td style="  text-align: center;">ABCD</td>
+    <td style="  text-align: center;">1</td>
+    <td style="  text-align: center;">ABCD</td>
+    <td style="  text-align: center;">Remark</td>
+    <td style="  text-align: center;">1</td>
+    <td style="  text-align: center;">ABCD</td>
+  </tr>
+  <tr>
+    <td colspan="5"> <p> <b>Total Inword Trip</b> :  </p>
+                     <p> <b>Remark 1</b> :  </p>
+                    <p> <b>Remark 2</b> :  </p>
+     </td>
+    <td colspan="5"> <p> <b>Total Outword Trip</b> :  </p>
+                    <p> <b>Remark 1</b> :  </p>
+                     <p> <b>Remark 2</b> :  </p>
+                          </td>
+  </tr>
+  <tr>
+    <td colspan="10" style="text-align:right; padding-right:50px;"> <br> Closing Balance : 12000</td>
   </tr>
 </tbody>
 </table>
