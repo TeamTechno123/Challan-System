@@ -3,6 +3,7 @@ class Transaction_Model extends CI_Model{
   public function get_count_no($company_id, $field_name, $tbl_name){
     $query = $this->db->select('MAX('.$field_name.') as num')
     ->where('company_id', $company_id)
+    ->where('is_delete', 0)
     ->from($tbl_name)
     ->get();
     $result =  $query->result_array();
@@ -14,6 +15,12 @@ class Transaction_Model extends CI_Model{
     $value2 = $old_num + 1;                            //Incrementing numeric part
     // $value2 = "" . sprintf('%06s', $value2);               //concatenating incremented value
     return $value = $value2;
+  }
+
+  public function delete_set($id_type, $id, $tbl_name){
+    $this->db->where($id_type, $id);
+    $this->db->set('is_delete',1);
+    $this->db->update($tbl_name);
   }
 
   public function GetItemByParty($company_id,$party_id){
@@ -43,6 +50,7 @@ class Transaction_Model extends CI_Model{
     $this->db->select('inword.*, party.*');
     $this->db->from('inword');
     $this->db->where('inword.company_id', $company_id);
+    $this->db->where('inword.is_delete', 0);
     $this->db->join('party', 'inword.party_id = party.party_id', 'LEFT');
     $query = $this->db->get();
     $result = $query->result();
@@ -52,6 +60,7 @@ class Transaction_Model extends CI_Model{
     $this->db->select('SUM(bal_qty) as stock');
     $this->db->from('inword_details');
     $this->db->where('item_info_id',$item_info_id);
+    $this->db->where('is_delete', 0);
     $query = $this->db->get();
     $result = $query->result_array();
     return $result[0]['stock'];
@@ -62,6 +71,7 @@ class Transaction_Model extends CI_Model{
     $this->db->from('inword_details as details');
     $this->db->where('details.item_info_id',$item_info_id);
     $this->db->where('details.bal_qty >',0);
+    $this->db->where('details.is_delete', 0);
     $this->db->order_by("str_to_date(inword.inword_date, '%d-%m-%Y')");
     $this->db->limit(1);
     $this->db->join('inword','inword.inword_id = details.inword_id');
@@ -78,17 +88,29 @@ class Transaction_Model extends CI_Model{
     $this->db->select('outword.*, party.*');
     $this->db->from('outword');
     $this->db->where('outword.company_id', $company_id);
+    $this->db->where('outword.is_delete', 0);
     $this->db->join('party', 'outword.party_id = party.party_id', 'LEFT');
     $query = $this->db->get();
     $result = $query->result();
     return $result;
   }
 
+  public function inword_ref_list($outword_details_id){
+    $this->db->select('*');
+    $this->db->where('outword_details_id',$outword_details_id);
+    // $this->db->where('is_delete', 0);
+    $this->db->from('outword_ref');
+    $query = $this->db->get();
+    $result = $query->result();
+    return $result;
+  }
+
   public function details_list($field,$id,$table){
-    $query = $this->db->select('*')
-            ->where($field,$id)
-            ->from($table)
-            ->get();
+    $this->db->select('*');
+    $this->db->where($field,$id);
+    $this->db->where('is_delete', 0);
+    $this->db->from($table);
+    $query = $this->db->get();
     $result = $query->result();
     return $result;
   }

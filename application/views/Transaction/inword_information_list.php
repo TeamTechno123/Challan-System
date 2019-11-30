@@ -13,6 +13,7 @@ $page = "make_information_list";
   <!-- Content Wrapper. Contains page content -->
   <div class="content-wrapper">
     <!-- Content Header (Page header) -->
+
     <section class="content-header">
       <div class="container-fluid">
         <div class="row mb-2">
@@ -53,6 +54,7 @@ $page = "make_information_list";
                 <?php
                   $i = 0;
                   foreach($inword_list as $list){
+                    $inword_id = $list->inword_id;
                     $i++;
                 ?>
                 <tr>
@@ -63,7 +65,9 @@ $page = "make_information_list";
                   <td><?php echo $list->inword_net_amount; ?></td>
                   <td>
                     <a href="<?php echo base_url(); ?>Transaction/edit_inword/<?php echo $list->inword_id; ?>"> <i class="fa fa-edit"></i> </a>
-                    <a class="ml-4" href=""> <i class="fa fa-trash"></i> </a>
+                    <a href="<?php echo base_url(); ?>Transaction/delete_inword/<?php echo $list->inword_id; ?>" class="ml-2" onclick="">
+                      <i class="fa fa-trash"></i>
+                    </a>
                   </td>
                 </tr>
               <?php } ?>
@@ -79,6 +83,15 @@ $page = "make_information_list";
       </div><!-- /.container-fluid -->
     </section>
   </div>
-
+  <script src="<?php echo base_url(); ?>assets/plugins/sweetalert2/sweetalert2.min.js"></script>
+<script src="<?php echo base_url(); ?>assets/plugins/toastr/toastr.min.js"></script>
+  <?php if($this->session->flashdata('delete_error')){
+  ?>
+  <script type="text/javascript">
+    $(document).ready(function(){
+      toastr.error('Inword in Use, Can Not Delete.');
+    });
+  </script>
+  <?php } ?>
 </body>
 </html>

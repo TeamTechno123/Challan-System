@@ -36,7 +36,6 @@
                 <form role="form" action="<?php echo base_url(); ?>Transaction/save_inword" method="POST" autocomplete="off">
               <?php } ?>
 
-
                 <div class="card-body row">
                   <div class="form-group col-md-4 offset-md-2">
                     <input type="text" class="form-control form-control-sm" name="inword_dc_num" id="inword_dc_num" value="<?php if(isset($inword_dc_num)){ echo $inword_dc_num; } ?>" placeholder="DC No" required>
@@ -98,8 +97,10 @@
                           $i = 0;
                           $j = 0;
                           foreach ($inword_details_list as $details) {
-                            //if($details->qty == $details->bal_qty){
-
+                            $delete = 0;
+                            if($details->qty != $details->bal_qty){
+                              $delete = 1;
+                            }
                           $j++;  ?>
                           <input type="hidden" name="input[<?php echo $i; ?>][inword_details_id]" value="<?php echo $details->inword_details_id ?>">
                           <tr>
@@ -121,8 +122,8 @@
                             </td>
                             <td class="td_w">
                               <input type="number" min="1" class="form-control form-control-sm qty" name="input[<?php echo $i; ?>][qty]" value="<?php echo $details->qty; ?>" placeholder="Qty" required>
-                              <input type="text" class="form-control form-control-sm bal_qty" name="input[<?php echo $i; ?>][bal_qty]" value="<?php echo $details->bal_qty; ?>" >
-                              <input type="text" class="form-control form-control-sm old_qty" value="<?php echo $details->qty; ?>" >
+                              <input type="hidden" class="form-control form-control-sm bal_qty" name="input[<?php echo $i; ?>][bal_qty]" value="<?php echo $details->bal_qty; ?>" >
+                              <input type="hidden" class="form-control form-control-sm old_qty" value="<?php echo $details->qty; ?>" >
                             <td class="td_w">
                               <input type="number" min="1" class="form-control form-control-sm rate" name="input[<?php echo $i; ?>][rate]" value="<?php echo $details->rate; ?>" placeholder="Rate" required>
                               <input type="hidden" class="form-control form-control-sm gst" name="input[<?php echo $i; ?>][gst]" value="<?php echo $details->gst; ?>" >
@@ -131,7 +132,7 @@
                             <td class="td_w">
                               <input type="text" readonly class="form-control form-control-sm amount" name="input[<?php echo $i; ?>][amount]" value="<?php echo $details->amount; ?>" placeholder="Amount" required>
                             </td>
-                            <td><?php if($j > 1){ ?> <a><i class="fa fa-trash text-danger"></i></a> <?php } ?></td>
+                            <td><?php if($j > 1 && $delete==0){ ?> <a><i class="fa fa-trash text-danger"></i></a> <?php } ?></td>
                           </tr>
                           <?php $i++;  } } else{ ?>
                           <tr>
