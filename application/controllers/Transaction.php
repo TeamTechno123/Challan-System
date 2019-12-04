@@ -58,6 +58,16 @@ class Transaction extends CI_Controller{
     echo json_encode($data);
   }
 
+  public function check_inw_dup(){
+    $company_id = $this->session->userdata('ch_company_id');
+    $inword_dc_num = $this->input->post('inword_dc_num');
+    $party_id = $this->input->post('party_id');
+    $check = 'get_num_rows';
+    $check_dup = $this->Transaction_Model->check_inw_dup($inword_dc_num, $party_id, $check);
+    $data['get_num'] = $check_dup;
+    echo $data['get_num'];
+  }
+
   public function save_inword(){
     $company_id = $this->session->userdata('ch_company_id');
     if($company_id == null){ header('location:'.base_url().'User'); }
@@ -237,6 +247,7 @@ class Transaction extends CI_Controller{
       'outword_basic_amt' => $this->input->post('outword_basic_amt'),
       'outword_gst' => $this->input->post('outword_gst'),
       'outword_net_amount' => $this->input->post('outword_net_amount'),
+      'outword_title' => $this->input->post('outword_title'),
     );
     $outword_id = $this->User_Model->save_data('outword', $save_data);
     if($outword_id){
@@ -251,6 +262,7 @@ class Transaction extends CI_Controller{
             $inword_id = $inword_item_for_out[0]['inword_id'];
             $inword_details_id = $inword_item_for_out[0]['inword_details_id'];
             $bal_qty = $inword_item_for_out[0]['bal_qty'];
+            $item_info_id= $inword_item_for_out[0]['item_info_id'];
             if($bal_qty > $qty){
               $bal = $bal_qty - $qty;
               $used = $qty;
@@ -274,6 +286,7 @@ class Transaction extends CI_Controller{
             $out_ref_data['inword_id'] = $inword_id;
             $out_ref_data['inword_details_id'] = $inword_details_id;
             $out_ref_data['qty_used'] = $used;
+            $out_ref_data['item_info_id'] = $item_info_id;
             $this->User_Model->save_data('outword_ref', $out_ref_data);
          }
       }
@@ -311,6 +324,7 @@ class Transaction extends CI_Controller{
         $data['outword_gst'] = $details->outword_gst;
         $data['outword_net_amount'] = $details->outword_net_amount;
         $data['outword_addedby'] = $details->outword_addedby;
+        $data['outword_title'] = $details->outword_title;
       }
       $data['outword_details_list'] = $this->Transaction_Model->details_list('outword_id',$outword_id,'outword_details');
       $this->load->view('Include/head',$data);
@@ -341,6 +355,7 @@ class Transaction extends CI_Controller{
       'outword_basic_amt' => $this->input->post('outword_basic_amt'),
       'outword_gst' => $this->input->post('outword_gst'),
       'outword_net_amount' => $this->input->post('outword_net_amount'),
+      'outword_title' => $this->input->post('outword_title'),
     );
     $this->User_Model->update_info('outword_id', $outword_id, 'outword', $outword_data);
 
@@ -373,6 +388,7 @@ class Transaction extends CI_Controller{
         $inword_id = $inword_item_for_out[0]['inword_id'];
         $inword_details_id = $inword_item_for_out[0]['inword_details_id'];
         $bal_qty = $inword_item_for_out[0]['bal_qty'];
+        $item_info_id= $inword_item_for_out[0]['item_info_id'];
         if($bal_qty > $qty){
           $bal = $bal_qty - $qty;
           $used = $qty;
@@ -396,6 +412,7 @@ class Transaction extends CI_Controller{
         $out_ref_data['inword_id'] = $inword_id;
         $out_ref_data['inword_details_id'] = $inword_details_id;
         $out_ref_data['qty_used'] = $used;
+        $out_ref_data['item_info_id'] = $item_info_id;
         $this->User_Model->save_data('outword_ref', $out_ref_data);
      }
     }
@@ -433,6 +450,8 @@ class Transaction extends CI_Controller{
 
     $this->Transaction_Model->delete_set('outword_id', $outword_id, 'outword');
     $this->Transaction_Model->delete_set('outword_id', $outword_id, 'outword_details');
+
+    header('location:'.base_url().'Transaction/outword_information_list');
   }
 
 

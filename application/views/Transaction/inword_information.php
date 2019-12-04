@@ -60,7 +60,7 @@
                     </select>
                   </div>
                   <div class="form-group col-md-4">
-                    <input type="text" class="form-control form-control-sm" name="inword_trip" id="inword_trip" value="<?php if(isset($inword_trip)){ echo $inword_trip; } ?>" placeholder="Enter No Of Trip">
+                    <input type="number" min="1" class="form-control form-control-sm" name="inword_trip" id="inword_trip" value="<?php if(isset($inword_trip)){ echo $inword_trip; } ?>" placeholder="Enter No Of Trip">
                   </div>
                   <div class="form-group col-md-4 offset-md-2">
                     <input type="text" class="form-control form-control-sm" name="inword_trans" id="inword_trans" value="<?php if(isset($inword_trans)){ echo $inword_trans; } ?>" placeholder="Transport" required>
@@ -198,7 +198,8 @@
       </div><!-- /.container-fluid -->
     </section>
   </div>
-
+  <script src="<?php echo base_url(); ?>assets/plugins/sweetalert2/sweetalert2.min.js"></script>
+  <script src="<?php echo base_url(); ?>assets/plugins/toastr/toastr.min.js"></script>
 <script type="text/javascript">
 <?php if(isset($update)){ ?>
   var i = <?php echo $i-1; ?>
@@ -245,6 +246,35 @@
     $(this).closest('tr').remove();
   });
 
+  $("#inword_dc_num, #party_id").on("change",function(){
+    var inword_dc_num = $('#inword_dc_num').val();
+    var party_id = $('#party_id').val();
+
+    if(party_id != '' && inword_dc_num != ''){
+      // alert(party_id+' '+inword_dc_num);
+
+      $.ajax({
+        url: '<?php echo base_url(); ?>Transaction/check_inw_dup',
+        type: "POST",
+        data: {"inword_dc_num":inword_dc_num, "party_id":party_id},
+        context: this,
+        success: function (result) {
+          if(result > 0){
+            toastr.error('DC Number already used.');
+            $('#inword_dc_num').val('');
+          }
+          // alert(result)
+          // var data = JSON.parse(result);
+          // $(this).closest('tr').find('.rate').val(data['inword_rate']);
+          // $(this).closest('tr').find('.gst').val(data['gst_per']);
+          // $(this).closest('tr').find('.qty').val('');
+        }
+    	});
+    }
+
+  });
+
+  // Get Item Info on Select...
   $("#myTable").on("change", "select.item_list", function(){
     var item_info_id = $(this).val();
     $.ajax({
@@ -261,6 +291,7 @@
   	});
   });
 
+  // Calculate Amount... Check Valid Quantity..
   $('#myTable').on('change', 'input.qty, input.rate', function () {
     var bal_qty = $(this).closest('tr').find('.bal_qty').val();
     if(bal_qty != ''){
@@ -328,9 +359,6 @@
         $('#inword_net_amount').val(total_amount);
       }
     }
-
-
-
   });
 
 

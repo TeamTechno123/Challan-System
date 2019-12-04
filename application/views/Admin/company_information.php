@@ -61,7 +61,7 @@
                     <input type="text" class="form-control" name="company_district" id="company_district" value="<?php if(isset($company_district)){ echo $company_district; } ?>" placeholder="District">
                   </div>
                   <div class="form-group col-md-6">
-                    <input type="number" class="form-control" name="company_pincode" id="company_pincode" value="<?php if(isset($company_pincode)){ echo $company_pincode; } ?>" placeholder="Pincode">
+                    <input type="number" class="form-control" name="company_statecode" id="company_statecode" value="<?php if(isset($company_statecode)){ echo $company_statecode; } ?>" placeholder="Statecode">
                   </div>
                   <div class="form-group col-md-6">
                     <input type="number" class="form-control" name="company_mob1" id="company_mob1" value="<?php if(isset($company_mob1)){ echo $company_mob1; } ?>" placeholder="Mobile No. 1">
@@ -106,10 +106,10 @@
                       No file selected.
                     </div>
                     <div class="form-group col-md-6">
-                      <input type="email" class="form-control" name="admin_email" id="admin_email" placeholder="Admin Email">
+                      <input type="email" class="form-control" name="admin_email" id="admin_email" placeholder="Admin Email" required>
                     </div>
                     <div class="form-group col-md-6">
-                      <input type="password" class="form-control" name="admin_password" id="admin_password" placeholder="Admin Password">
+                      <input type="password" class="form-control" name="admin_password" id="admin_password" placeholder="Admin Password" required>
                     </div>
                   <?php } ?>
                 </div>

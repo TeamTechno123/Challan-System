@@ -42,11 +42,21 @@ defined('BASEPATH') OR exit('No direct script access allowed');
     $user_id = $this->session->userdata('ch_user_id');
     $company_id = $this->session->userdata('ch_company_id');
     $roll_id = $this->session->userdata('roll_id');
+    $key = '';
+    $data['item_count'] = $this->User_Model->get_count('item_info_id',$company_id,$key,'item_info');
+    $data['party_count'] = $this->User_Model->get_count('item_info_id',$company_id,$key,'item_info');
+    // $data['item_count'] = $this->User_Model->get_count('item_info_id',$company_id,$key,'item_info');
+    $data['inword_count'] = $this->User_Model->get_count('inword_id',$company_id,'1','inword');
+    $data['outword_count'] = $this->User_Model->get_count('outword_id',$company_id,'1','outword');
+    $data['vehicle_count'] = $this->User_Model->get_count('vehicle_id',$company_id,$key,'vehicle');
+
+    $data['item_stock_list'] = $this->User_Model->item_stock_list($company_id);
+    // echo print_r($data['item_stock_list']);
     if($company_id){
-      $this->load->view('Include/head');
-      $this->load->view('Include/navbar');
-      $this->load->view('User/dashboard');
-      $this->load->view('Include/footer');
+      $this->load->view('Include/head', $data);
+      $this->load->view('Include/navbar', $data);
+      $this->load->view('User/dashboard', $data);
+      $this->load->view('Include/footer', $data);
     } else{
       header('location:'.base_url().'User');
     }
@@ -84,7 +94,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
           $data['company_city'] = $info->company_city;
           $data['company_state'] = $info->company_state;
           $data['company_district'] = $info->company_district;
-          $data['company_pincode'] = $info->company_pincode;
+          $data['company_statecode'] = $info->company_statecode;
           $data['company_mob1'] = $info->company_mob1;
           $data['company_mob2'] = $info->company_mob2;
           $data['company_email'] = $info->company_email;
@@ -118,7 +128,7 @@ defined('BASEPATH') OR exit('No direct script access allowed');
         'company_city' => $this->input->post('company_city'),
         'company_state' => $this->input->post('company_state'),
         'company_district' => $this->input->post('company_district'),
-        'company_pincode' => $this->input->post('company_pincode'),
+        'company_statecode' => $this->input->post('company_statecode'),
         'company_mob1' => $this->input->post('company_mob1'),
         'company_mob2' => $this->input->post('company_mob2'),
         'company_email' => $this->input->post('company_email'),
@@ -536,8 +546,8 @@ public function delete_item_group($id){
     $company_id = $this->session->userdata('ch_company_id');
     $roll_id = $this->session->userdata('roll_id');
     if($company_id == null){  header('location:'.base_url().'User');}
-    $data['party_type'] = $this->User_Model->get_list($company_id,'party_type_id','ASC','party_type');
-    $data['party_list'] = $this->User_Model->get_party_list($company_id,'party_type_id','ASC','party_type');
+    $data['party_type'] = $this->User_Model->get_list1('party_type_id','ASC','party_type');
+    // $data['party_list'] = $this->User_Model->get_party_list($company_id,'party_type_id','ASC','party_type');
     $data['state_list'] = $this->User_Model->get_list1('state_id','ASC','state');
     $this->load->view('Include/head',$data);
     $this->load->view('Include/navbar',$data);
@@ -605,7 +615,8 @@ public function delete_item_group($id){
       $roll_id = $this->session->userdata('roll_id');
       if($company_id){
         $party_info = $this->User_Model->get_party_info($company_id,$id);
-        $data['party_list'] = $this->User_Model->get_party_list($company_id);
+        $data['party_type'] = $this->User_Model->get_list1('party_type_id','ASC','party_type');
+        // $data['party_list'] = $this->User_Model->get_party_list($company_id);
         $data['state_list'] = $this->User_Model->get_list1('state_id','ASC','state');
         if($party_info){
           foreach($party_info as $info){
@@ -906,13 +917,6 @@ public function delete_item_group($id){
     }
   }
 
-
-
-
-
-
-
-
   // public function remark_information_list(){
   //   $this->load->view('User/remark_information_list');
   // }
@@ -925,15 +929,10 @@ public function delete_item_group($id){
     $this->load->view('User/process_information_list');
   }
 
-  
-
-
-
-
   public function user_information(){
     $company_id = $this->session->userdata('ch_company_id');
       if($company_id == null){  header('location:'.base_url().'User');}
-       $data['roll_list'] = $this->User_Model->get_list($company_id,'roll_id','ASC','user_roll');
+       $data['roll_list'] = $this->User_Model->get_list1('roll_id','ASC','user_roll');
        $this->load->view('Include/head',$data);
        $this->load->view('Include/navbar',$data);
        $this->load->view('User/user_information',$data);
@@ -947,6 +946,9 @@ public function delete_item_group($id){
       $roll_id = $this->session->userdata('roll_id');
       if($company_id){
         $data['user_list'] = $this->User_Model->get_user_list($company_id);
+
+
+
         $this->load->view('Include/head',$data);
         $this->load->view('Include/navbar',$data);
         $this->load->view('User/user_information_list',$data);

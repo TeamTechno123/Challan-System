@@ -13,7 +13,7 @@ $page = "party_list";
       <div class="container-fluid">
         <div class="row mb-2">
           <div class="col-sm-12 mt-1 text-center">
-            <h4>ITEM WISE STOCK REPORTS</h4>
+            <h4>OUTWORD BIF REPORT</h4>
           </div>
         </div>
       </div><!-- /.container-fluid -->
@@ -61,7 +61,7 @@ $page = "party_list";
                     <section style="width:100%;" class="invoice" id="print_invoice">
                       <!-- title row -->
                       <div style="width:100%;" class="row">
-                        <p style="width:100%; text-align:center; margin-bottom: 10px; font-size:16px; text-transform:uppercase;"> <b>Stock Report</b>  </p>
+                        <p style="width:100%; text-align:center; margin-bottom: 10px; font-size:16px; text-transform:uppercase;"> <b>Outword BIF Report</b>  </p>
                       </div>
                       <table class="table table-bordered mb-0 invoice-table"  width="100%">
                       <style media="print">
@@ -186,13 +186,13 @@ $page = "party_list";
                         </style>
                         <thead>
                           <tr style="border-top:0px;">
-                            <th colspan="4" width="50%" style="border-top:0px;" >Inward Section</th>
-                            <th colspan="4" width="50%" style="border-top:0px;" >Outward Section</th>
+                            <!-- <th colspan="4" width="50%" style="border-top:0px;" >Inward Section</th> -->
+                            <th colspan="8" width="50%" style="border-top:0px;" >Outward Section</th>
                           </tr>
                           </thead>
                         <tbody>
                           <tr >
-                            <td colspan="4" style="padding:0px;" valign="top">
+                            <!-- <td colspan="4" style="padding:0px;" valign="top">
                               <table style="width:100%;  border-bottom:0px;">
                                 <thead>
                                   <tr style="border:0px;">
@@ -220,14 +220,15 @@ $page = "party_list";
                                   <?php } ?>
                                 </tbody>
                               </table>
-                            </td>
-                            <td colspan="4" style="padding:0px;"  valign="top">
+                            </td> -->
+                            <td colspan="8" style="padding:0px;"  valign="top">
                               <table style="width:100%; border-top:0px; border-bottom:0px;">
                                 <thead>
                                   <tr style="border:0px;">
                                     <th style="border-top:0px; border-left:0px;">DC No.</th>
                                     <th style="border-top:0px;">Date</th>
                                     <th style="border-top:0px;">QTY</th>
+                                    <th style="border-top:0px;">Inward Ref</th>
                                     <th style="border-top:0px; border-right:0px;">Remark</th>
                                   </tr>
                                 </thead>
@@ -238,12 +239,37 @@ $page = "party_list";
                                   foreach ($outword_item_list as $outword_item_list) {
                                   $i++;
                                   $out_qty = $outword_item_list->qty;
+                                  $outword_id = $outword_item_list->outword_id;
                                   $tot_outword = $tot_outword + $out_qty;
                                   ?>
                                     <tr style="border:0px;">
                                       <td style=" text-align: center; border-left:0px; "><?php echo $outword_item_list->outword_dc_num;  ?></td>
                                       <td style=" text-align: center; "><?php echo $outword_item_list->outword_date;  ?></td>
                                       <td style=" text-align: center; "><?php echo $outword_item_list->qty;  ?></td>
+                                      <td style=" text-align: center; ">
+                                        <!-- <table> -->
+                                        <p style="text-align:left;">
+                                          <?php echo 'Inw no. &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'; ?>
+                                          <?php echo 'Date &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'; ?>
+                                          <?php echo 'Qty &nbsp;&nbsp;&nbsp;'; ?>
+                                        </p>
+                                        <?php
+                                        $ref_list = $this->Transaction_Model->outward_ref_list($outword_id);
+                                        foreach ($ref_list as $ref_list) { ?>
+                                          <p style="text-align:left;">
+                                            <?php echo $ref_list->inword_id.' &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'; ?>
+                                            <?php echo $ref_list->inword_date.' &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;'; ?>
+                                            <?php echo $ref_list->qty_used.' &nbsp;&nbsp;&nbsp;'; ?>
+                                          </p>
+                                            <!-- <tr> -->
+                                              <!-- <td><?php echo $ref_list->inword_id; ?></td>
+                                              <td><?php echo $ref_list->inword_id; ?></td>
+                                              <td><?php echo $ref_list->qty_used; ?></td> -->
+                                            <!-- </tr> -->
+
+                                        <?php } ?>
+                                        <!-- </table> -->
+                                      </td>
                                       <td style=" text-align: center; border-right:0px; "><?php echo $outword_item_list->remark_name;  ?></td>
                                     </tr>
                                   <?php } ?>
@@ -252,13 +278,13 @@ $page = "party_list";
                             </td>
                           </tr>
                         <tr style="border-top:0px;">
-                          <td style="border-top:0px;" colspan="4" valign="top">
+                          <!-- <td style="border-top:0px;" colspan="4" valign="top">
                             <p> <b>Total Inward</b> : <?php echo $tot_inword; ?> </p>
                             <?php foreach ($inword_by_remark as $inword_by_remark) { ?>
                               <p> <b><?php echo $inword_by_remark->remark_name; ?></b> : <?php echo $inword_by_remark->inword_by_remark; ?> </p>
                             <?php } ?>
-                           </td>
-                          <td style="border-top:0px;" colspan="4" valign="top">
+                           </td> -->
+                          <td style="border-top:0px;" colspan="8" valign="top">
                             <p> <b>Total Outward</b> : <?php echo $tot_outword; ?> </p>
                             <?php foreach ($outword_by_remark as $outword_by_remark) { ?>
                               <p> <b><?php echo $outword_by_remark->remark_name; ?></b> : <?php echo $outword_by_remark->outword_by_remark; ?> </p>

@@ -44,7 +44,7 @@ class Transaction_Model extends CI_Model{
     $result = $query->result();
     return $result;
   }
-
+/******************************* Inword ********************************/
   // Inword List...
   public function inword_list($company_id){
     $this->db->select('inword.*, party.*');
@@ -55,6 +55,21 @@ class Transaction_Model extends CI_Model{
     $query = $this->db->get();
     $result = $query->result();
     return $result;
+  }
+  public function check_inw_dup($inword_dc_num, $party_id, $check){
+    $this->db->select('*');
+    $this->db->from('inword');
+    $this->db->where('inword_dc_num',$inword_dc_num);
+    $this->db->where('party_id',$party_id);
+    $query = $this->db->get();
+    if($check == 'get_num_rows'){
+      $num = $query->num_rows();
+      return $num;
+    }
+    else{
+      $result = $query->result();
+      return $result;
+    }
   }
   public function item_inword_stock($item_info_id){
     $this->db->select('SUM(bal_qty) as stock');
@@ -94,6 +109,20 @@ class Transaction_Model extends CI_Model{
     $result = $query->result();
     return $result;
   }
+  public function get_outword_info($outword_id){
+    $this->db->select('outword.*, party.*,vehicle.*,details.*,item.*,remark.remark_name');
+    $this->db->from('outword');
+    $this->db->where('outword.outword_id', $outword_id);
+    $this->db->join('party', 'outword.party_id = party.party_id', 'LEFT');
+    $this->db->join('vehicle', 'outword.vehicle_id = vehicle.vehicle_id', 'LEFT');
+    $this->db->join('outword_details as details', 'outword.outword_id = details.outword_id', 'LEFT');
+    $this->db->join('item_info as item', 'details.item_info_id = item.item_info_id', 'LEFT');
+    $this->db->join('remark', 'details.remark_id = remark.remark_id', 'LEFT');
+
+    $query = $this->db->get();
+    $result = $query->result();
+    return $result;
+  }
 
   public function inword_ref_list($outword_details_id){
     $this->db->select('*');
@@ -110,6 +139,30 @@ class Transaction_Model extends CI_Model{
     $this->db->where($field,$id);
     $this->db->where('is_delete', 0);
     $this->db->from($table);
+    $query = $this->db->get();
+    $result = $query->result();
+    return $result;
+  }
+
+
+  // Report....
+  public function report_inword_ref_list($outword_details_id){
+    $this->db->select('outword_ref.*,item_info.*,inword.*,inword_details.*');
+    $this->db->from('outword_ref');
+    $this->db->where('outword_ref.outword_details_id',$outword_details_id);
+    $this->db->join('item_info','outword_ref.item_info_id = item_info.item_info_id', 'LEFT');
+    $this->db->join('inword','outword_ref.inword_id = inword.inword_id', 'LEFT');
+    $this->db->join('inword_details','outword_ref.inword_details_id = inword_details.inword_details_id', 'LEFT');
+    $query = $this->db->get();
+    $result = $query->result();
+    return $result;
+  }
+
+  public function outward_ref_list($outword_id){
+    $this->db->select('outword_ref.*,inword.*');
+    $this->db->where('outword_ref.outword_id',$outword_id);
+    $this->db->from('outword_ref');
+    $this->db->join('inword','outword_ref.inword_id = inword.inword_id', 'LEFT');
     $query = $this->db->get();
     $result = $query->result();
     return $result;

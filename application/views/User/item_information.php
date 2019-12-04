@@ -47,7 +47,7 @@
                   </div>
 
                   <div class="form-group col-md-4">
-                    <input type="text" class="form-control form-control-sm" name="part_code" id="part_code" placeholder="Enter Part Code"  value="<?php if(isset($part_code)){ echo $part_code; } ?>"  required>
+                    <input type="text" class="form-control form-control-sm" name="part_code" id="part_code" placeholder="Short Name"  value="<?php if(isset($part_code)){ echo $part_code; } ?>"  required>
                   </div>
                   <div class="form-group col-md-4">
                     <input type="text" class="form-control form-control-sm" name="hsn_code" id="hsn_code" placeholder="HSN / SAC Code"  value="<?php if(isset($hsn_code)){ echo $hsn_code; } ?>"  required>

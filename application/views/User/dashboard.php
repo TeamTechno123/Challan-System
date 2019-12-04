@@ -33,28 +33,28 @@
           <div class="col-md-2 col-6">
             <div class="small-box bg-info">
               <div class="inner">
-                <h3>15</h3>
+                <h3><?php echo $item_count; ?></h3>
                 <p>Item Information</p>
               </div>
               <div class="icon">
                 <i class="ion ion-bag"></i>
               </div>
-              <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+              <a href="<?php echo base_url(); ?>User/item_information_list" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
             </div>
           </div>
           <div class="col-md-2 col-6">
             <div class="small-box bg-green">
               <div class="inner">
-                <h3>20</h3>
+                <h3><?php echo $party_count; ?></h3>
                 <p> Party Information</p>
               </div>
               <div class="icon">
                 <i class="ion ion-bag"></i>
               </div>
-              <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+              <a href="<?php echo base_url(); ?>User/party_information_list" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
             </div>
           </div>
-          <div class="col-md-2 col-6">
+          <!-- <div class="col-md-2 col-6">
             <div class="small-box bg-yellow">
               <div class="inner">
                 <h3>10</h3>
@@ -63,44 +63,44 @@
               <div class="icon">
                 <i class="ion ion-bag"></i>
               </div>
-              <a href="product_information_list" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+              <a href="<?php echo base_url(); ?>User/process_information_list" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
             </div>
-          </div>
+          </div> -->
           <div class="col-md-2 col-6">
             <div class="small-box bg-info">
               <div class="inner">
-                <h3>15</h3>
+                <h3><?php echo $inword_count; ?></h3>
                 <p>Inword Information <br></p>
               </div>
               <div class="icon">
                 <i class="ion ion-bag"></i>
               </div>
-              <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+              <a href="<?php echo base_url(); ?>Transaction/inword_information_list" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
             </div>
           </div>
 
           <div class="col-md-2 col-6">
             <div class="small-box bg-green">
               <div class="inner">
-                <h3>20</h3>
+                <h3><?php echo $outword_count; ?></h3>
                 <p> Outword  Information</p>
               </div>
               <div class="icon">
                 <i class="ion ion-bag"></i>
               </div>
-              <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+              <a href="<?php echo base_url(); ?>Transaction/outword_information_list" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
             </div>
           </div>
           <div class="col-md-2">
             <div class="small-box bg-red">
               <div class="inner">
-                <h3>20</h3>
+                <h3><?php echo $vehicle_count; ?></h3>
                 <p> Vehicle  Information</p>
               </div>
               <div class="icon">
                 <i class="ion ion-bag"></i>
               </div>
-              <a href="#" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
+              <a href="<?php echo base_url(); ?>User/vehicle_information_list" class="small-box-footer">More info <i class="fas fa-arrow-circle-right"></i></a>
             </div>
           </div>
         </div>
@@ -128,11 +128,18 @@
                 </tr>
                 </thead>
                 <tbody>
-                <tr>
-                  <td>1</td>
-                  <td>Dell</td>
-                  <td>12000</td>
-                </tr>
+                  <?php
+                  $i=0;
+                  foreach ($item_stock_list as $item_list) {
+                    $i++;
+                  ?>
+                    <tr>
+                      <td><?php echo $i; ?></td>
+                      <td><?php echo $item_list->item_info_name; ?></td>
+                      <td><?php echo $item_list->stock_bal_qty; ?></td>
+                    </tr>
+                <?php  } ?>
+
               </table>
             </div>
             <!-- /.card-body -->
@@ -147,7 +154,7 @@
   <!-- /.content-wrapper -->
   <?php //include('footer.php'); ?>
   <!-- Control Sidebar -->
-  
+
 <!-- ./wrapper -->
 
 <?php //include('script.php') ?>

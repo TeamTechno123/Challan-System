@@ -37,7 +37,6 @@
                 <form role="form" action="<?php echo base_url(); ?>Transaction/save_outword" method="POST" autocomplete="off">
               <?php } ?>
 
-
                 <div class="card-body row">
                   <div class="form-group col-md-4 offset-md-2">
                     <input type="text" class="form-control form-control-sm" name="outword_dc_num" id="outword_dc_num" value="<?php  if(isset($outword_dc_num)){ echo $outword_dc_num; }?>" placeholder="DC No" readonly>
@@ -69,7 +68,7 @@
                     </select>
                   </div>
                   <div class="form-group col-md-4 ">
-                    <input type="number" min="0" class="form-control form-control-sm" name="outword_trip" id="outword_trip" value="<?php  if(isset($outword_trip)){ echo $outword_trip; }?>" placeholder="Number of Trip">
+                    <input type="number" min="1" class="form-control form-control-sm" name="outword_trip" id="outword_trip" value="<?php  if(isset($outword_trip)){ echo $outword_trip; }?>" placeholder="Number of Trip">
                   </div>
                   <div class="form-group col-md-4 offset-md-2">
                     <input type="text" class="form-control form-control-sm" name="outword_trans" id="outword_trans" value="<?php  if(isset($outword_trans)){ echo $outword_trans; }?>" placeholder="Transport Name">
@@ -77,6 +76,9 @@
                   <div class="form-group col-md-4 ">
                     <input type="text" class="form-control form-control-sm" name="outword_user" id="outword_user" value="<?php echo $user_name.' '.$user_mobile; ?>" placeholder="User Name" readonly>
                     <input type="hidden" class="form-control form-control-sm" name="user_id" id="user_id" value="<?php echo $user_id; ?>" readonly>
+                  </div>
+                  <div class="form-group col-md-4 offset-md-2">
+                    <input type="text" class="form-control form-control-sm" name="outword_title" id="outword_title" value="<?php  if(isset($outword_title)){ echo $outword_title; } else{ echo "LABOUR CHARGES ONLY"; }?>" placeholder="Outword Title">
                   </div>
 
                   <div class="form-group col-md-12">

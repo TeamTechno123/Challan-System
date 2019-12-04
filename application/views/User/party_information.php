@@ -45,7 +45,7 @@
                   <div class="form-group col-md-12">
                     <select class="form-control select2 form-control-sm" name="party_type_id" title="select party type" id="party_type_id" style="width: 100%;" required>
                         <option selected="selected" value="" >Select Party Type </option>
-                        <?php foreach ($party_list as $party_info_list1) { ?>
+                        <?php foreach ($party_type as $party_info_list1) { ?>
                           <option value="<?php echo $party_info_list1->party_type_id; ?>" <?php if(isset($party_type_id)){ if($party_info_list1->party_type_id == $party_type_id){ echo "selected"; } }  ?>><?php echo $party_info_list1->party_type_name; ?></option>
                         <?php } ?>
                       </select>
@@ -56,14 +56,14 @@
                   </div>
 
                   <div class="form-group  col-md-12">
-                    <textarea name="address" id="address" class="form-control" rows="3" cols="90" title="Address" placeholder="Address"  required><?php if(isset($address)){ echo $address; } ?> </textarea>
+                    <textarea name="address" id="address" class="form-control" rows="3" cols="90" title="Address" placeholder="Address"  required><?php if(isset($address)){ echo $address; } ?></textarea>
                   </div>
                   <div class="form-group col-md-3">
-                    <input type="text"  class="form-control form-control-sm" name="city" id="city" title="City" placeholder="City"  value="<?php if(isset($city)){ echo $city; } ?>" required>
+                    <input type="text"  class="form-control form-control-sm" name="city" id="city" title="City" placeholder="City"  value="<?php if(isset($city)){ echo $city; } ?>" >
                   </div>
 
                   <div class="form-group col-md-3">
-                    <input type="text" class="form-control form-control-sm" name="pincode" id="pincode" title="Pincode"  value="<?php if(isset($pincode)){ echo $pincode; } ?>" placeholder="Pincode" required>
+                    <input type="text" class="form-control form-control-sm" name="pincode" id="pincode" title="Pincode"  value="<?php if(isset($pincode)){ echo $pincode; } ?>" placeholder="Pincode">
                   </div>
 
                   <div class="form-group col-md-3">
@@ -123,6 +123,6 @@
       </div><!-- /.container-fluid -->
     </section>
   </div>
-  
+
 </body>
 </html>

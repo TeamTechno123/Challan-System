@@ -76,7 +76,7 @@ class Admin extends CI_Controller{
           'company_city' => $this->input->post('company_city'),
           'company_state' => $this->input->post('company_state'),
           'company_district' => $this->input->post('company_district'),
-          'company_pincode' => $this->input->post('company_pincode'),
+          'company_statecode' => $this->input->post('company_statecode'),
           'company_mob1' => $this->input->post('company_mob1'),
           'company_mob2' => $this->input->post('company_mob2'),
           'company_email' => $this->input->post('company_email'),
@@ -100,6 +100,7 @@ class Admin extends CI_Controller{
           'user_city'=>$this->input->post('company_city'),
           'user_mobile'=>$this->input->post('company_mob1'),
           'user_addedby'=>'Admin',
+          'is_admin'=>1,
         );
         $this->Admin_Model->save_data('user', $data2);
         header('location:'.base_url().'Admin/company_information_list');
@@ -121,7 +122,7 @@ class Admin extends CI_Controller{
             $data['company_city'] = $info->company_city;
             $data['company_state'] = $info->company_state;
             $data['company_district'] = $info->company_district;
-            $data['company_pincode'] = $info->company_pincode;
+            $data['company_statecode'] = $info->company_statecode;
             $data['company_mob1'] = $info->company_mob1;
             $data['company_mob2'] = $info->company_mob2;
             $data['company_email'] = $info->company_email;
@@ -150,7 +151,7 @@ class Admin extends CI_Controller{
           'company_city' => $this->input->post('company_city'),
           'company_state' => $this->input->post('company_state'),
           'company_district' => $this->input->post('company_district'),
-          'company_pincode' => $this->input->post('company_pincode'),
+          'company_statecode' => $this->input->post('company_statecode'),
           'company_mob1' => $this->input->post('company_mob1'),
           'company_mob2' => $this->input->post('company_mob2'),
           'company_email' => $this->input->post('company_email'),

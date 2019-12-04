@@ -115,7 +115,6 @@
   <div class="sidebar">
     <!-- Sidebar user panel (optional) -->
     <div class="user-panel mt-3 pb-3 mb-3 d-flex">
-
       <div class="info">
         <a href="#" class="d-block">Admin</a>
       </div>
@@ -196,18 +195,14 @@
                   </p>
                 </a>
               </li>
-
-              <li class="nav-item">
+              <!-- <li class="nav-item">
                 <a href="<?php echo base_url(); ?>User/process_information_list" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
                   <p>
                     Process Information
                   </p>
                 </a>
-              </li>
-
-
-
+              </li> -->
               <li class="nav-item">
                 <a href="<?php echo base_url(); ?>User/user_information_list" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
@@ -216,7 +211,6 @@
                   </p>
                 </a>
               </li>
-
               <li class="nav-item">
                 <a href="<?php echo base_url(); ?>User/unit_information_list" class="nav-link">
                   <i class="far fa-circle nav-icon"></i>
@@ -225,7 +219,6 @@
                   </p>
                 </a>
               </li>
-
             </ul>
           </li>
 
@@ -242,16 +235,15 @@
                   <a href="<?php echo base_url(); ?>Transaction/inword_information_list" class="nav-link">
                     <i class="far fa-circle nav-icon"></i>
                     <p>
-                      Inword Information
+                      Inward Information
                     </p>
                   </a>
                 </li>
-
                 <li class="nav-item">
                   <a href="<?php echo base_url(); ?>Transaction/outword_information_list" class="nav-link">
                     <i class="far fa-circle nav-icon"></i>
                     <p>
-                      Outword Information
+                      Outward Information
                     </p>
                   </a>
                 </li>
@@ -292,13 +284,15 @@
                     </a>
                   </li>
                   <li class="nav-item">
-                    <a href="<?php echo base_url(); ?>Report/delivery_challan_receipt" class="nav-link">
+                    <a href="<?php echo base_url(); ?>Report/outword_bif_report" class="nav-link">
                       <i class="far fa-circle nav-icon"></i>
                       <p>
-                        Delivery Challan
+                      Outword BIF Reports
                       </p>
                     </a>
                   </li>
+
+
                 </ul>
               </li>
 

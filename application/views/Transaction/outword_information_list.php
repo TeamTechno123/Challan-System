@@ -64,6 +64,7 @@ $page = "make_information_list";
                   <td>
                     <a href="<?php echo base_url(); ?>Transaction/edit_outword/<?php echo $list->outword_id; ?>"> <i class="fa fa-edit"></i> </a>
                     <a href="<?php echo base_url(); ?>Transaction/delete_outword/<?php echo $list->outword_id; ?>" class="ml-2" onclick=" return confirm('Do you want to delete.')"> <i class="fa fa-trash"></i> </a>
+                    <a href="<?php echo base_url(); ?>Report/delivery_challan_receipt/<?php echo $list->outword_id; ?>" class="ml-2"> <i class="fa fa-print"></i> </a>
                   </td>
                 </tr>
               <?php } ?>

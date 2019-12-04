@@ -14,7 +14,7 @@ class User_Model extends CI_Model{
   public function get_count($id_type,$company_id,$key,$tbl_name){
     $this->db->select($id_type);
     if($key != ''){
-      $this->db->where('application_status', $key);
+      $this->db->where('is_delete', 0);
     }
     $this->db->where('company_id', $company_id);
     $this->db->from($tbl_name);
@@ -92,8 +92,10 @@ class User_Model extends CI_Model{
   $query = $this->db->select('user.*, roll.*')
   ->from('user as user')
   ->where('user.company_id', $company_id)
+  ->where('user.is_admin', 0)
    ->join('user_roll as roll', 'user.roll_id = roll.roll_id', 'LEFT')
    ->get();
+
    $result = $query->result();
    return $result;
 }
@@ -147,6 +149,18 @@ $query = $this->db->select('item_info.*, party.*')
     $this->db->from('user');
     $query = $this->db->get();
     $result = $query->result_array();
+    return $result;
+  }
+
+  public function item_stock_list($company_id){
+    $query = $this->db->select('item_info.*, SUM(inword_details.bal_qty) as stock_bal_qty')
+    ->from('item_info as item_info')
+    ->where('item_info.company_id', $company_id)
+    ->where('inword_details.is_delete', 0)
+    ->group_by('inword_details.item_info_id')
+    ->join('inword_details', 'item_info.item_info_id = inword_details.item_info_id', 'LEFT')
+    ->get();
+    $result = $query->result();
     return $result;
   }
 }
