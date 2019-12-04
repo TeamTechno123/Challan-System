@@ -60,6 +60,7 @@ class Transaction_Model extends CI_Model{
     $this->db->select('*');
     $this->db->from('inword');
     $this->db->where('inword_dc_num',$inword_dc_num);
+    $this->db->where('is_delete',0);
     $this->db->where('party_id',$party_id);
     $query = $this->db->get();
     if($check == 'get_num_rows'){

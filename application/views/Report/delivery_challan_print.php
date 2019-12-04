@@ -358,7 +358,6 @@ margin-right: auto;
       <?php echo $party_name; ?>,
       <?php echo $address; ?><br>
       <b>Mobile No</b> : <?php echo $mobile_no; ?> | <b>GST No</b> : <?php echo $gst_no; ?>
-
     </p>
   </td>
   <td colspan="2">
@@ -408,13 +407,13 @@ margin-right: auto;
       </thead>
       <tbody>
         <tr>
-          <td style="  text-align: center;">1</td>
-          <td style="  text-align: center;">ABCD</td>
-          <td style="  text-align: center;">Remark</td>
-          <td style="  text-align: center;">1</td>
-          <td style="  text-align: center;">120.00</td>
-          <td style="  text-align: center;">5000</td>
-          <td style="  text-align: center;">5120.00</td>
+          <td style="text-align:center;">1</td>
+          <td style="text-align:center;"><?php echo $item_info_name; ?></td>
+          <td style="text-align:center;"><?php echo $remark_name; ?></td>
+          <td style="text-align:center;"><?php echo $qty; ?></td>
+          <td style="text-align:center;"><?php echo $gst; ?></td>
+          <td style="text-align:center;"><?php echo $rate; ?></td>
+          <td style="text-align:center;"><?php echo $amount; ?></td>
         </tr>
 
         <tr>
@@ -439,7 +438,7 @@ margin-right: auto;
             </p>
           </td>
           <td  colspan="3" style="" >
-            <p style="font-size:13px;"> <b>Basic Amount</b>  : &#8377; 12000  </p>
+            <p style="font-size:13px;"> <b>Basic Amount</b>  : &#8377; <?php echo $outword_basic_amt; ?>  </p>
           </td>
         </tr>
         <?php
@@ -462,10 +461,10 @@ margin-right: auto;
             <td  colspan="3" style=" " ><p style="font-size:13px;"> <b>IGST</b>   : &#8377; <?php echo $igst; ?>  </p> </td>
           </tr>
         <tr>
-          <td  colspan="3" style=" " ><p style="font-size:13px;"> <b>GST Total</b>  : &#8377; 12000  </p> </td>
+          <td  colspan="3" style=" " ><p style="font-size:13px;"> <b>GST Total</b>  : &#8377; <?php echo $outword_gst; ?>  </p> </td>
         </tr>
         <tr>
-          <td  colspan="3" style=" " ><p style="font-size:13px;"> <b>Net Total</b>  : &#8377; 12000  </p> </td>
+          <td  colspan="3" style=" " ><p style="font-size:13px;"> <b>Net Total</b>  : &#8377; <?php echo $outword_net_amount; ?>  </p> </td>
         </tr>
 
 

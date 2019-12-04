@@ -3,7 +3,7 @@ class User_Model extends CI_Model{
 
   function check_login($email, $password){
     $query = $this->db->select('*')
-        ->where('user_email', $email)
+        ->where('user_mobile', $email)
         ->where('user_password', $password)
         ->from('user')
         ->get();

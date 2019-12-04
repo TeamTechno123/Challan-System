@@ -30,14 +30,14 @@
 
       <form method="post">
         <div class="input-group mb-3">
-          <input type="email" class="form-control" name="email" id="email" placeholder="Email">
+          <input type="number" class="form-control" name="mobile" id="mobile" placeholder="Mobile No">
           <div class="input-group-append">
             <div class="input-group-text">
               <span class="fas fa-envelope"></span>
             </div>
           </div>
         </div>
-        <span class="text-red"> <?php echo form_error('email'); ?> </span>
+        <span class="text-red"> <?php echo form_error('mobile'); ?> </span>
         <div class="input-group mb-3">
           <input type="password" class="form-control" name="password" id="password" placeholder="Password">
           <div class="input-group-append">

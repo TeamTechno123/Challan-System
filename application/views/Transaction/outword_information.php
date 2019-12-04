@@ -136,7 +136,7 @@
                             <input type="hidden" class="form-control form-control-sm gst_amount" name="input[<?php echo $i; ?>][gst_amount]" value="<?php echo $details->gst_amount; ?>" >
                             <p style="display:none;" class="text-danger m-0 p-0 out_stock">Out Of Stock</p>
                           <td class="td_w">
-                            <input type="number" min="1" class="form-control form-control-sm rate" name="input[<?php echo $i; ?>][rate]" value="<?php echo $details->rate; ?>" placeholder="Rate" required>
+                            <input type="number" step="0.1" min="1.0" class="form-control form-control-sm rate" name="input[<?php echo $i; ?>][rate]" value="<?php echo $details->rate; ?>" placeholder="Rate" required>
                           </td>
                           <td class="td_w">
                             <input type="text" readonly class="form-control form-control-sm amount" name="input[<?php echo $i; ?>][amount]" value="<?php echo $details->amount; ?>" placeholder="Amount" required>
@@ -170,7 +170,7 @@
                             <input type="hidden" class="form-control form-control-sm gst_amount" name="input[0][gst_amount]" >
                             <p style="display:none;" class="text-danger m-0 p-0 out_stock">Out Of Stock</p>
                           <td class="td_w">
-                            <input type="number" min="1" class="form-control form-control-sm rate" name="input[0][rate]" placeholder="Rate" required>
+                            <input type="number" step="0.1" min="1.0" class="form-control form-control-sm rate" name="input[0][rate]" placeholder="Rate" required>
                           </td>
                           <td class="td_w">
                             <input type="text" readonly class="form-control form-control-sm amount" name="input[0][amount]" placeholder="Amount" required>
@@ -324,7 +324,7 @@
       }
       var gst = parseInt(gst);
       var qty = parseInt(qty);
-      var rate = parseInt(rate);
+      var rate = parseFloat(rate);
       if(qty > stock_val){
         $(this).closest('tr').find('.qty').val('');
         $(this).closest('tr').find('.out_stock').show().delay(5000).fadeOut();
@@ -360,9 +360,6 @@
         total_amount = Math.ceil(total_amount);
         $('#outword_net_amount').val(total_amount);
       }
-
-
-
     });
 
     $('#myTable').on('keyup', 'input.qty', function () {

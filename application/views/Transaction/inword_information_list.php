@@ -65,7 +65,7 @@ $page = "make_information_list";
                   <td><?php echo $list->inword_net_amount; ?></td>
                   <td>
                     <a href="<?php echo base_url(); ?>Transaction/edit_inword/<?php echo $list->inword_id; ?>"> <i class="fa fa-edit"></i> </a>
-                    <a href="<?php echo base_url(); ?>Transaction/delete_inword/<?php echo $list->inword_id; ?>" class="ml-2" onclick="">
+                    <a href="<?php echo base_url(); ?>Transaction/delete_inword/<?php echo $list->inword_id; ?>" class="ml-2" onclick=" return confirm('Delete Inword');">
                       <i class="fa fa-trash"></i>
                     </a>
                   </td>

@@ -125,7 +125,7 @@
                               <input type="hidden" class="form-control form-control-sm bal_qty" name="input[<?php echo $i; ?>][bal_qty]" value="<?php echo $details->bal_qty; ?>" >
                               <input type="hidden" class="form-control form-control-sm old_qty" value="<?php echo $details->qty; ?>" >
                             <td class="td_w">
-                              <input type="number" min="1" class="form-control form-control-sm rate" name="input[<?php echo $i; ?>][rate]" value="<?php echo $details->rate; ?>" placeholder="Rate" required>
+                              <input type="number" step="0.1" min="1.0" class="form-control form-control-sm rate" name="input[<?php echo $i; ?>][rate]" value="<?php echo $details->rate; ?>" placeholder="Rate" required>
                               <input type="hidden" class="form-control form-control-sm gst" name="input[<?php echo $i; ?>][gst]" value="<?php echo $details->gst; ?>" >
                               <input type="hidden" class="form-control form-control-sm gst_amount" name="input[<?php echo $i; ?>][gst_amount]" value="<?php echo $details->gst_amount; ?>" >
                             </td>
@@ -325,7 +325,7 @@
         }
         var gst = parseInt(gst);
         var qty = parseInt(qty);
-        var rate = parseInt(rate);
+        var rate = parseFloat(rate);
 
         var amount_without_gst = qty * rate;
         var gst_amount = (gst/100) * amount_without_gst;

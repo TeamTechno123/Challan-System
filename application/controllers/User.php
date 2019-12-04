@@ -13,16 +13,16 @@ defined('BASEPATH') OR exit('No direct script access allowed');
   }
 
   public function index(){
-    $this->form_validation->set_rules('email', 'Email', 'trim|required|valid_email');
+    $this->form_validation->set_rules('mobile', 'Mobile No.', 'trim|required');
     $this->form_validation->set_rules('password', 'Password', 'trim|required');
     if ($this->form_validation->run() == FALSE) {
     	$this->load->view('User/login');
     }
     else{
-      $email = $this->input->post('email');
+      $mobile = $this->input->post('mobile');
       $password = $this->input->post('password');
 
-      $login = $this->User_Model->check_login($email, $password);
+      $login = $this->User_Model->check_login($mobile, $password);
       if($login == null){
         $this->session->set_flashdata('msg','login_error');
         header('location:'.base_url().'User');
