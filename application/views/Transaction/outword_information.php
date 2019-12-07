@@ -136,7 +136,7 @@
                             <input type="hidden" class="form-control form-control-sm gst_amount" name="input[<?php echo $i; ?>][gst_amount]" value="<?php echo $details->gst_amount; ?>" >
                             <p style="display:none;" class="text-danger m-0 p-0 out_stock">Out Of Stock</p>
                           <td class="td_w">
-                            <input type="number" step="0.1" min="1.0" class="form-control form-control-sm rate" name="input[<?php echo $i; ?>][rate]" value="<?php echo $details->rate; ?>" placeholder="Rate" required>
+                            <input type="number" step="0.01" min="1.00" class="form-control form-control-sm rate" name="input[<?php echo $i; ?>][rate]" value="<?php echo $details->rate; ?>" placeholder="Rate" required>
                           </td>
                           <td class="td_w">
                             <input type="text" readonly class="form-control form-control-sm amount" name="input[<?php echo $i; ?>][amount]" value="<?php echo $details->amount; ?>" placeholder="Amount" required>
@@ -170,7 +170,7 @@
                             <input type="hidden" class="form-control form-control-sm gst_amount" name="input[0][gst_amount]" >
                             <p style="display:none;" class="text-danger m-0 p-0 out_stock">Out Of Stock</p>
                           <td class="td_w">
-                            <input type="number" step="0.1" min="1.0" class="form-control form-control-sm rate" name="input[0][rate]" placeholder="Rate" required>
+                            <input type="number" step="0.01" min="1.00" class="form-control form-control-sm rate" name="input[0][rate]" placeholder="Rate" required>
                           </td>
                           <td class="td_w">
                             <input type="text" readonly class="form-control form-control-sm amount" name="input[0][amount]" placeholder="Amount" required>
@@ -253,7 +253,7 @@
               '<input type="hidden" class="form-control form-control-sm gst_amount" name="input[0][gst_amount]" >'+
             '</td>'+
             '<td class="td_w">'+
-              '<input type="text" class="form-control form-control-sm rate" name="input[0][rate]" placeholder="Rate" required>'+
+              '<input type="number" step="0.01" min="1.00" class="form-control form-control-sm rate" name="input[0][rate]" placeholder="Rate" required>'+
             '</td>'+
             '<td class="td_w">'+
               '<input type="text" readonly class="form-control form-control-sm amount" name="input[0][amount]" placeholder="Amount" required>'+

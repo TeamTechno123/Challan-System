@@ -38,7 +38,7 @@
 
                 <div class="card-body row">
                   <div class="form-group col-md-4 offset-md-2">
-                    <input type="text" class="form-control form-control-sm" name="inword_dc_num" id="inword_dc_num" value="<?php if(isset($inword_dc_num)){ echo $inword_dc_num; } ?>" placeholder="DC No" required>
+                    <input type="number" min="1" class="form-control form-control-sm" name="inword_dc_num" id="inword_dc_num" value="<?php if(isset($inword_dc_num)){ echo $inword_dc_num; } ?>" placeholder="DC No" required>
                   </div>
                   <div class="form-group col-md-4 ">
                     <input type="text" class="form-control form-control-sm" name="inword_date" id="date1" value="<?php if(isset($inword_date)){ echo $inword_date; } ?>" data-target="#date1" data-toggle="datetimepicker" placeholder="Date" required>
@@ -125,7 +125,7 @@
                               <input type="hidden" class="form-control form-control-sm bal_qty" name="input[<?php echo $i; ?>][bal_qty]" value="<?php echo $details->bal_qty; ?>" >
                               <input type="hidden" class="form-control form-control-sm old_qty" value="<?php echo $details->qty; ?>" >
                             <td class="td_w">
-                              <input type="number" step="0.1" min="1.0" class="form-control form-control-sm rate" name="input[<?php echo $i; ?>][rate]" value="<?php echo $details->rate; ?>" placeholder="Rate" required>
+                              <input type="number" step="0.01" min="1.00" class="form-control form-control-sm rate" name="input[<?php echo $i; ?>][rate]" value="<?php echo $details->rate; ?>" placeholder="Rate" required>
                               <input type="hidden" class="form-control form-control-sm gst" name="input[<?php echo $i; ?>][gst]" value="<?php echo $details->gst; ?>" >
                               <input type="hidden" class="form-control form-control-sm gst_amount" name="input[<?php echo $i; ?>][gst_amount]" value="<?php echo $details->gst_amount; ?>" >
                             </td>
@@ -156,7 +156,7 @@
                               <input type="number" min="1" class="form-control form-control-sm qty" name="input[0][qty]" placeholder="Qty" required>
                               <input type="hidden" class="form-control form-control-sm gst_amount" name="input[0][gst_amount]" >
                             <td class="td_w">
-                              <input type="number" min="1" class="form-control form-control-sm rate" name="input[0][rate]" placeholder="Rate" required>
+                              <input type="number" step="0.01" min="1.00" class="form-control form-control-sm rate" name="input[0][rate]" placeholder="Rate" required>
                               <input type="hidden" class="form-control form-control-sm gst" name="input[0][gst]" >
                             </td>
                             <td class="td_w">
@@ -231,7 +231,7 @@
             '<input type="hidden" class="form-control form-control-sm gst_amount" name="input['+i+'][gst_amount]" >'+
           '</td>'+
           '<td class="td_w">'+
-            '<input type="text" class="form-control form-control-sm rate" name="input['+i+'][rate]" placeholder="Rate" required>'+
+            '<input type="number" step="0.01" min="1.00" class="form-control form-control-sm rate" name="input['+i+'][rate]" placeholder="Rate" required>'+
             '<input type="hidden" class="form-control form-control-sm gst" name="input['+i+'][gst]" >'+
           '</td>'+
           '<td class="td_w">'+

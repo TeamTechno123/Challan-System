@@ -88,7 +88,8 @@ class Transaction_Model extends CI_Model{
     $this->db->where('details.item_info_id',$item_info_id);
     $this->db->where('details.bal_qty >',0);
     $this->db->where('details.is_delete', 0);
-    $this->db->order_by("str_to_date(inword.inword_date, '%d-%m-%Y')");
+    $this->db->order_by("str_to_date(inword.inword_date,'%d-%m-%Y')");
+    $this->db->order_by("inword.inword_id",'ASC');
     $this->db->limit(1);
     $this->db->join('inword','inword.inword_id = details.inword_id');
     // $this->db->order_by(STR_TO_DATE(, '%d/%m/%Y'))
