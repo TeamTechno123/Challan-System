@@ -49,10 +49,15 @@ defined('BASEPATH') OR exit('No direct script access allowed');
       }
       $data['inword_item_list'] = $this->Report_Model->inword_item_list($company_id,$from_date,$to_date,$party_id,$item_info_id);
       $data['outword_item_list'] = $this->Report_Model->outword_item_list($company_id,$from_date,$to_date,$party_id,$item_info_id);
-      $data['item_opening_bal'] = $this->Report_Model->item_opening_bal($company_id,$from_date,$party_id,$item_info_id);
+      $inword_opening_bal = $this->Report_Model->inword_opening_bal($company_id,$from_date,$party_id,$item_info_id);
+      $outword_opening_bal = $this->Report_Model->outword_opening_bal($company_id,$from_date,$party_id,$item_info_id);
       $data['inword_by_remark'] = $this->Report_Model->inword_by_remark($company_id,$from_date,$to_date,$party_id,$item_info_id);
       $data['outword_by_remark'] = $this->Report_Model->outword_by_remark($company_id,$from_date,$to_date,$party_id,$item_info_id);
+      $data['item_opening_bal'] = $inword_opening_bal - $outword_opening_bal;
     }
+
+    // print_r($data['inword_item_list']).'<br>';
+    // print_r($data['item_opening_bal']).'<br>';
 
     $this->load->view('Include/head',$data);
     $this->load->view('Include/navbar',$data);
@@ -100,9 +105,12 @@ defined('BASEPATH') OR exit('No direct script access allowed');
       }
       $data['inword_item_list'] = $this->Report_Model->inword_item_list($company_id,$from_date,$to_date,$party_id,$item_info_id);
       $data['outword_item_list'] = $this->Report_Model->outword_item_list($company_id,$from_date,$to_date,$party_id,$item_info_id);
-      $data['item_opening_bal'] = $this->Report_Model->item_opening_bal($company_id,$from_date,$party_id,$item_info_id);
+      $inword_opening_bal = $this->Report_Model->inword_opening_bal($company_id,$from_date,$party_id,$item_info_id);
+      $outword_opening_bal = $this->Report_Model->outword_opening_bal($company_id,$from_date,$party_id,$item_info_id);
+      // $data['item_opening_bal'] = $this->Report_Model->item_opening_bal($company_id,$from_date,$party_id,$item_info_id);
       $data['inword_by_remark'] = $this->Report_Model->inword_by_remark($company_id,$from_date,$to_date,$party_id,$item_info_id);
       $data['outword_by_remark'] = $this->Report_Model->outword_by_remark($company_id,$from_date,$to_date,$party_id,$item_info_id);
+      $data['item_opening_bal'] = $inword_opening_bal - $outword_opening_bal;
     }
 
     $this->load->view('Include/head',$data);

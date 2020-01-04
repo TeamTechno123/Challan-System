@@ -165,7 +165,7 @@ $page = "party_list";
                             border-collapse: collapse!important;
                             Width:100%!important;
                           }
-                          .table-bottom, tr, td, th{
+                          .table-bottom, .table-bottom tr, .table-bottom td, .table-bottom th{
                             border: 1px solid #000;
                             margin-left: auto;
                             margin-right: auto;
@@ -177,7 +177,7 @@ $page = "party_list";
                             border-collapse: collapse!important;
                             Width:100%!important;
                           }
-                          .table-bottom, tr, td, th{
+                          .table-bottom, .table-bottom tr, .table-bottom td, .table-bottom th{
                             border: 1px solid #000;
                             margin-left: auto;
                             margin-right: auto;

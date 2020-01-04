@@ -63,7 +63,7 @@
                     <input type="number" min="1" class="form-control form-control-sm" name="inword_trip" id="inword_trip" value="<?php if(isset($inword_trip)){ echo $inword_trip; } ?>" placeholder="Enter No Of Trip">
                   </div>
                   <div class="form-group col-md-4 offset-md-2">
-                    <input type="text" class="form-control form-control-sm" name="inword_trans" id="inword_trans" value="<?php if(isset($inword_trans)){ echo $inword_trans; } ?>" placeholder="Transport" required>
+                    <input type="text" class="form-control form-control-sm" name="inword_trans" id="inword_trans" value="<?php if(isset($inword_trans)){ echo $inword_trans; } ?>" placeholder="Transport" >
                   </div>
                   <div class="form-group col-md-4 ">
                     <input type="text" class="form-control form-control-sm" name="inword_user" id="inword_user" value="<?php echo $user_name.' '.$user_mobile; ?>" placeholder="User Name" readonly>

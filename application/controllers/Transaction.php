@@ -172,7 +172,9 @@ class Transaction extends CI_Controller{
         if(!isset($user['item_info_id'])){
           $this->User_Model->delete_set('inword_details_id', $inword_details_id, 'inword_details');
         }else{
-            $this->User_Model->update_info('inword_details_id', $inword_details_id, 'inword_details', $user);
+          $qty = $user['qty'];
+          $user['bal_qty'] = $qty;
+          $this->User_Model->update_info('inword_details_id', $inword_details_id, 'inword_details', $user);
         }
       }
       else{

@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <?php
-  $page = "company_information";
+  $page = "outword_information";
 ?>
 <body class="hold-transition sidebar-mini layout-fixed">
 <div class="wrapper">
@@ -17,7 +17,6 @@
         </div>
       </div><!-- /.container-fluid -->
     </section>
-
     <section class="content">
       <div class="container-fluid">
         <div class="row">
@@ -28,7 +27,6 @@
               <div class="card-header">
                 <h3 class="card-title">Outword Information</h3>
               </div>
-              <!-- /.card-header -->
               <!-- form start -->
               <?php if(isset($update)){ ?>
                 <form role="form" action="<?php echo base_url(); ?>Transaction/update_outword" method="POST" autocomplete="off">
@@ -42,7 +40,7 @@
                     <input type="text" class="form-control form-control-sm" name="outword_dc_num" id="outword_dc_num" value="<?php  if(isset($outword_dc_num)){ echo $outword_dc_num; }?>" placeholder="DC No" readonly>
                   </div>
                   <div class="form-group col-md-4 ">
-                    <input type="text" class="form-control form-control-sm" name="outword_date" id="date1" value="<?php  if(isset($outword_date)){ echo $outword_date; }?>" data-target="#date1" data-toggle="datetimepicker" placeholder="Date">
+                    <input type="text" class="form-control form-control-sm" name="outword_date" id="date1" value="<?php  if(isset($outword_date)){ echo $outword_date; }?>" data-target="#date1" data-toggle="datetimepicker" placeholder="Date" required>
                   </div>
                   <div class="form-group col-md-4 offset-md-2">
                     <input type="text" class="form-control form-control-sm" name="outword_E_no" id="outword_E_no" value="<?php  if(isset($outword_E_no)){ echo $outword_E_no; }?>" placeholder="Eway Bill No.">

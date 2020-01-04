@@ -14,7 +14,7 @@ class Transaction_Model extends CI_Model{
     }               //separating numeric part
     $value2 = $old_num + 1;                            //Incrementing numeric part
     // $value2 = "" . sprintf('%06s', $value2);               //concatenating incremented value
-    return $value = $value2;
+    return $value = $value2;    
   }
 
   public function delete_set($id_type, $id, $tbl_name){

@@ -247,13 +247,8 @@ margin-right: auto;
 </table>
 
 
-
-
  <br>
   <hr style="margin-top:10px; border-top: 1px dotted #000;">
-
-
-
 
 <div class="row">
 <p style="text-align:center; margin-bottom: 10px; font-size:16px; text-transform:uppercase;"> <b>Delivery Challan</b>  </p>

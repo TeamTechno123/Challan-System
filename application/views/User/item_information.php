@@ -1,12 +1,10 @@
 <!DOCTYPE html>
 <html>
 <?php
-  $page = "company_information";
+  $page = "item_information";
 ?>
 <body class="hold-transition sidebar-mini layout-fixed">
 <div class="wrapper">
-
-
   <!-- Content Wrapper. Contains page content -->
   <div class="content-wrapper">
     <!-- Content Header (Page header) -->
@@ -19,9 +17,6 @@
         </div>
       </div><!-- /.container-fluid -->
     </section>
-
-
-
     <section class="content">
       <div class="container-fluid">
         <div class="row">
@@ -41,18 +36,15 @@
                 <form action="<?php echo base_url(); ?>User/save_item" method="post" enctype="multipart/form-data" role="form">
               <?php } ?>
                 <div class="card-body row">
-
                   <div class="form-group col-md-4">
                     <input type="text" class="form-control form-control-sm" name="item_info_name" id="item_info_name" placeholder="Enter Item Name"  value="<?php if(isset($item_info_name)){ echo $item_info_name; } ?>"  required>
                   </div>
-
                   <div class="form-group col-md-4">
-                    <input type="text" class="form-control form-control-sm" name="part_code" id="part_code" placeholder="Short Name"  value="<?php if(isset($part_code)){ echo $part_code; } ?>"  required>
+                    <input type="text" class="form-control form-control-sm" name="part_code" id="part_code" placeholder="Short Name"  value="<?php if(isset($part_code)){ echo $part_code; } ?>">
                   </div>
                   <div class="form-group col-md-4">
-                    <input type="text" class="form-control form-control-sm" name="hsn_code" id="hsn_code" placeholder="HSN / SAC Code"  value="<?php if(isset($hsn_code)){ echo $hsn_code; } ?>"  required>
+                    <input type="text" class="form-control form-control-sm" name="hsn_code" id="hsn_code" placeholder="HSN / SAC Code"  value="<?php if(isset($hsn_code)){ echo $hsn_code; } ?>" required>
                   </div>
-
                   <div class="form-group col-md-6">
                     <select class="form-control select2 form-control-sm" name="gst_slab" id="gst_slab" style="width: 100%;" required>
                         <option selected="selected" value="" >Select GST Slab </option>
@@ -69,7 +61,6 @@
                         <?php } ?>
                       </select>
                   </div>
-
                   <div class="form-group col-md-6">
                     <select class="form-control select2 form-control-sm" name="item_group_id" id="item_group_id" style="width: 100%;" required>
                         <option selected="selected" value="" >Select Item Group </option>
@@ -86,30 +77,25 @@
                         <?php } ?>
                       </select>
                   </div>
-
                   <div class="form-group col-md-4">
-                    <input type="text" class="form-control" name="inword_rate" id="inword_rate" placeholder="Inword Rate"  value="<?php if(isset($inword_rate)){ echo $inword_rate; } ?>"  required>
+                    <input type="text" class="form-control" name="inword_rate" id="inword_rate" placeholder="Inword Rate"  value="<?php if(isset($inword_rate)){ echo $inword_rate; } ?>" >
                   </div>
                   <div class="form-group col-md-4">
-                    <input type="text" class="form-control" name="outword_rate" id="outword_rate" placeholder="Outword Rate"  value="<?php if(isset($outword_rate)){ echo $outword_rate; } ?>"  required>
+                    <input type="text" class="form-control" name="outword_rate" id="outword_rate" placeholder="Outword Rate"  value="<?php if(isset($outword_rate)){ echo $outword_rate; } ?>" >
                   </div>
                   <div class="form-group col-md-4">
-                    <input type="text" class="form-control" name="ci_boring_weight" id="ci_boring_weight" placeholder="CI Boaring Weight Per Item"  value="<?php if(isset($ci_boring_weight)){ echo $ci_boring_weight; } ?>"  required>
-                  </div>
-
-                  <div class="form-group col-md-4">
-                    <input type="text" class="form-control" name="po_number" id="po_number" placeholder="PO No"  value="<?php if(isset($po_number)){ echo $po_number; } ?>"  required>
+                    <input type="text" class="form-control" name="ci_boring_weight" id="ci_boring_weight" placeholder="CI Boaring Weight Per Item"  value="<?php if(isset($ci_boring_weight)){ echo $ci_boring_weight; } ?>" >
                   </div>
                   <div class="form-group col-md-4">
-                    <input type="text" class="form-control date" name="po_date" id="date1" data-target="#date1" data-toggle="datetimepicker" placeholder="PO Date"  value="<?php if(isset($po_date)){ echo $po_date; } ?>"  required >
+                    <input type="text" class="form-control" name="po_number" id="po_number" placeholder="PO No"  value="<?php if(isset($po_number)){ echo $po_number; } ?>" >
+                  </div>
+                  <div class="form-group col-md-4">
+                    <input type="text" class="form-control date" name="po_date" id="date1" data-target="#date1" data-toggle="datetimepicker" placeholder="PO Date"  value="<?php if(isset($po_date)){ echo $po_date; } ?>"  >
                   </div>
                   <div class="form-group col-md-4">
                     <!-- <input type="text" class="form-control" name="company_end_date" id="date2" value="31-3-2020" data-target="#date2" data-toggle="datetimepicker" placeholder="Fin End Date"> -->
                   </div>
                 </div>
-
-                <!-- /.card-body -->
-
                 <div class="card-footer">
                   <?php if(isset($update)){ ?>
                     <button type="submit" class="btn btn-primary">Update</button>
@@ -120,16 +106,10 @@
                 </div>
               </form>
             </div>
-
           </div>
-          <!--/.col (left) -->
-          <!-- right column -->
-          <!--/.col (right) -->
         </div>
-        <!-- /.row -->
-      </div><!-- /.container-fluid -->
+      </div>
     </section>
   </div>
-
 </body>
 </html>
